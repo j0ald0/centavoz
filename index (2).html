@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CentaVoz — Fale o que você gastou. O resto o CentaVoz faz.</title>
+<meta name="description" content="Registre gastos falando uma frase. O CentaVoz separa valor, cartão e parcela, coloca cada compra na fatura certa e mostra para onde o dinheiro foi. Pagamento único, dados na sua conta Google.">
+<meta property="og:title" content="CentaVoz — Sua voz vira controle.">
+<meta property="og:description" content="Fale o que você gastou. O resto o CentaVoz faz. Pagamento único, sem mensalidade.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta name="theme-color" content="#161616">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23D4F742' stroke='%23161616' stroke-width='3'/%3E%3Crect x='24' y='12' width='16' height='26' rx='8' fill='%23161616'/%3E%3Cpath d='M18 28v2a14 14 0 0 0 28 0v-2M32 44v7M25 51h14' fill='none' stroke='%23161616' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<!--
+  PIXEL DA META — desligado.
+  Para ligar: troque SEU_PIXEL_ID (nos dois lugares) pelo número do Pixel e apague
+  as marcas de comentário em volta deste bloco. Antes de ligar, a página precisa de
+  uma política de privacidade publicada (LGPD).
+
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','SEU_PIXEL_ID');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"></noscript>
+-->
+
+<style>
+:root{
+  --lima:#D4F742;
+  --voz:#D6F43C;
+  --oliva:#5F6644;
+  --tinta:#161616;
+  --papel:#F5F5F5;
+  --branco:#FFFFFF;
+  --cinza:#55584F;
+  --linha:#DFE1D8;
+  --roxo:#6C5CE7;
+
+  --f-titulo:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;
+  --f-texto:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --t-pequeno:.875rem;
+  --t-texto:1.0625rem;
+  --t-lead:1.25rem;
+  --t-h3:1.375rem;
+  --t-h2:clamp(2rem,4.4vw,3rem);
+  --t-h1:clamp(2.6rem,6vw,4.4rem);
+
+  --largura:1120px;
+  --margem:clamp(20px,5vw,48px);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--papel);color:var(--tinta);
+  font-family:var(--f-texto);font-size:var(--t-texto);line-height:1.6;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--oliva);outline-offset:3px;border-radius:6px}
+.escuro :focus-visible{outline-color:var(--lima)}
+h1,h2,h3{font-family:var(--f-titulo);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:0}
+h2{font-size:var(--t-h2);max-width:18ch}
+h3{font-size:var(--t-h3);letter-spacing:-.015em;line-height:1.2}
+p{margin:0}
+.miolo{max-width:var(--largura);margin-inline:auto;padding-inline:var(--margem)}
+.so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Botão principal */
+.botao{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  min-height:56px;padding:0 28px;border-radius:999px;
+  background:var(--lima);color:var(--tinta);
+  font-family:var(--f-texto);font-weight:700;font-size:1.0625rem;text-decoration:none;
+  border:2px solid var(--tinta);
+  box-shadow:0 4px 0 var(--tinta);
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.botao:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--tinta)}
+.botao:active{transform:translateY(3px);box-shadow:0 1px 0 var(--tinta)}
+.botao svg{width:20px;height:20px}
+.escuro .botao{border-color:var(--lima);box-shadow:0 4px 0 var(--oliva)}
+
+/* Cabeçalho — mesmo preto do cabeçalho do app */
+.topo{
+  background:var(--tinta);color:var(--branco);
+  padding-top:env(safe-area-inset-top,0px);
+  border-radius:0 0 22px 22px;
+}
+.topo .miolo{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marca svg{width:36px;height:36px}
+.marca-nome{font-family:var(--f-titulo);font-weight:800;font-size:1.375rem;letter-spacing:-.02em;line-height:1}
+.marca-nome span{color:var(--voz)}
+.topo-link{font-weight:600;font-size:.9375rem;text-decoration:none;padding:10px 16px;border:1.5px solid #3A3A3A;border-radius:999px}
+.topo-link:hover{border-color:var(--lima)}
+
+/* Primeira dobra */
+.dobra{padding-block:clamp(40px,7vw,88px) clamp(56px,8vw,104px)}
+.dobra .miolo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,72px);align-items:center}
+.dobra h1{font-size:var(--t-h1);max-width:12ch}
+.dobra .lead{font-size:var(--t-lead);line-height:1.5;color:#2E302A;max-width:34ch;margin-top:24px}
+.dobra .acoes{margin-top:32px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.nota-instalacao{font-size:var(--t-pequeno);color:var(--cinza);max-width:40ch}
+.garantias{list-style:none;padding:0;margin:36px 0 0;display:grid;gap:12px}
+.garantias li{display:flex;gap:12px;align-items:center;font-weight:600}
+.garantias svg{flex:none;width:28px;height:28px}
+
+/* Celular */
+.palco{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
+.palco::before{
+  content:"";position:absolute;width:min(440px,92vw);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle, rgba(214,244,60,.55) 0%, rgba(214,244,60,.18) 45%, rgba(214,244,60,0) 70%);
+  top:50%;left:50%;transform:translate(-50%,-54%);z-index:0;
+}
+.celular{
+  position:relative;z-index:1;width:292px;height:600px;flex:none;
+  background:var(--tinta);border-radius:46px;padding:10px;
+  box-shadow:0 30px 60px -20px rgba(22,22,22,.45);
+}
+.celular::after{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:12px;background:var(--tinta);z-index:5}
+.tela{position:absolute;inset:10px;border-radius:37px;overflow:hidden;background:var(--papel);font-size:11.5px;line-height:1.35;transition:opacity .35s ease}
+.tela.oculta{opacity:0;pointer-events:none}
+.legenda-celular{position:relative;z-index:1;font-size:var(--t-pequeno);color:var(--cinza);text-align:center;max-width:32ch}
+
+/* Tela de lançamento (réplica do app) */
+.lanc{padding:48px 14px 14px;display:flex;flex-direction:column;gap:7px}
+.lanc-rot{color:#6B6E66;font-size:10.5px;display:flex;align-items:center;gap:4px}
+.lanc-rot svg{width:11px;height:11px}
+.campo{background:var(--branco);border:1px solid #E3E4DF;border-radius:9px;padding:7px 9px;min-height:30px;color:var(--tinta)}
+.campo.ditado{min-height:40px}
+.cursor{display:inline-block;width:1px;height:12px;background:var(--tinta);vertical-align:-2px;margin-left:1px;animation:pisca 1s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.btn-roxo{background:var(--roxo);color:#fff;border-radius:9px;text-align:center;font-weight:700;padding:8px;transition:transform .12s,filter .12s}
+.btn-roxo.apertado,.btn-lima.apertado{transform:scale(.96);filter:brightness(.9)}
+.entendi{background:#F1EFFE;border:1px solid #D9D4FB;border-radius:9px;padding:7px 9px;color:#3B3470;transition:opacity .3s}
+.entendi b{font-weight:700}
+.linha-campo{transition:opacity .25s}
+.linha-campo .campo{transition:background .4s}
+.linha-campo.recente .campo{background:#F6FCDD}
+.btn-lima{background:var(--voz);border-radius:9px;text-align:center;font-weight:700;padding:9px;margin-top:2px;transition:transform .12s,filter .12s}
+.vazio .entendi,.vazio .linha-campo{opacity:0}
+
+.teclado{
+  position:absolute;left:0;right:0;bottom:0;background:#D5D7DC;padding:8px 5px 22px;
+  display:grid;gap:7px;transition:transform .4s ease;
+}
+.teclado.guardado{transform:translateY(105%)}
+.tec-linha{display:flex;gap:4px;justify-content:center}
+.tec-linha i{display:block;height:30px;flex:1;max-width:23px;background:#fff;border-radius:5px;box-shadow:0 1px 0 #9A9CA2}
+.tec-linha i.largo{max-width:none;flex:5}
+.tec-linha i.medio{max-width:34px;flex:1.4;background:#B9BCC3}
+.tec-mic{position:relative;max-width:34px!important;flex:1.4!important;background:var(--tinta)!important;display:flex!important;align-items:center;justify-content:center}
+.tec-mic svg{width:14px;height:14px}
+.tec-mic::before,.tec-mic::after{content:"";position:absolute;inset:-4px;border-radius:9px;border:2px solid var(--voz);opacity:0}
+.ouvindo .tec-mic::before{animation:onda 1.4s ease-out infinite}
+.ouvindo .tec-mic::after{animation:onda 1.4s ease-out .7s infinite}
+@keyframes onda{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+.tec-aviso{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);white-space:nowrap;background:var(--tinta);color:var(--branco);font-size:10.5px;padding:5px 10px;border-radius:999px}
+.tec-aviso span{color:var(--voz)}
+.teclado.guardado .tec-aviso{opacity:0}
+.tec-aviso{transition:opacity .2s}
+
+.toast{position:absolute;left:14px;right:14px;top:44px;background:var(--tinta);color:var(--branco);border-radius:10px;padding:9px 12px;font-weight:600;display:flex;gap:8px;align-items:center;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease;z-index:4}
+.toast.visivel{opacity:1;transform:none}
+.toast svg{width:14px;height:14px;flex:none}
+
+/* Tela principal (réplica do app) */
+.app-topo{background:#000;color:#fff;padding:44px 14px 14px;border-radius:0 0 16px 16px}
+.app-topo b{font-family:var(--f-titulo);font-size:17px;letter-spacing:-.02em}
+.app-topo b span{color:var(--voz)}
+.app-topo small{display:block;font-size:10px;color:#CFCFCF;margin-top:2px}
+.app-mic{width:52px;height:52px;border-radius:50%;background:var(--voz);margin:14px auto 4px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 7px rgba(214,244,60,.28),0 0 22px rgba(214,244,60,.7)}
+.app-mic svg{width:20px;height:20px}
+.app-mic-rot{text-align:center;font-weight:700;font-size:10.5px}
+.app-card{background:#fff;border-radius:12px;margin:10px 12px 0;padding:11px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.app-card .t{font-weight:700;font-size:12px}
+.app-card .v{font-family:var(--f-titulo);font-weight:800;font-size:25px;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.app-card .s{color:#6B6E66;font-size:10.5px}
+.app-lista .item{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid #EEE}
+.app-lista .item:first-of-type{border-top:0}
+.app-lista .item b{font-size:11.5px}
+.app-lista .item small{display:block;color:#6B6E66;font-size:9.5px}
+.app-lista .item .r{font-weight:700;white-space:nowrap}
+.app-sanfona{font-weight:700;font-size:12px;display:flex;justify-content:space-between;align-items:center;padding:10px 12px}
+.app-sanfona::after{content:"";width:6px;height:6px;border-right:1.6px solid #555;border-bottom:1.6px solid #555;transform:rotate(45deg) translateY(-2px)}
+.app-lista .item.novo{animation:entra .5s ease}
+@keyframes entra{from{background:#F1FBC8}to{background:transparent}}
+
+/* Seção escura: a dor */
+.escuro{background:var(--tinta);color:var(--branco)}
+.dor{padding-block:clamp(64px,9vw,120px)}
+.dor h2{max-width:16ch;font-size:clamp(2.2rem,5.4vw,3.9rem)}
+.dor h2 .segunda{display:block;color:var(--lima)}
+.dor .texto{max-width:52ch;color:#D6D6D2;font-size:var(--t-lead);line-height:1.55;margin-top:28px}
+.falas{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid #333}
+.falas li{padding:28px 28px 0 0}
+.falas li+li{padding-left:28px;border-left:1px solid #333}
+.falas q{display:block;font-family:var(--f-titulo);font-weight:800;font-size:1.625rem;letter-spacing:-.02em;line-height:1.15;quotes:"“" "”"}
+.falas p{color:#BDBDB8;margin-top:10px;max-width:30ch}
+
+/* Seções claras */
+.secao{padding-block:clamp(64px,9vw,120px)}
+.secao .intro{max-width:52ch;color:#35372F;font-size:var(--t-lead);line-height:1.55;margin-top:20px}
+
+/* Como funciona — sequência real, numerada */
+.passos{list-style:none;padding:0;margin:56px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);counter-reset:passo}
+.passos li{counter-increment:passo;position:relative;padding-top:64px}
+.passos li::before{
+  content:counter(passo);position:absolute;top:0;left:0;width:46px;height:46px;border-radius:50%;
+  background:var(--lima);border:2px solid var(--tinta);display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-titulo);font-weight:800;font-size:1.25rem;
+}
+.passos li:not(:last-child)::after{content:"";position:absolute;top:23px;left:58px;right:-8px;height:2px;background:repeating-linear-gradient(90deg,var(--tinta) 0 6px,transparent 6px 12px)}
+.passos p{margin-top:10px;color:#35372F}
+.passos .exemplo{display:inline-block;margin-top:14px;background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:10px 14px;font-weight:600}
+.aparte{margin-top:40px;padding:18px 22px;border-left:4px solid var(--lima);background:var(--branco);border-radius:0 12px 12px 0;max-width:62ch}
+
+/* O que você enxerga */
+.ver{background:var(--branco);border-block:1px solid var(--linha)}
+.ver-grade{margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,56px) clamp(24px,4vw,64px)}
+.ver-item p{margin-top:10px;color:#35372F;max-width:44ch}
+.amostra{margin-top:20px;background:var(--papel);border-radius:18px;padding:18px}
+.amostra-card{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.amostra-card .t{font-weight:700}
+.amostra-card .v{font-family:var(--f-titulo);font-weight:800;font-size:2.25rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.amostra-card .s{color:var(--cinza);font-size:var(--t-pequeno)}
+.barras{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.barras li{display:grid;grid-template-columns:7.5em 1fr auto;gap:12px;align-items:center;font-size:.9375rem}
+.barras .b{height:12px;border-radius:6px;background:#E6E7E1;overflow:hidden}
+.barras .b span{display:block;height:100%;border-radius:6px}
+.barras .n{font-variant-numeric:tabular-nums;font-weight:600}
+.parcelas-lista{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.parcelas-lista li{display:flex;justify-content:space-between;gap:12px;background:#fff;border-radius:10px;padding:10px 14px}
+.parcelas-lista li span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
+.conversa{display:grid;gap:10px}
+.balao{border-radius:16px;padding:10px 14px;max-width:88%}
+.balao.pergunta{justify-self:end;background:var(--tinta);color:#fff;border-bottom-right-radius:4px}
+.balao.resposta{background:#fff;border-bottom-left-radius:4px}
+.rotulo-exemplo{font-size:.8125rem;color:var(--cinza);margin-top:10px}
+
+/* Dados */
+.dados .miolo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.afirmacoes{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.afirmacoes li{padding:22px 0;border-top:1.5px solid var(--tinta)}
+.afirmacoes li:last-child{border-bottom:1.5px solid var(--tinta)}
+.afirmacoes b{display:block;font-family:var(--f-titulo);font-size:var(--t-h3);letter-spacing:-.015em;line-height:1.2}
+.afirmacoes p{margin-top:6px;color:#35372F;max-width:52ch}
+
+/* Pagamento único */
+.unico{padding-block:clamp(64px,9vw,120px)}
+.tabela-rolagem{overflow-x:auto;margin-top:48px}
+.comparacao{width:100%;min-width:560px;border-collapse:separate;border-spacing:0;font-size:1.0625rem}
+.comparacao th,.comparacao td{text-align:left;padding:18px 20px;vertical-align:top}
+.comparacao thead th{font-family:var(--f-titulo);font-size:1.25rem;letter-spacing:-.01em}
+.comparacao thead th:first-child{width:22%}
+.comparacao tbody th{font-weight:600;color:#BDBDB8}
+.comparacao td{border-top:1px solid #333;color:#D6D6D2}
+.comparacao tbody th{border-top:1px solid #333}
+.comparacao .nosso{background:#222418;color:var(--branco)}
+.comparacao thead .nosso{color:var(--lima);border-radius:14px 14px 0 0}
+.comparacao tbody tr:last-child .nosso{border-radius:0 0 14px 14px}
+
+/* Instalação */
+.instalacao .miolo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,88px);align-items:start}
+.requisitos{margin-top:28px;background:var(--branco);border:1px solid var(--linha);border-radius:16px;padding:18px 20px}
+.requisitos b{display:block;margin-bottom:6px}
+.requisitos ul{margin:0;padding-left:1.1em;color:#35372F}
+.trilha{list-style:none;padding:0;margin:0;counter-reset:etapa;position:relative}
+.trilha li:not(:last-child)::after{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--tinta)}
+.trilha li{counter-increment:etapa;position:relative;padding:0 0 30px 68px}
+.trilha li:last-child{padding-bottom:0}
+.trilha li::before{content:counter(etapa);position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;background:var(--papel);border:2px solid var(--tinta);display:flex;align-items:center;justify-content:center;font-family:var(--f-titulo);font-weight:800;font-size:1.125rem}
+.trilha h3{padding-top:8px}
+.trilha p{margin-top:6px;color:#35372F;max-width:50ch}
+.aviso-google{margin-top:36px;padding:20px 22px;background:var(--tinta);color:#E7E7E3;border-radius:16px}
+.aviso-google b{color:var(--lima)}
+
+/* Oferta */
+.oferta{padding-block:clamp(64px,9vw,120px)}
+.oferta .miolo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.oferta .texto{color:#D6D6D2;font-size:var(--t-lead);line-height:1.55;margin-top:22px;max-width:44ch}
+.cartao-preco{background:var(--lima);color:var(--tinta);border-radius:28px;padding:clamp(24px,4vw,40px);border:2px solid var(--lima)}
+.cartao-preco .rot{font-weight:700}
+.preco{font-family:var(--f-titulo);font-weight:800;font-size:clamp(4rem,10vw,6.5rem);line-height:1;letter-spacing:-.04em;margin-top:8px;font-variant-numeric:tabular-nums}
+.preco small{font-size:.32em;letter-spacing:0;vertical-align:.95em;margin-right:.12em}
+.cartao-preco .forma{font-weight:600;margin-top:6px}
+.inclui{list-style:none;padding:0;margin:24px 0;display:grid;gap:10px}
+.inclui li{display:flex;gap:10px;align-items:flex-start}
+.inclui svg{flex:none;width:22px;height:22px;margin-top:2px}
+.cartao-preco .botao{width:100%;background:var(--tinta);color:var(--lima);border-color:var(--tinta);box-shadow:0 4px 0 var(--oliva)}
+.cartao-preco .miudo{margin-top:16px;font-size:var(--t-pequeno);color:#2D3017}
+
+/* Perguntas */
+.faq .miolo{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(32px,6vw,88px);align-items:start}
+.faq .miolo>div:first-child{position:sticky;top:24px}
+.faq .contato{margin-top:20px;color:#35372F}
+.faq .contato a{font-weight:700}
+.grupo-faq+.grupo-faq{margin-top:36px}
+.grupo-faq h3{display:inline-block;font-size:1rem;font-family:var(--f-texto);font-weight:700;letter-spacing:0;color:var(--tinta);background:var(--lima);padding:4px 14px;border-radius:999px;margin-bottom:10px}
+details{border-top:1px solid var(--linha)}
+.grupo-faq details:last-child{border-bottom:1px solid var(--linha)}
+summary{list-style:none;cursor:pointer;padding:18px 44px 18px 0;position:relative;font-weight:700;font-size:1.0625rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:12px;border-right:2.5px solid var(--tinta);border-bottom:2.5px solid var(--tinta);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+details .resp{padding:0 0 20px;color:#35372F;max-width:62ch}
+details .resp p+p{margin-top:10px}
+
+/* Chamada final */
+.final{padding-block:clamp(72px,10vw,128px);text-align:center}
+.final h2{margin-inline:auto;max-width:17ch}
+.final p{margin:20px auto 0;max-width:44ch;color:#D6D6D2;font-size:var(--t-lead)}
+.final .botao{margin-top:36px}
+
+.rodape{background:var(--tinta);color:#A9A9A4;border-top:1px solid #2A2A2A;padding-block:36px calc(36px + env(safe-area-inset-bottom,0px));font-size:var(--t-pequeno)}
+.rodape .miolo{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+.rodape a{color:#E7E7E3}
+.rodape nav{display:flex;flex-wrap:wrap;gap:12px 24px}
+
+/* Responsivo */
+@media (max-width:900px){
+  .faq .miolo>div:first-child{position:static}
+  .dobra .miolo,.dados .miolo,.instalacao .miolo,.oferta .miolo,.faq .miolo{grid-template-columns:1fr}
+  .dobra h1{max-width:14ch}
+  .ver-grade{grid-template-columns:1fr}
+  .falas{grid-template-columns:1fr;border-top:0}
+  .falas li,.falas li+li{padding:24px 0;border-left:0;border-top:1px solid #333}
+  .passos{grid-template-columns:1fr;gap:32px}
+  .passos li{padding:0 0 0 64px}
+  .passos li:not(:last-child)::after{display:none}
+}
+@media (max-width:600px){
+  .tabela-rolagem{overflow:visible}
+  .comparacao{min-width:0}
+  .comparacao thead{display:none}
+  .comparacao tbody{display:block}
+  .comparacao tr{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;padding:18px 0;border-top:1px solid #333}
+  .comparacao tbody th{grid-column:1/-1;border:0;padding:0 0 10px;color:var(--branco)}
+  .comparacao td{border:0;padding:12px 14px;border-radius:12px;font-size:1rem}
+  .comparacao td::before{content:attr(data-rot);display:block;font-size:.8125rem;font-weight:700;margin-bottom:4px;color:#9A9A95}
+  .comparacao td.nosso::before{color:var(--lima)}
+  .comparacao tbody tr:last-child .nosso{border-radius:12px}
+}
+@media (max-width:420px){
+  .topo-link{display:none}
+  .barras li{grid-template-columns:6.5em 1fr auto;gap:8px;font-size:.875rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="miolo">
+    <a class="marca" href="#" aria-label="CentaVoz, início">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#D4F742" stroke="#D4F742" stroke-width="3"/><rect x="24" y="12" width="16" height="26" rx="8" fill="#161616"/><text x="32" y="30.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="#D4F742">$</text><path d="M18 28v2a14 14 0 0 0 28 0v-2M32 44v7M25 51h14" fill="none" stroke="#161616" stroke-width="3" stroke-linecap="round"/></svg>
+      <span class="marca-nome">Centa<span>Voz</span></span>
+    </a>
+    <a class="topo-link" href="#oferta">Ver preço</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. Primeira dobra -->
+<section class="dobra" aria-labelledby="titulo">
+  <div class="miolo">
+    <div>
+      <h1 id="titulo">Fale o que você gastou. O resto o CentaVoz faz.</h1>
+      <p class="lead">Registre um gasto dizendo uma frase, na hora em que ele acontece. O app separa valor, cartão e parcela, coloca cada compra na fatura certa e mostra para onde o dinheiro foi.</p>
+      <div class="acoes">
+        <a class="botao" href="#oferta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          Quero controlar falando
+        </a>
+        <p class="nota-instalacao">A instalação é feita uma vez, pelo computador, com um guia passo a passo. Depois, é só usar no celular.</p>
+      </div>
+      <ul class="garantias">
+        <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M8.5 14.5l3.5 3.5 7.5-8" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pagamento único, sem mensalidade</li>
+        <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M8.5 14.5l3.5 3.5 7.5-8" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Seus dados ficam na sua conta Google</li>
+        <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M8.5 14.5l3.5 3.5 7.5-8" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Funciona no iPhone e no Android</li>
+      </ul>
+    </div>
+
+    <div class="palco">
+      <p class="so-leitor">Demonstração: a pessoa toca no microfone do teclado do celular e diz "Uber, 23 reais e 50 centavos, Itaú". O teclado escreve "Uber R$ 23,50 Itaú" e o CentaVoz preenche descrição, valor, forma de pagamento e categoria, a compra é cadastrada e o valor da próxima fatura é atualizado.</p>
+      <div class="celular" aria-hidden="true">
+        <!-- Tela de lançamento -->
+        <div class="tela" id="telaLanc">
+          <div class="lanc" id="lanc">
+            <div class="lanc-rot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Ditado por voz</div>
+            <div class="campo ditado"><span id="fala">Uber R$ 23,50 Itaú</span><span class="cursor" id="cursor" hidden></span></div>
+            <div class="btn-roxo" id="btnInterpretar">↗ Interpretar e preencher campos</div>
+            <div class="entendi"><b>Entendi:</b> <span id="entendi">“Uber” · R$ 23,50 · à vista · Cartão de crédito Itaú</span></div>
+            <div class="linha-campo"><div class="lanc-rot">Descrição</div><div class="campo" id="fDesc">Uber</div></div>
+            <div class="linha-campo"><div class="lanc-rot">Data</div><div class="campo" id="fData">29/09/2026</div></div>
+            <div class="linha-campo"><div class="lanc-rot">Forma de pagamento</div><div class="campo" id="fForma">Cartão de crédito Itaú</div></div>
+            <div class="linha-campo"><div class="lanc-rot">Valor total (R$)</div><div class="campo" id="fValor">23,50</div></div>
+            <div class="linha-campo"><div class="lanc-rot">Categoria</div><div class="campo" id="fCat">Transporte</div></div>
+            <div class="btn-lima" id="btnCadastrar">Cadastrar compra</div>
+          </div>
+          <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="#D6F43C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Compra cadastrada</div>
+          <div class="teclado guardado" id="teclado">
+            <div class="tec-aviso">Microfone <span>do teclado</span></div>
+            <div class="tec-linha"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="tec-linha"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="tec-linha"><i class="medio"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="medio"></i></div>
+            <div class="tec-linha"><i class="medio"></i><i class="largo"></i><i class="tec-mic"><svg viewBox="0 0 24 24" fill="none" stroke="#D6F43C" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><i class="medio"></i></div>
+          </div>
+        </div>
+
+        <!-- Tela principal -->
+        <div class="tela oculta" id="telaPrincipal">
+          <div class="app-topo"><b>Centa<span>Voz</span></b><small>Sua voz vira controle.</small></div>
+          <div class="app-mic"><svg viewBox="0 0 24 24" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+          <div class="app-mic-rot">Fale seus gastos</div>
+          <div class="app-card">
+            <div class="t" id="pagarEm">Você vai pagar em outubro</div>
+            <div class="v" id="total">R$ 1.863,50</div>
+            <div class="s">Atualiza a cada gasto que você fala.</div>
+          </div>
+          <div class="app-card app-lista">
+            <div class="t" style="margin-bottom:4px">Últimos lançamentos</div>
+            <div id="lista">
+              <div class="item"><div><b>Uber</b><small>Transporte · Cartão de crédito Itaú</small></div><span class="r">R$ 23,50</span></div>
+              <div class="item"><div><b>Supermercado</b><small>Alimentação · Cartão de crédito BTG</small></div><span class="r">R$ 152,47</span></div>
+              <div class="item"><div><b>Padaria</b><small>Alimentação · Pix</small></div><span class="r">R$ 14,00</span></div>
+            </div>
+          </div>
+          <div class="app-card app-sanfona">Pergunte ao Consultor IA</div>
+          <div class="app-card app-sanfona">Gastos por categoria</div>
+        </div>
+      </div>
+      <p class="legenda-celular">O ditado é o do próprio teclado do celular: toque no microfone e fale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Identificação -->
+<section class="dor escuro" aria-labelledby="t-dor">
+  <div class="miolo">
+    <h2 id="t-dor">Você não desistiu por preguiça. <span class="segunda">Desistiu por cansaço.</span></h2>
+    <p class="texto">Anotar gasto exigia parar o que você estava fazendo, lembrar o valor e digitar linha por linha. Ninguém sustenta isso no meio da correria. O problema era o método, não você.</p>
+    <ul class="falas">
+      <li><q>Depois eu anoto.</q><p>E o gasto some da memória antes de você chegar em casa.</p></li>
+      <li><q>Foi só R$ 20.</q><p>Sozinho não pesa. Somado com os outros, vira a fatura que assusta.</p></li>
+      <li><q>Quantas parcelas ainda faltam?</q><p>Ninguém faz essa conta de cabeça, cartão por cartão, mês a mês.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. Como funciona -->
+<section class="secao" id="como-funciona" aria-labelledby="t-como">
+  <div class="miolo">
+    <h2 id="t-como">Um gasto, uma frase.</h2>
+    <p class="intro">Você registra no momento em que gasta, sem parar o que está fazendo.</p>
+    <ol class="passos">
+      <li>
+        <h3>Fale</h3>
+        <p>Toque no microfone do teclado e diga o que foi, o valor em reais e como pagou.</p>
+        <span class="exemplo">“Uber, 23 reais e 50 centavos, Itaú”</span>
+      </li>
+      <li>
+        <h3>Confira</h3>
+        <p>O app preenche descrição, valor, cartão e parcelas, e sugere a categoria. Se algo estiver errado, você corrige antes de salvar.</p>
+      </li>
+      <li>
+        <h3>Pronto</h3>
+        <p>A compra entra na fatura do cartão certo, respeitando o dia de fechamento de cada um. Se for parcelada, cada parcela já vai para o mês em que será cobrada.</p>
+      </li>
+    </ol>
+    <p class="aparte">Prefere digitar? Também funciona. E Pix, débito e dinheiro entram do mesmo jeito que cartão.</p>
+  </div>
+</section>
+
+<!-- 4. O que você enxerga -->
+<section class="secao ver" aria-labelledby="t-ver">
+  <div class="miolo">
+    <h2 id="t-ver">No fim do mês, uma resposta em vez de uma dúvida.</h2>
+    <div class="ver-grade">
+      <div class="ver-item">
+        <h3>Quanto você vai pagar</h3>
+        <p>A próxima fatura, somada cartão por cartão e atualizada a cada gasto que você fala. Nada de susto quando ela chega.</p>
+        <div class="amostra">
+          <div class="amostra-card">
+            <div class="t">Você vai pagar em <span class="mes-seguinte">outubro</span></div>
+            <div class="v">R$ 1.840,00</div>
+            <div class="s">Somando todos os cartões, Pix e débito.</div>
+          </div>
+        </div>
+      </div>
+      <div class="ver-item">
+        <h3>Para onde foi</h3>
+        <p>Os gastos por categoria e por forma de pagamento. Toque numa categoria para ver os maiores lançamentos dela.</p>
+        <div class="amostra">
+          <ul class="barras">
+            <li><span>Alimentação</span><span class="b"><span style="width:100%;background:#9B3FE8"></span></span><span class="n">R$ 684</span></li>
+            <li><span>Transporte</span><span class="b"><span style="width:60%;background:#2F6BE8"></span></span><span class="n">R$ 412</span></li>
+            <li><span>Moradia</span><span class="b"><span style="width:57%;background:#E8342C"></span></span><span class="n">R$ 390</span></li>
+            <li><span>Lazer</span><span class="b"><span style="width:35%;background:#F7801F"></span></span><span class="n">R$ 236</span></li>
+            <li><span>Outros</span><span class="b"><span style="width:17%;background:#22A447"></span></span><span class="n">R$ 118</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ver-item">
+        <h3>As parcelas que você esqueceu</h3>
+        <p>Cada compra parcelada já entra nas faturas dos meses seguintes. Quando a fatura chega, as parcelas já estavam somadas nela.</p>
+        <div class="amostra">
+          <ul class="parcelas-lista">
+            <li><span>Geladeira · 4/10</span><span>R$ 289,90</span></li>
+            <li><span>Passagem · 2/6</span><span>R$ 173,33</span></li>
+            <li><span>Óculos · 5/5</span><span>R$ 96,00</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ver-item">
+        <h3>Alguém lê os números por você</h3>
+        <p>Pergunte ao Consultor IA e receba a conclusão em português, sem gráfico para interpretar. O app faz todas as contas; a IA só lê os resultados e explica.</p>
+        <div class="amostra">
+          <div class="conversa">
+            <div class="balao pergunta">O que mudou nos meus gastos?</div>
+            <div class="balao resposta">Alimentação subiu em relação aos últimos meses, puxada por pedidos de delivery no fim de semana. Transporte ficou estável.</div>
+          </div>
+        </div>
+        <p class="rotulo-exemplo">As comparações entre meses ficam melhores depois de uns 30 dias de uso.</p>
+      </div>
+    </div>
+    <p class="rotulo-exemplo" style="margin-top:32px">Valores e respostas acima são exemplos ilustrativos.</p>
+  </div>
+</section>
+
+<!-- 5. Dados -->
+<section class="secao dados" aria-labelledby="t-dados">
+  <div class="miolo">
+    <div>
+      <h2 id="t-dados">Seus gastos moram na sua conta, não na nossa.</h2>
+      <p class="intro">O CentaVoz não tem servidor guardando seus lançamentos. Tudo fica num arquivo do seu próprio Google Drive.</p>
+    </div>
+    <ul class="afirmacoes">
+      <li><b>Você abre e vê tudo</b><p>Seus lançamentos ficam numa planilha que é sua. Não é cópia de segurança, é o original.</p></li>
+      <li><b>Não pedimos senha de banco. Nunca.</b><p>O CentaVoz não se conecta a banco nenhum. Você fala o gasto, ele registra.</p></li>
+      <li><b>Nós não vemos seus gastos</b><p>O único dado que chega até nós é o e-mail da sua conta, para confirmar que a compra é sua.</p></li>
+      <li><b>Continua seu mesmo que o CentaVoz acabe</b><p>Se o CentaVoz deixar de existir, a planilha continua abrindo, com tudo dentro.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. Pagamento único -->
+<section class="unico escuro" aria-labelledby="t-unico">
+  <div class="miolo">
+    <h2 id="t-unico">Um app de controle de gastos não deveria virar mensalidade.</h2>
+    <div class="tabela-rolagem">
+      <table class="comparacao">
+        <thead>
+          <tr><td></td><th scope="col">Na maioria dos apps por assinatura</th><th scope="col" class="nosso">No CentaVoz</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Pagamento</th><td data-rot="Por assinatura">Você paga todo mês, enquanto usar.</td><td class="nosso" data-rot="CentaVoz">Você paga uma vez.</td></tr>
+          <tr><th scope="row">Seus dados</th><td data-rot="Por assinatura">Ficam no servidor da empresa.</td><td class="nosso" data-rot="CentaVoz">Ficam na sua conta Google.</td></tr>
+          <tr><th scope="row">Se o serviço acabar</th><td data-rot="Por assinatura">O histórico costuma ir junto.</td><td class="nosso" data-rot="CentaVoz">A planilha continua sua, com tudo dentro.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Instalação -->
+<section class="secao instalacao" id="instalacao" aria-labelledby="t-inst">
+  <div class="miolo">
+    <div>
+      <h2 id="t-inst">Antes de comprar, veja o que vem depois.</h2>
+      <p class="intro">O CentaVoz é instalado na sua própria conta Google. É isso que deixa seus dados com você e dispensa mensalidade. Você faz uma vez, seguindo o guia de instalação, que mostra cada passo com as telas.</p>
+      <div class="requisitos">
+        <b>Você vai precisar de</b>
+        <ul>
+          <li>Uma conta Google (a mesma do Gmail serve)</li>
+          <li>Um computador, só para a instalação</li>
+        </ul>
+        <p style="margin-top:10px;color:#35372F">Não precisa saber mexer em planilha nem em programação.</p>
+      </div>
+    </div>
+    <div>
+      <ol class="trilha">
+        <li><h3>Entre na área de membros</h3><p>Depois da compra, você encontra lá o guia de instalação e o link para copiar o CentaVoz, e recebe no seu e-mail o código de ativação.</p></li>
+        <li><h3>Copie o CentaVoz para o seu Drive</h3><p>Um link cria a sua cópia do app, já pronta, dentro da sua conta Google.</p></li>
+        <li><h3>Crie sua chave da IA</h3><p>É uma chave gratuita do Gemini, a IA do Google, que o Consultor usa. O guia mostra onde clicar.</p></li>
+        <li><h3>Publique e salve no celular</h3><p>Você gera o link do seu app e cria um atalho na tela inicial do celular. Daqui para frente, é só falar.</p></li>
+      </ol>
+      <p class="aviso-google">No caminho, o Google mostra <b>alguns avisos de segurança</b>. É o padrão para qualquer app instalado na própria conta, e o guia mostra cada um deles. Se travar em qualquer etapa, a gente resolve com você.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Oferta -->
+<section class="oferta escuro" id="oferta" aria-labelledby="t-oferta">
+  <div class="miolo">
+    <div>
+      <h2 id="t-oferta">Lote de fundadores</h2>
+      <p class="texto">Para as primeiras 50 pessoas. O preço é menor porque, em troca, queremos ouvir como está sendo o seu uso. Quando as vagas acabarem, o preço sobe.</p>
+    </div>
+    <div class="cartao-preco">
+      <div class="rot">CentaVoz, lote de fundadores</div>
+      <div class="preco"><small>R$</small>97</div>
+      <div class="forma">Pagamento único. Sem mensalidade.</div>
+      <ul class="inclui">
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>O app CentaVoz instalado na sua conta Google</li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Guia de instalação passo a passo, com as telas</li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Consultor IA para ler seus gastos</li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ajuda por e-mail se você travar na instalação</li>
+      </ul>
+      <a class="botao" data-checkout href="#oferta">Quero o CentaVoz</a>
+      <p class="miudo">Você tem 7 dias para pedir o reembolso. Pagamento processado pela Kiwify.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Perguntas -->
+<section class="secao faq" aria-labelledby="t-faq">
+  <div class="miolo">
+    <div>
+      <h2 id="t-faq">Perguntas antes de comprar</h2>
+      <p class="contato">Não achou a sua? Escreva para <a href="mailto:contato.centavoz@gmail.com">contato.centavoz@gmail.com</a>.</p>
+    </div>
+    <div>
+      <div class="grupo-faq">
+        <h3>No dia a dia</h3>
+        <details><summary>Preciso falar de um jeito certo?</summary><div class="resp"><p>Só um cuidado: diga o valor com a palavra “reais”, e “centavos” se tiver. Número solto não é reconhecido como valor. De resto, fale naturalmente o que foi e como pagou. Por exemplo, “mercado, 87 reais e 40 centavos, BTG” ou “farmácia, 32 reais, Pix”. O app mostra o que entendeu e você confere antes de salvar.</p></div></details>
+        <details><summary>E se o app entender errado?</summary><div class="resp"><p>Todos os campos ficam abertos para você corrigir antes de cadastrar. Se perceber depois, dá para editar ou excluir a compra.</p></div></details>
+        <details><summary>Dá para lançar digitando?</summary><div class="resp"><p>Sim. O campo aceita texto digitado do mesmo jeito que aceita o ditado.</p></div></details>
+        <details><summary>Ele separa por cartão e entende parcelamento?</summary><div class="resp"><p>Sim. Cada cartão tem o seu dia de fechamento e de vencimento, e cada compra entra na fatura certa. Compras parceladas geram uma parcela em cada mês em que vão ser cobradas.</p></div></details>
+        <details><summary>Tenho cartão adicional. Como cadastro?</summary><div class="resp"><p>Cartão adicional divide a mesma fatura do titular, então entra como um cartão só. O guia de instalação explica esse passo.</p></div></details>
+        <details><summary>Funciona sem internet?</summary><div class="resp"><p>Não. Como seus lançamentos moram na sua conta Google, e não no celular, o app precisa de conexão para gravar e mostrar os números.</p></div></details>
+        <details><summary>Meu marido ou minha esposa pode usar junto?</summary><div class="resp"><p>Sim. Uma compra vale para uma casa. Os gastos de cada um se separam pelo nome do cartão.</p></div></details>
+      </div>
+      <div class="grupo-faq">
+        <h3>Instalação</h3>
+        <details><summary>Preciso instalar alguma coisa no celular?</summary><div class="resp"><p>Não precisa baixar nada da loja de apps. O CentaVoz abre pelo navegador, e você salva um atalho na tela inicial para abrir como um app. Funciona no iPhone e no Android.</p></div></details>
+        <details><summary>Por que a instalação é pelo computador?</summary><div class="resp"><p>Porque ela acontece dentro da sua conta Google, e as telas do Google para isso funcionam melhor no computador. Você faz uma vez só. Depois, usa tudo pelo celular.</p></div></details>
+        <details><summary>E se eu travar na instalação?</summary><div class="resp"><p>Escreva para <a href="mailto:contato.centavoz@gmail.com">contato.centavoz@gmail.com</a>. Problema de instalação a gente resolve com você, mesmo depois do prazo de reembolso.</p></div></details>
+      </div>
+      <div class="grupo-faq">
+        <h3>Privacidade e IA</h3>
+        <details><summary>Vocês têm acesso aos meus gastos?</summary><div class="resp"><p>Não. Seus lançamentos ficam só na sua conta Google. O único dado que chega até nós é o e-mail da conta, para confirmar a compra.</p></div></details>
+        <details><summary>Preciso conectar a conta do banco?</summary><div class="resp"><p>Não. O CentaVoz não pede senha de banco e não se conecta a banco nenhum.</p></div></details>
+        <details><summary>O que a IA vê dos meus dados?</summary><div class="resp"><p>O Consultor só entra em ação quando você pergunta. Nessa hora, o app envia um resumo dos números do período ao Gemini, a IA do Google, usando a sua própria chave. Nada passa por nós. O uso segue os termos do Gemini, que você aceita ao criar a chave.</p></div></details>
+        <details><summary>A IA pode inventar número?</summary><div class="resp"><p>As contas não são feitas pela IA. O app calcula todos os valores antes, e a IA só lê os resultados e explica em português.</p></div></details>
+        <details><summary>Ela dá conselho de investimento?</summary><div class="resp"><p>Não. O CentaVoz mostra para onde foi o seu dinheiro. Onde aplicar não é o assunto dele.</p></div></details>
+        <details><summary>Preciso pagar à parte pela IA?</summary><div class="resp"><p>Não. A chave do Gemini é gratuita e dá conta do uso normal do Consultor.</p></div></details>
+      </div>
+      <div class="grupo-faq">
+        <h3>Compra</h3>
+        <details><summary>É pagamento único ou mensalidade?</summary><div class="resp"><p>Pagamento único. Você paga uma vez e o app é seu.</p></div></details>
+        <details><summary>Se eu não gostar, consigo o reembolso?</summary><div class="resp"><p>Sim. Você tem 7 dias a partir da compra para pedir o reembolso pela Kiwify.</p></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Chamada final -->
+<section class="final escuro" aria-labelledby="t-final">
+  <div class="miolo">
+    <h2 id="t-final">Seu próximo gasto pode ser o primeiro que você registra falando.</h2>
+    <p>Pagamento único, seus dados na sua conta, e um app que cabe no meio da correria.</p>
+    <a class="botao" data-checkout href="#oferta">Quero o CentaVoz</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="miolo">
+    <span>CentaVoz · Sua voz vira controle.</span>
+    <nav aria-label="Contato">
+      <a href="mailto:contato.centavoz@gmail.com">contato.centavoz@gmail.com</a>
+      <a href="https://www.instagram.com/centavoz.app/" rel="noopener">Instagram @centavoz.app</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   LINK DO CHECKOUT DA KIWIFY — cole aqui, entre as aspas.
+   Enquanto estiver vazio, os botões "Quero o CentaVoz" levam
+   para a seção de preço da própria página.
+   ============================================================ */
+var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
+
+(function(){
+  if (LINK_CHECKOUT) {
+    document.querySelectorAll("[data-checkout]").forEach(function(a){ a.href = LINK_CHECKOUT; });
+  }
+
+  var MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  var hoje = new Date();
+  var proximo = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 1);
+  var mesSeguinte = MESES[proximo.getMonth()];
+  var dataHoje = String(hoje.getDate()).padStart(2,"0") + "/" + String(hoje.getMonth()+1).padStart(2,"0") + "/" + hoje.getFullYear();
+
+  document.querySelectorAll(".mes-seguinte").forEach(function(el){ el.textContent = mesSeguinte; });
+
+  var $ = function(id){ return document.getElementById(id); };
+  $("pagarEm").textContent = "Você vai pagar em " + mesSeguinte;
+  $("fData").textContent = dataHoje;
+
+  function brl(v){
+    return "R$ " + v.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  var reduzir = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduzir) return; // mantém a tela estática já preenchida
+
+  var cenas = [
+    { fala:"Uber R$ 23,50 Itaú",    desc:"Uber",     valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" },
+    { fala:"Farmácia R$ 38,90 BTG", desc:"Farmácia", valor:38.90, forma:"Cartão de crédito BTG",  cat:"Saúde" }
+  ];
+  var BASE = 1840.00;
+  var total = BASE;
+  var indice = 0;
+  var timers = [];
+  function depois(ms, fn){ timers.push(setTimeout(fn, ms)); }
+
+  var lanc = $("lanc"), teclado = $("teclado"), fala = $("fala"), cursor = $("cursor");
+  var telaLanc = $("telaLanc"), telaPrincipal = $("telaPrincipal");
+  var campos = ["fDesc","fData","fForma","fValor","fCat"];
+
+  function preparar(){
+    telaPrincipal.classList.add("oculta");
+    telaLanc.classList.remove("oculta");
+    lanc.classList.add("vazio");
+    lanc.querySelectorAll(".linha-campo").forEach(function(l){ l.classList.remove("recente"); });
+    fala.textContent = "";
+    cursor.hidden = false;
+    $("toast").classList.remove("visivel");
+    teclado.classList.remove("guardado");
+    teclado.classList.add("ouvindo");
+  }
+
+  function rodar(){
+    var c = cenas[indice];
+    if (indice === 0) total = BASE;
+    preparar();
+
+    var t = 700, i;
+    for (i = 1; i <= c.fala.length; i++) {
+      (function(n){ depois(t + n * 75, function(){ fala.textContent = c.fala.slice(0, n); }); })(i);
+    }
+    t += c.fala.length * 75 + 500;
+
+    depois(t, function(){ teclado.classList.remove("ouvindo"); cursor.hidden = true; });
+    depois(t + 300, function(){ teclado.classList.add("guardado"); });
+    t += 900;
+
+    depois(t, function(){ $("btnInterpretar").classList.add("apertado"); });
+    depois(t + 180, function(){
+      $("btnInterpretar").classList.remove("apertado");
+      $("entendi").textContent = "“" + c.desc + "” · " + brl(c.valor) + " · à vista · " + c.forma;
+      $("fDesc").textContent = c.desc;
+      $("fData").textContent = dataHoje;
+      $("fForma").textContent = c.forma;
+      $("fValor").textContent = c.valor.toFixed(2).replace(".", ",");
+      $("fCat").textContent = c.cat;
+      lanc.classList.remove("vazio");
+    });
+    t += 300;
+    campos.forEach(function(id, k){
+      depois(t + k * 160, function(){ $(id).parentNode.classList.add("recente"); });
+    });
+    t += campos.length * 160 + 1100;
+
+    depois(t, function(){ $("btnCadastrar").classList.add("apertado"); });
+    depois(t + 180, function(){ $("btnCadastrar").classList.remove("apertado"); $("toast").classList.add("visivel"); });
+    t += 1300;
+
+    depois(t, function(){
+      var inicio = total;
+      total = +(total + c.valor).toFixed(2);
+      $("total").textContent = brl(inicio);
+      var item = document.createElement("div");
+      item.className = "item novo";
+      item.innerHTML = "<div><b></b><small></small></div><span class='r'></span>";
+      item.querySelector("b").textContent = c.desc;
+      item.querySelector("small").textContent = c.cat + " · " + c.forma;
+      item.querySelector(".r").textContent = brl(c.valor);
+      var lista = $("lista");
+      lista.insertBefore(item, lista.firstChild);
+      while (lista.children.length > 3) lista.removeChild(lista.lastChild);
+
+      telaLanc.classList.add("oculta");
+      telaPrincipal.classList.remove("oculta");
+
+      var passos = 18, p = 0;
+      var anima = setInterval(function(){
+        p++;
+        $("total").textContent = brl(inicio + (total - inicio) * (p / passos));
+        if (p >= passos) { clearInterval(anima); $("total").textContent = brl(total); }
+      }, 40);
+    });
+    t += 3200;
+
+    depois(t, function(){ indice = (indice + 1) % cenas.length; rodar(); });
+  }
+
+  // Só começa quando o celular aparece na tela
+  var celular = document.querySelector(".celular");
+  var iniciado = false;
+  function iniciar(){ if (!iniciado) { iniciado = true; $("lista").innerHTML = ""
+      + "<div class='item'><div><b>Supermercado</b><small>Alimentação · Cartão de crédito BTG</small></div><span class='r'>R$ 152,47</span></div>"
+      + "<div class='item'><div><b>Padaria</b><small>Alimentação · Pix</small></div><span class='r'>R$ 14,00</span></div>";
+      rodar(); } }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function(entradas, obs){
+      if (entradas[0].isIntersecting) { iniciar(); obs.disconnect(); }
+    }, { threshold: .3 }).observe(celular);
+  } else { iniciar(); }
+})();
+</script>
+</body>
+</html>
