@@ -196,6 +196,50 @@ p{margin:0}
 .app-lista .item .r{font-weight:700;white-space:nowrap}
 .app-sanfona{font-weight:700;font-size:12px;display:flex;justify-content:space-between;align-items:center;padding:10px 12px}
 .app-sanfona::after{content:"";width:6px;height:6px;border-right:1.6px solid #555;border-bottom:1.6px solid #555;transform:rotate(45deg) translateY(-2px)}
+.app-topo .pilulas{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}
+.app-topo .pilulas span{background:#fff;color:var(--tinta);border-radius:7px;text-align:center;font-weight:700;font-size:8.5px;padding:5px 2px}
+.toque{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(22,22,22,.22);border:2px solid var(--voz);z-index:6;opacity:0;pointer-events:none;transform:scale(.6)}
+.toque.ativo{animation:toque .55s ease-out}
+@keyframes toque{0%{opacity:0;transform:scale(.6)}30%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.35)}}
+
+/* Tela Gerenciar Compras (réplica) */
+.p-modal{padding:44px 12px 12px;display:flex;flex-direction:column;gap:7px;background:#fff;height:100%}
+.p-cab{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-titulo);font-weight:800;font-size:14px}
+.p-cab .x{width:24px;height:24px;border-radius:7px;background:#F0F1EE;display:flex;align-items:center;justify-content:center;font-family:var(--f-texto);font-size:12px}
+.p-nova{border:1.5px dashed #9AA07A;background:#F4F8DC;border-radius:8px;text-align:center;font-weight:700;padding:5px;font-size:10.5px}
+.p-abas{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
+.p-abas.tres{grid-template-columns:repeat(3,1fr)}
+.p-abas span{border:1px solid #E3E4DF;border-radius:8px;text-align:center;font-weight:700;padding:5px 2px;font-size:10px;color:#4B4F46}
+.p-abas span.ativa{background:var(--voz);border-color:var(--voz);color:var(--tinta)}
+.p-busca{border:1px solid #E3E4DF;border-radius:8px;padding:6px 9px;min-height:28px;color:#8C8F86;font-size:10.5px;transition:border-color .2s}
+.p-busca.foco{border:2px solid var(--tinta);color:var(--tinta);padding:5px 8px}
+.p-filtros{display:grid;grid-template-columns:1fr 1.3fr;gap:5px}
+.p-filtros span{border:1px solid #E3E4DF;border-radius:8px;padding:5px 8px;font-size:9.5px;background:#F8F9F7;white-space:nowrap;overflow:hidden}
+.p-resumo{display:flex;justify-content:space-between;align-items:flex-start;background:#F3F4F2;border-radius:9px;padding:7px 9px;font-size:10px;color:#6B6E66}
+.p-resumo b{display:block;color:var(--tinta);font-size:12px;text-align:right;font-variant-numeric:tabular-nums;transition:background .4s}
+.p-resumo b{transition:font-size .25s,background .25s}
+.p-resumo b.mudou{background:#EDF8B5;font-size:17px;padding:1px 6px;border-radius:6px}
+.p-resumo.destaque{background:#F4F8DC;outline:2px solid var(--voz)}
+.p-lista{display:flex;flex-direction:column;gap:5px;transition:opacity .25s}
+.p-lista.trocando{opacity:0}
+.c-item{display:flex;justify-content:space-between;align-items:center;background:#F3F4F2;border-radius:9px;padding:6px 9px}
+.c-item b{font-size:11px;display:block}
+.c-item small{display:block;font-size:8.5px;color:#6B6E66;line-height:1.3}
+.c-item strong{display:block;font-size:11px;margin-top:2px;font-variant-numeric:tabular-nums}
+.c-acoes{display:flex;gap:6px}
+.c-acoes i{width:20px;height:20px;border-radius:6px;display:block}
+.c-acoes i.ed{background:#F1F8D0;border:1px solid #DCEB8E}
+.c-acoes i.del{background:#FDE7E7;border:1px solid #F6C4C4}
+
+/* Tela Evolução Mensal (réplica) */
+.p-sel{border:1px solid #E3E4DF;border-radius:8px;padding:6px 9px;font-size:10.5px;font-weight:700}
+.p-barras{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;align-items:end;height:190px;border-bottom:1px solid #D9DBD4;margin-top:8px;padding:0 4px}
+.p-barras i{display:block;background:var(--voz);border-radius:4px 4px 0 0;height:0;transition:height .7s cubic-bezier(.2,.8,.2,1)}
+.p-meses{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;padding:4px 4px 0;font-size:8.5px;color:#6B6E66;text-align:center}
+.p-rodape{display:flex;justify-content:space-between;background:#F3F4F2;border-radius:9px;padding:8px 10px;font-size:9.5px;color:#6B6E66;margin-top:8px}
+.p-rodape b{display:block;color:var(--tinta);font-size:11.5px;font-variant-numeric:tabular-nums}
+.p-rodape div:last-child{text-align:right}
+.p-nota{font-size:9.5px;color:#6B6E66;text-align:center;margin-top:4px}
 .app-lista .item.novo{animation:entra .5s ease}
 @keyframes entra{from{background:#F1FBC8}to{background:transparent}}
 
@@ -403,7 +447,7 @@ details .resp p+p{margin-top:10px}
     </div>
 
     <div class="palco">
-      <p class="so-leitor">Demonstração: a pessoa toca no microfone do teclado do celular e diz "Uber, 23 reais e 50 centavos, Itaú". O teclado escreve "Uber R$ 23,50 Itaú" e o CentaVoz preenche descrição, valor, forma de pagamento e categoria, a compra é cadastrada e o valor da próxima fatura é atualizado.</p>
+      <p class="so-leitor">Demonstração: a pessoa toca no microfone do teclado do celular e diz "Uber, 23 reais e 50 centavos, Itaú". O teclado escreve "Uber R$ 23,50 Itaú" e o CentaVoz preenche descrição, valor, forma de pagamento e categoria, a compra é cadastrada e o valor da próxima fatura é atualizado. Depois, a pessoa abre Compras, busca “uber” e vê quantas corridas foram e quanto somaram, e abre a Evolução Mensal, com os meses à frente mostrando as parcelas.</p>
       <div class="celular" aria-hidden="true">
         <!-- Tela de lançamento -->
         <div class="tela" id="telaLanc">
@@ -431,7 +475,7 @@ details .resp p+p{margin-top:10px}
 
         <!-- Tela principal -->
         <div class="tela oculta" id="telaPrincipal">
-          <div class="app-topo"><b>Centa<span>Voz</span></b><small>Sua voz vira controle.</small></div>
+          <div class="app-topo"><b>Centa<span>Voz</span></b><small>Sua voz vira controle.</small><div class="pilulas"><span id="btnEvol">Evolução</span><span id="btnCompras">Compras</span><span>Ajustes</span><span>Atualizar</span></div></div>
           <div class="app-mic"><svg viewBox="0 0 24 24" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
           <div class="app-mic-rot">Fale seus gastos</div>
           <div class="app-card">
@@ -439,19 +483,38 @@ details .resp p+p{margin-top:10px}
             <div class="v" id="total">R$ 1.863,50</div>
             <div class="s">Atualiza a cada gasto que você fala.</div>
           </div>
-          <div class="app-card app-lista">
-            <div class="t" style="margin-bottom:4px">Últimos lançamentos</div>
-            <div id="lista">
-              <div class="item"><div><b>Uber</b><small>Transporte · Cartão de crédito Itaú</small></div><span class="r">R$ 23,50</span></div>
-              <div class="item"><div><b>Supermercado</b><small>Alimentação · Cartão de crédito BTG</small></div><span class="r">R$ 152,47</span></div>
-              <div class="item"><div><b>Padaria</b><small>Alimentação · Pix</small></div><span class="r">R$ 14,00</span></div>
-            </div>
-          </div>
           <div class="app-card app-sanfona">Pergunte ao Consultor IA</div>
           <div class="app-card app-sanfona">Gastos por categoria</div>
         </div>
+
+        <!-- Tela Gerenciar Compras -->
+        <div class="tela oculta" id="telaCompras">
+          <div class="p-modal">
+            <div class="p-cab"><span>Gerenciar Compras</span><span class="x" id="fecharCompras">✕</span></div>
+            <div class="p-nova">+ Nova compra</div>
+            <div class="p-abas"><span class="ativa">Compras</span><span>Assinaturas</span></div>
+            <div class="p-busca" id="busca">Buscar por descrição, categoria ou cartão</div>
+            <div class="p-filtros"><span id="filtroMes">10/2026</span><span>Todos os métodos de pagamento</span></div>
+            <div class="p-resumo" id="resumoCompras"><span id="qtdCompras">42 compras</span><span>Total<b id="totalCompras">R$ 1.863,50</b></span></div>
+            <div class="p-lista" id="comprasLista"></div>
+          </div>
+        </div>
+
+        <!-- Tela Evolução Mensal -->
+        <div class="tela oculta" id="telaEvol">
+          <div class="p-modal">
+            <div class="p-cab"><span>Evolução Mensal</span><span class="x">✕</span></div>
+            <div class="p-abas tres"><span class="ativa">Total geral</span><span>Por pagamento</span><span>Diário</span></div>
+            <div class="p-sel">Atual (6 meses)</div>
+            <div class="p-barras" id="pBarras"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="p-meses" id="pMeses"><span>Jul/26</span><span>Ago/26</span><span>Set/26</span><span>Out/26</span><span>Nov/26</span><span>Dez/26</span></div>
+            <div class="p-rodape"><div>Total no período<b>R$ 8.498,50</b></div><div>Média mensal<b>R$ 1.416,42</b></div></div>
+            <p class="p-nota">Os meses à frente já trazem as parcelas.</p>
+          </div>
+        </div>
+        <div class="toque" id="toque"></div>
       </div>
-      <p class="legenda-celular">O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.</p>
+      <p class="legenda-celular" id="legendaCel" aria-hidden="true">O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.</p>
     </div>
   </div>
 </section>
@@ -749,25 +812,88 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   }
 
   var reduzir = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduzir) return; // mantém a tela estática já preenchida
 
-  var cenas = [
-    { fala:"Uber R$ 23,50 Itaú",    desc:"Uber",     valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" },
-    { fala:"Farmácia R$ 38,90 BTG", desc:"Farmácia", valor:38.90, forma:"Cartão de crédito BTG",  cat:"Saúde" }
-  ];
+  var c = { fala:"Uber R$ 23,50 Itaú", desc:"Uber", valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" };
   var BASE = 1840.00;
-  var total = BASE;
-  var indice = 0;
   var timers = [];
   function depois(ms, fn){ timers.push(setTimeout(fn, ms)); }
 
+  var celular = document.querySelector(".celular");
   var lanc = $("lanc"), teclado = $("teclado"), fala = $("fala"), cursor = $("cursor");
-  var telaLanc = $("telaLanc"), telaPrincipal = $("telaPrincipal");
+  var telas = { lanc:$("telaLanc"), principal:$("telaPrincipal"), compras:$("telaCompras"), evol:$("telaEvol") };
   var campos = ["fDesc","fData","fForma","fValor","fCat"];
 
+  var LEG = {
+    lanc:"O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.",
+    principal:"A fatura do mês atualiza a cada gasto cadastrado.",
+    compras:"Digite “uber” na busca e veja quantas compras foram e quanto somam.",
+    evol:"Na Evolução Mensal, os meses à frente já trazem as parcelas."
+  };
+  function mostrar(nome){
+    $("legendaCel").textContent = LEG[nome];
+    Object.keys(telas).forEach(function(k){ telas[k].classList.toggle("oculta", k !== nome); });
+  }
+  function tocar(el){
+    var t = $("toque"), rc = celular.getBoundingClientRect(), re = el.getBoundingClientRect();
+    t.style.left = (re.left - rc.left + re.width / 2) + "px";
+    t.style.top = (re.top - rc.top + re.height / 2) + "px";
+    t.classList.remove("ativo"); void t.offsetWidth; t.classList.add("ativo");
+  }
+  function dataMenos(dias){
+    var d = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() - dias);
+    return String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + d.getFullYear();
+  }
+
+  // Compras do mês (valores de exemplo). Só cartão, para caberem na mesma fatura.
+  var compras = [
+    { d:"Uber",         dias:0, cat:"Transporte",  f:"Cartão de crédito Itaú", v:23.50 },
+    { d:"Padaria",      dias:1, cat:"Alimentação", f:"Cartão de crédito BTG",  v:7.75 },
+    { d:"Uber",         dias:1, cat:"Transporte",  f:"Cartão de crédito BTG",  v:13.14 },
+    { d:"Supermercado", dias:2, cat:"Alimentação", f:"Cartão de crédito BTG",  v:85.19 },
+    { d:"Uber",         dias:3, cat:"Transporte",  f:"Cartão de crédito BTG",  v:10.80 },
+    { d:"Farmácia",     dias:3, cat:"Saúde",       f:"Cartão de crédito Itaú", v:38.90 },
+    { d:"Uber",         dias:4, cat:"Transporte",  f:"Cartão de crédito BTG",  v:16.94 },
+    { d:"Uber",         dias:6, cat:"Transporte",  f:"Cartão de crédito BTG",  v:11.34 },
+    { d:"Uber",         dias:7, cat:"Transporte",  f:"Cartão de crédito BTG",  v:13.50 }
+  ];
+  function montarLista(filtro){
+    var lista = $("comprasLista"); lista.innerHTML = "";
+    compras.filter(function(x){ return !filtro || x.d.toLowerCase().indexOf(filtro) === 0; })
+      .slice(0, 7).forEach(function(x){
+        var el = document.createElement("div"); el.className = "c-item";
+        el.innerHTML = "<div><b></b><small class='a'></small><small class='b'></small><strong></strong></div><div class='c-acoes'><i class='ed'></i><i class='del'></i></div>";
+        el.querySelector("b").textContent = x.d;
+        el.querySelector(".a").textContent = dataMenos(x.dias) + " · " + x.cat;
+        el.querySelector(".b").textContent = x.f + " · à vista";
+        el.querySelector("strong").textContent = brl(x.v);
+        lista.appendChild(el);
+      });
+  }
+  var ubers = compras.filter(function(x){ return x.d === "Uber"; });
+  var totalUber = ubers.reduce(function(a, x){ return a + x.v; }, 0);
+  $("filtroMes").textContent = String(proximo.getMonth()+1).padStart(2,"0") + "/" + proximo.getFullYear();
+
+  var evolValores = [1720, 1905, 1960, BASE + c.valor, 640, 410];
+  var evolMax = Math.max.apply(null, evolValores);
+  $("pMeses").querySelectorAll("span").forEach(function(el, k){
+    var d = new Date(hoje.getFullYear(), hoje.getMonth() - 2 + k, 1);
+    el.textContent = ABREV[d.getMonth()] + "/" + String(d.getFullYear()).slice(2);
+  });
+
+  if (reduzir) {
+    $("telaLanc").classList.add("oculta");
+    $("telaCompras").classList.remove("oculta");
+    $("busca").classList.add("foco"); $("busca").textContent = "uber";
+    montarLista("uber");
+    $("qtdCompras").textContent = ubers.length + " compras";
+    $("totalCompras").textContent = brl(totalUber);
+    $("totalCompras").classList.add("mudou"); $("resumoCompras").classList.add("destaque");
+    $("legendaCel").textContent = LEG.compras;
+    return;
+  }
+
   function preparar(){
-    telaPrincipal.classList.add("oculta");
-    telaLanc.classList.remove("oculta");
+    mostrar("lanc");
     lanc.classList.add("vazio");
     lanc.querySelectorAll(".linha-campo").forEach(function(l){ l.classList.remove("recente"); });
     fala.textContent = "";
@@ -775,80 +901,97 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     $("toast").classList.remove("visivel");
     teclado.classList.remove("guardado");
     teclado.classList.add("ouvindo");
+    $("total").textContent = brl(BASE);
+    var busca = $("busca"); busca.classList.remove("foco"); busca.textContent = "Buscar por descrição, categoria ou cartão";
+    $("qtdCompras").textContent = "42 compras";
+    $("totalCompras").textContent = brl(BASE + c.valor);
+    $("totalCompras").classList.remove("mudou"); $("resumoCompras").classList.remove("destaque");
+    montarLista("");
+    $("pBarras").querySelectorAll("i").forEach(function(b){ b.style.height = "0"; });
   }
 
   function rodar(){
-    var c = cenas[indice];
-    if (indice === 0) total = BASE;
     preparar();
-
     var t = 700, i;
+
+    // 1. Ditado pelo teclado
     for (i = 1; i <= c.fala.length; i++) {
       (function(n){ depois(t + n * 75, function(){ fala.textContent = c.fala.slice(0, n); }); })(i);
     }
     t += c.fala.length * 75 + 500;
-
     depois(t, function(){ teclado.classList.remove("ouvindo"); cursor.hidden = true; });
     depois(t + 300, function(){ teclado.classList.add("guardado"); });
     t += 900;
 
-    depois(t, function(){ $("btnInterpretar").classList.add("apertado"); });
+    // 2. Interpretar e conferir
+    depois(t, function(){ tocar($("btnInterpretar")); $("btnInterpretar").classList.add("apertado"); });
     depois(t + 180, function(){
       $("btnInterpretar").classList.remove("apertado");
       $("entendi").textContent = "“" + c.desc + "” · " + brl(c.valor) + " · à vista · " + c.forma;
-      $("fDesc").textContent = c.desc;
-      $("fData").textContent = dataHoje;
-      $("fForma").textContent = c.forma;
-      $("fValor").textContent = c.valor.toFixed(2).replace(".", ",");
-      $("fCat").textContent = c.cat;
+      $("fDesc").textContent = c.desc; $("fData").textContent = dataHoje; $("fForma").textContent = c.forma;
+      $("fValor").textContent = c.valor.toFixed(2).replace(".", ","); $("fCat").textContent = c.cat;
       lanc.classList.remove("vazio");
     });
     t += 300;
-    campos.forEach(function(id, k){
-      depois(t + k * 160, function(){ $(id).parentNode.classList.add("recente"); });
-    });
-    t += campos.length * 160 + 1100;
+    campos.forEach(function(id, k){ depois(t + k * 160, function(){ $(id).parentNode.classList.add("recente"); }); });
+    t += campos.length * 160 + 1000;
 
-    depois(t, function(){ $("btnCadastrar").classList.add("apertado"); });
+    // 3. Cadastrar
+    depois(t, function(){ tocar($("btnCadastrar")); $("btnCadastrar").classList.add("apertado"); });
     depois(t + 180, function(){ $("btnCadastrar").classList.remove("apertado"); $("toast").classList.add("visivel"); });
     t += 1300;
 
+    // 4. Tela principal: a fatura sobe
     depois(t, function(){
-      var inicio = total;
-      total = +(total + c.valor).toFixed(2);
-      $("total").textContent = brl(inicio);
-      var item = document.createElement("div");
-      item.className = "item novo";
-      item.innerHTML = "<div><b></b><small></small></div><span class='r'></span>";
-      item.querySelector("b").textContent = c.desc;
-      item.querySelector("small").textContent = c.cat + " · " + c.forma;
-      item.querySelector(".r").textContent = brl(c.valor);
-      var lista = $("lista");
-      lista.insertBefore(item, lista.firstChild);
-      while (lista.children.length > 3) lista.removeChild(lista.lastChild);
-
-      telaLanc.classList.add("oculta");
-      telaPrincipal.classList.remove("oculta");
-
+      mostrar("principal");
       var passos = 18, p = 0;
       var anima = setInterval(function(){
         p++;
-        $("total").textContent = brl(inicio + (total - inicio) * (p / passos));
-        if (p >= passos) { clearInterval(anima); $("total").textContent = brl(total); }
+        $("total").textContent = brl(BASE + c.valor * (p / passos));
+        if (p >= passos) { clearInterval(anima); $("total").textContent = brl(BASE + c.valor); }
       }, 40);
     });
-    t += 3200;
+    t += 2400;
 
-    depois(t, function(){ indice = (indice + 1) % cenas.length; rodar(); });
+    // 5. Compras: busca "uber"
+    depois(t, function(){ tocar($("btnCompras")); });
+    depois(t + 350, function(){ mostrar("compras"); });
+    t += 1700;
+    depois(t, function(){ tocar($("busca")); var b = $("busca"); b.classList.add("foco"); b.textContent = ""; });
+    var termo = "uber";
+    for (i = 1; i <= termo.length; i++) {
+      (function(n){ depois(t + 250 + n * 170, function(){ $("busca").textContent = termo.slice(0, n); }); })(i);
+    }
+    t += 250 + termo.length * 170 + 250;
+    depois(t, function(){ $("comprasLista").classList.add("trocando"); });
+    depois(t + 250, function(){
+      montarLista("uber");
+      $("comprasLista").classList.remove("trocando");
+      $("qtdCompras").textContent = ubers.length + " compras";
+      $("totalCompras").textContent = brl(totalUber);
+      $("totalCompras").classList.add("mudou"); $("resumoCompras").classList.add("destaque");
+    });
+    t += 3400;
+
+    // 6. Evolução Mensal
+    depois(t, function(){ tocar($("fecharCompras")); });
+    depois(t + 350, function(){ mostrar("principal"); });
+    t += 1000;
+    depois(t, function(){ tocar($("btnEvol")); });
+    depois(t + 350, function(){
+      mostrar("evol");
+      $("pBarras").querySelectorAll("i").forEach(function(b, k){
+        setTimeout(function(){ b.style.height = (evolValores[k] / evolMax * 100) + "%"; }, 80 + k * 90);
+      });
+    });
+    t += 4200;
+
+    depois(t, rodar);
   }
 
   // Só começa quando o celular aparece na tela
-  var celular = document.querySelector(".celular");
   var iniciado = false;
-  function iniciar(){ if (!iniciado) { iniciado = true; $("lista").innerHTML = ""
-      + "<div class='item'><div><b>Supermercado</b><small>Alimentação · Cartão de crédito BTG</small></div><span class='r'>R$ 152,47</span></div>"
-      + "<div class='item'><div><b>Padaria</b><small>Alimentação · Pix</small></div><span class='r'>R$ 14,00</span></div>";
-      rodar(); } }
+  function iniciar(){ if (!iniciado) { iniciado = true; rodar(); } }
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function(entradas, obs){
       if (entradas[0].isIntersecting) { iniciar(); obs.disconnect(); }
