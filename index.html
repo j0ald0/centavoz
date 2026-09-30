@@ -232,14 +232,6 @@ p{margin:0}
 .c-acoes i.del{background:#FDE7E7;border:1px solid #F6C4C4}
 
 /* Tela Evolução Mensal (réplica) */
-.p-sel{border:1px solid #E3E4DF;border-radius:8px;padding:6px 9px;font-size:10.5px;font-weight:700}
-.p-barras{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;align-items:end;height:190px;border-bottom:1px solid #D9DBD4;margin-top:8px;padding:0 4px}
-.p-barras i{display:block;background:var(--voz);border-radius:4px 4px 0 0;height:0;transition:height .7s cubic-bezier(.2,.8,.2,1)}
-.p-meses{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;padding:4px 4px 0;font-size:8.5px;color:#6B6E66;text-align:center}
-.p-rodape{display:flex;justify-content:space-between;background:#F3F4F2;border-radius:9px;padding:8px 10px;font-size:9.5px;color:#6B6E66;margin-top:8px}
-.p-rodape b{display:block;color:var(--tinta);font-size:11.5px;font-variant-numeric:tabular-nums}
-.p-rodape div:last-child{text-align:right}
-.p-nota{font-size:9.5px;color:#6B6E66;text-align:center;margin-top:4px}
 .app-lista .item.novo{animation:entra .5s ease}
 @keyframes entra{from{background:#F1FBC8}to{background:transparent}}
 
@@ -447,7 +439,7 @@ details .resp p+p{margin-top:10px}
     </div>
 
     <div class="palco">
-      <p class="so-leitor">Demonstração: a pessoa toca no microfone do teclado do celular e diz "Uber, 23 reais e 50 centavos, Itaú". O teclado escreve "Uber R$ 23,50 Itaú" e o CentaVoz preenche descrição, valor, forma de pagamento e categoria, a compra é cadastrada e o valor da próxima fatura é atualizado. Depois, a pessoa abre Compras, busca “uber” e vê quantas corridas foram e quanto somaram, e abre a Evolução Mensal, com os meses à frente mostrando as parcelas.</p>
+      <p class="so-leitor">Demonstração: a pessoa lança dois gastos falando pelo microfone do teclado, "Supermercado, 85 reais e 19 centavos, BTG" e "Uber, 23 reais e 50 centavos, Itaú". O CentaVoz preenche os campos, cada compra é cadastrada e o valor da próxima fatura sobe. Depois, a pessoa abre Gerenciar Compras, busca “uber” e vê quantas corridas foram no mês e quanto somaram.</p>
       <div class="celular" aria-hidden="true">
         <!-- Tela de lançamento -->
         <div class="tela" id="telaLanc">
@@ -476,7 +468,7 @@ details .resp p+p{margin-top:10px}
         <!-- Tela principal -->
         <div class="tela oculta" id="telaPrincipal">
           <div class="app-topo"><b>Centa<span>Voz</span></b><small>Sua voz vira controle.</small><div class="pilulas"><span id="btnEvol">Evolução</span><span id="btnCompras">Compras</span><span>Ajustes</span><span>Atualizar</span></div></div>
-          <div class="app-mic"><svg viewBox="0 0 24 24" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+          <div class="app-mic" id="appMic"><svg viewBox="0 0 24 24" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
           <div class="app-mic-rot">Fale seus gastos</div>
           <div class="app-card">
             <div class="t" id="pagarEm">Você vai pagar em outubro</div>
@@ -500,18 +492,6 @@ details .resp p+p{margin-top:10px}
           </div>
         </div>
 
-        <!-- Tela Evolução Mensal -->
-        <div class="tela oculta" id="telaEvol">
-          <div class="p-modal">
-            <div class="p-cab"><span>Evolução Mensal</span><span class="x">✕</span></div>
-            <div class="p-abas tres"><span class="ativa">Total geral</span><span>Por pagamento</span><span>Diário</span></div>
-            <div class="p-sel">Atual (6 meses)</div>
-            <div class="p-barras" id="pBarras"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="p-meses" id="pMeses"><span>Jul/26</span><span>Ago/26</span><span>Set/26</span><span>Out/26</span><span>Nov/26</span><span>Dez/26</span></div>
-            <div class="p-rodape"><div>Total no período<b>R$ 8.498,50</b></div><div>Média mensal<b>R$ 1.416,42</b></div></div>
-            <p class="p-nota">Os meses à frente já trazem as parcelas.</p>
-          </div>
-        </div>
         <div class="toque" id="toque"></div>
       </div>
       <p class="legenda-celular" id="legendaCel" aria-hidden="true">O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.</p>
@@ -813,21 +793,23 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
 
   var reduzir = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  var c = { fala:"Uber R$ 23,50 Itaú", desc:"Uber", valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" };
+  var cenas = [
+    { fala:"Supermercado R$ 85,19 BTG", desc:"Supermercado", valor:85.19, forma:"Cartão de crédito BTG",  cat:"Alimentação" },
+    { fala:"Uber R$ 23,50 Itaú",        desc:"Uber",         valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" }
+  ];
   var BASE = 1840.00;
   var timers = [];
   function depois(ms, fn){ timers.push(setTimeout(fn, ms)); }
 
   var celular = document.querySelector(".celular");
   var lanc = $("lanc"), teclado = $("teclado"), fala = $("fala"), cursor = $("cursor");
-  var telas = { lanc:$("telaLanc"), principal:$("telaPrincipal"), compras:$("telaCompras"), evol:$("telaEvol") };
+  var telas = { lanc:$("telaLanc"), principal:$("telaPrincipal"), compras:$("telaCompras") };
   var campos = ["fDesc","fData","fForma","fValor","fCat"];
 
   var LEG = {
     lanc:"O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.",
-    principal:"A fatura do mês atualiza a cada gasto cadastrado.",
-    compras:"Digite “uber” na busca e veja quantas compras foram e quanto somam.",
-    evol:"Na Evolução Mensal, os meses à frente já trazem as parcelas."
+    principal:"A fatura do mês sobe a cada gasto cadastrado.",
+    compras:"Digite “uber” na busca e veja quantas compras foram e quanto somam."
   };
   function mostrar(nome){
     $("legendaCel").textContent = LEG[nome];
@@ -844,12 +826,12 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     return String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + d.getFullYear();
   }
 
-  // Compras do mês (valores de exemplo). Só cartão, para caberem na mesma fatura.
+  // Compras do mês (valores de exemplo). As duas primeiras são as lançadas na animação.
   var compras = [
     { d:"Uber",         dias:0, cat:"Transporte",  f:"Cartão de crédito Itaú", v:23.50 },
+    { d:"Supermercado", dias:0, cat:"Alimentação", f:"Cartão de crédito BTG",  v:85.19 },
     { d:"Padaria",      dias:1, cat:"Alimentação", f:"Cartão de crédito BTG",  v:7.75 },
     { d:"Uber",         dias:1, cat:"Transporte",  f:"Cartão de crédito BTG",  v:13.14 },
-    { d:"Supermercado", dias:2, cat:"Alimentação", f:"Cartão de crédito BTG",  v:85.19 },
     { d:"Uber",         dias:3, cat:"Transporte",  f:"Cartão de crédito BTG",  v:10.80 },
     { d:"Farmácia",     dias:3, cat:"Saúde",       f:"Cartão de crédito Itaú", v:38.90 },
     { d:"Uber",         dias:4, cat:"Transporte",  f:"Cartão de crédito BTG",  v:16.94 },
@@ -871,18 +853,12 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   }
   var ubers = compras.filter(function(x){ return x.d === "Uber"; });
   var totalUber = ubers.reduce(function(a, x){ return a + x.v; }, 0);
+  var totalFinal = BASE + cenas[0].valor + cenas[1].valor;
   $("filtroMes").textContent = String(proximo.getMonth()+1).padStart(2,"0") + "/" + proximo.getFullYear();
 
-  var evolValores = [1720, 1905, 1960, BASE + c.valor, 640, 410];
-  var evolMax = Math.max.apply(null, evolValores);
-  $("pMeses").querySelectorAll("span").forEach(function(el, k){
-    var d = new Date(hoje.getFullYear(), hoje.getMonth() - 2 + k, 1);
-    el.textContent = ABREV[d.getMonth()] + "/" + String(d.getFullYear()).slice(2);
-  });
-
   if (reduzir) {
-    $("telaLanc").classList.add("oculta");
-    $("telaCompras").classList.remove("oculta");
+    telas.lanc.classList.add("oculta");
+    telas.compras.classList.remove("oculta");
     $("busca").classList.add("foco"); $("busca").textContent = "uber";
     montarLista("uber");
     $("qtdCompras").textContent = ubers.length + " compras";
@@ -892,8 +868,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     return;
   }
 
-  function preparar(){
-    mostrar("lanc");
+  function limparLanc(){
     lanc.classList.add("vazio");
     lanc.querySelectorAll(".linha-campo").forEach(function(l){ l.classList.remove("recente"); });
     fala.textContent = "";
@@ -901,29 +876,30 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     $("toast").classList.remove("visivel");
     teclado.classList.remove("guardado");
     teclado.classList.add("ouvindo");
+  }
+
+  function preparar(){
+    limparLanc();
+    mostrar("lanc");
     $("total").textContent = brl(BASE);
     var busca = $("busca"); busca.classList.remove("foco"); busca.textContent = "Buscar por descrição, categoria ou cartão";
     $("qtdCompras").textContent = "42 compras";
-    $("totalCompras").textContent = brl(BASE + c.valor);
+    $("totalCompras").textContent = brl(totalFinal);
     $("totalCompras").classList.remove("mudou"); $("resumoCompras").classList.remove("destaque");
     montarLista("");
-    $("pBarras").querySelectorAll("i").forEach(function(b){ b.style.height = "0"; });
   }
 
-  function rodar(){
-    preparar();
-    var t = 700, i;
-
-    // 1. Ditado pelo teclado
+  // Um lançamento completo; devolve o instante em que termina
+  function lancar(c, t, totalAntes){
+    var i;
     for (i = 1; i <= c.fala.length; i++) {
-      (function(n){ depois(t + n * 75, function(){ fala.textContent = c.fala.slice(0, n); }); })(i);
+      (function(n){ depois(t + n * 60, function(){ fala.textContent = c.fala.slice(0, n); }); })(i);
     }
-    t += c.fala.length * 75 + 500;
+    t += c.fala.length * 60 + 450;
     depois(t, function(){ teclado.classList.remove("ouvindo"); cursor.hidden = true; });
-    depois(t + 300, function(){ teclado.classList.add("guardado"); });
-    t += 900;
+    depois(t + 250, function(){ teclado.classList.add("guardado"); });
+    t += 750;
 
-    // 2. Interpretar e conferir
     depois(t, function(){ tocar($("btnInterpretar")); $("btnInterpretar").classList.add("apertado"); });
     depois(t + 180, function(){
       $("btnInterpretar").classList.remove("apertado");
@@ -933,30 +909,41 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
       lanc.classList.remove("vazio");
     });
     t += 300;
-    campos.forEach(function(id, k){ depois(t + k * 160, function(){ $(id).parentNode.classList.add("recente"); }); });
-    t += campos.length * 160 + 1000;
+    campos.forEach(function(id, k){ depois(t + k * 120, function(){ $(id).parentNode.classList.add("recente"); }); });
+    t += campos.length * 120 + 800;
 
-    // 3. Cadastrar
     depois(t, function(){ tocar($("btnCadastrar")); $("btnCadastrar").classList.add("apertado"); });
     depois(t + 180, function(){ $("btnCadastrar").classList.remove("apertado"); $("toast").classList.add("visivel"); });
-    t += 1300;
+    t += 1100;
 
-    // 4. Tela principal: a fatura sobe
     depois(t, function(){
       mostrar("principal");
       var passos = 18, p = 0;
       var anima = setInterval(function(){
         p++;
-        $("total").textContent = brl(BASE + c.valor * (p / passos));
-        if (p >= passos) { clearInterval(anima); $("total").textContent = brl(BASE + c.valor); }
+        $("total").textContent = brl(totalAntes + c.valor * (p / passos));
+        if (p >= passos) { clearInterval(anima); $("total").textContent = brl(totalAntes + c.valor); }
       }, 40);
     });
-    t += 2400;
+    return t + 1900;
+  }
 
-    // 5. Compras: busca "uber"
+  function rodar(){
+    preparar();
+    var t = 700, i;
+
+    // 1. Primeiro gasto
+    t = lancar(cenas[0], t, BASE);
+
+    // 2. Toca em "Fale seus gastos" e lança o segundo
+    depois(t, function(){ tocar($("appMic")); });
+    depois(t + 350, function(){ limparLanc(); mostrar("lanc"); });
+    t = lancar(cenas[1], t + 900, BASE + cenas[0].valor);
+
+    // 3. Gerenciar Compras: busca "uber"
     depois(t, function(){ tocar($("btnCompras")); });
     depois(t + 350, function(){ mostrar("compras"); });
-    t += 1700;
+    t += 1600;
     depois(t, function(){ tocar($("busca")); var b = $("busca"); b.classList.add("foco"); b.textContent = ""; });
     var termo = "uber";
     for (i = 1; i <= termo.length; i++) {
@@ -971,20 +958,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
       $("totalCompras").textContent = brl(totalUber);
       $("totalCompras").classList.add("mudou"); $("resumoCompras").classList.add("destaque");
     });
-    t += 3400;
-
-    // 6. Evolução Mensal
-    depois(t, function(){ tocar($("fecharCompras")); });
-    depois(t + 350, function(){ mostrar("principal"); });
-    t += 1000;
-    depois(t, function(){ tocar($("btnEvol")); });
-    depois(t + 350, function(){
-      mostrar("evol");
-      $("pBarras").querySelectorAll("i").forEach(function(b, k){
-        setTimeout(function(){ b.style.height = (evolValores[k] / evolMax * 100) + "%"; }, 80 + k * 90);
-      });
-    });
-    t += 4200;
+    t += 4500;
 
     depois(t, rodar);
   }
