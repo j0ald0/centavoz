@@ -99,12 +99,12 @@ p{margin:0}
   padding-top:env(safe-area-inset-top,0px);
   border-radius:0 0 22px 22px;
 }
-.topo .miolo{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
-.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
-.marca svg{width:36px;height:36px}
-.marca-nome{font-family:var(--f-titulo);font-weight:800;font-size:1.375rem;letter-spacing:-.02em;line-height:1}
+.topo .miolo{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:88px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca svg{width:54px;height:54px}
+.marca-nome{font-family:var(--f-titulo);font-weight:800;font-size:2rem;letter-spacing:-.025em;line-height:1}
 .marca-nome span{color:var(--voz)}
-.topo-link{font-weight:600;font-size:.9375rem;text-decoration:none;padding:10px 16px;border:1.5px solid #3A3A3A;border-radius:999px}
+.topo-link{font-weight:600;font-size:.9375rem;text-decoration:none;padding:10px 16px;border:1.5px solid #3A3A3A;border-radius:999px;white-space:nowrap}
 .topo-link:hover{border-color:var(--lima)}
 
 /* Primeira dobra */
@@ -237,19 +237,40 @@ p{margin:0}
 .amostra-card .t{font-weight:700}
 .amostra-card .v{font-family:var(--f-titulo);font-weight:800;font-size:2.25rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .amostra-card .s{color:var(--cinza);font-size:var(--t-pequeno)}
-.barras{list-style:none;padding:0;margin:0;display:grid;gap:12px}
-.barras li{display:grid;grid-template-columns:7.5em 1fr auto;gap:12px;align-items:center;font-size:.9375rem}
-.barras .b{height:12px;border-radius:6px;background:#E6E7E1;overflow:hidden}
-.barras .b span{display:block;height:100%;border-radius:6px}
-.barras .n{font-variant-numeric:tabular-nums;font-weight:600}
-.parcelas-lista{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-.parcelas-lista li{display:flex;justify-content:space-between;gap:12px;background:#fff;border-radius:10px;padding:10px 14px}
-.parcelas-lista li span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
-.conversa{display:grid;gap:10px}
-.balao{border-radius:16px;padding:10px 14px;max-width:88%}
-.balao.pergunta{justify-self:end;background:var(--tinta);color:#fff;border-bottom-right-radius:4px}
-.balao.resposta{background:#fff;border-bottom-left-radius:4px}
 .rotulo-exemplo{font-size:.8125rem;color:var(--cinza);margin-top:10px}
+
+/* Réplicas das telas do app */
+.rosca-bloco{display:flex;flex-wrap:wrap;align-items:center;gap:18px 22px;background:#fff;border-radius:14px;padding:16px 18px}
+.rosca{position:relative;width:148px;height:148px;flex:none}
+.rosca svg{width:100%;height:100%;transform:none}
+.rosca-centro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.rosca-centro small{font-size:.625rem;color:var(--cinza);letter-spacing:.04em}
+.rosca-centro b{font-size:.8125rem;font-variant-numeric:tabular-nums}
+.legenda{list-style:none;padding:0;margin:0;display:grid;gap:7px;font-size:.875rem;flex:1;min-width:190px}
+.legenda li{display:flex;align-items:center;gap:8px}
+.legenda i{width:10px;height:10px;border-radius:50%;flex:none}
+.legenda b{font-weight:700}
+.legenda span{color:#35372F;font-variant-numeric:tabular-nums}
+
+.evol{background:#fff;border-radius:14px;padding:16px 18px}
+.evol-tit{font-family:var(--f-titulo);font-weight:800;font-size:1.125rem;display:flex;align-items:center;gap:8px}
+.evol-tit svg{width:18px;height:18px}
+.abas{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.abas span{border:1px solid #E3E4DF;border-radius:10px;text-align:center;padding:6px 4px;font-size:.8125rem;font-weight:700;color:#5E6358;background:#F8F9F7}
+.abas span.ativa{background:var(--voz);border-color:var(--voz);color:var(--tinta)}
+.evol-barras{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:end;height:130px;margin-top:16px;border-bottom:1px solid #D9DBD4;padding:0 4px}
+.evol-barras i{display:block;background:var(--voz);border-radius:5px 5px 0 0}
+.evol-meses{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:6px 4px 0;font-size:.75rem;color:#6B6E66;text-align:center}
+.evol-rodape{display:flex;justify-content:space-between;gap:12px;margin-top:14px;background:var(--papel);border-radius:10px;padding:10px 12px;font-size:.8125rem;color:var(--cinza)}
+.evol-rodape b{display:block;color:var(--tinta);font-size:.9375rem;font-variant-numeric:tabular-nums}
+.evol-rodape div:last-child{text-align:right}
+
+.consultor{background:#fff;border-radius:14px;padding:16px 18px;display:grid;gap:10px}
+.consultor .rot-app{font-size:.6875rem;font-weight:700;color:#5E6358;letter-spacing:.04em}
+.consultor .abas{margin-top:0}
+.consultor .grupo{display:grid;gap:6px}
+.consultor .perg{border:1px solid #E3E4DF;border-radius:10px;padding:8px 12px;font-size:.875rem;font-weight:600}
+.consultor .profunda{background:linear-gradient(90deg,var(--voz),#727951);border-radius:10px;text-align:center;font-weight:700;padding:9px;font-size:.875rem}
 
 /* Dados */
 .dados .miolo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,88px);align-items:start}
@@ -261,17 +282,7 @@ p{margin:0}
 
 /* Pagamento único */
 .unico{padding-block:clamp(64px,9vw,120px)}
-.tabela-rolagem{overflow-x:auto;margin-top:48px}
-.comparacao{width:100%;min-width:560px;border-collapse:separate;border-spacing:0;font-size:1.0625rem}
-.comparacao th,.comparacao td{text-align:left;padding:18px 20px;vertical-align:top}
-.comparacao thead th{font-family:var(--f-titulo);font-size:1.25rem;letter-spacing:-.01em}
-.comparacao thead th:first-child{width:22%}
-.comparacao tbody th{font-weight:600;color:#BDBDB8}
-.comparacao td{border-top:1px solid #333;color:#D6D6D2}
-.comparacao tbody th{border-top:1px solid #333}
-.comparacao .nosso{background:#222418;color:var(--branco)}
-.comparacao thead .nosso{color:var(--lima);border-radius:14px 14px 0 0}
-.comparacao tbody tr:last-child .nosso{border-radius:0 0 14px 14px}
+.unico .texto{max-width:46ch;color:#D6D6D2;font-size:var(--t-lead);line-height:1.55;margin-top:24px}
 
 /* Instalação */
 .instalacao .miolo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,88px);align-items:start}
@@ -335,28 +346,22 @@ details .resp p+p{margin-top:10px}
   .faq .miolo>div:first-child{position:static}
   .dobra .miolo,.dados .miolo,.instalacao .miolo,.oferta .miolo,.faq .miolo{grid-template-columns:1fr}
   .dobra h1{max-width:14ch}
-  .ver-grade{grid-template-columns:1fr}
+  .ver-grade{grid-template-columns:minmax(0,1fr)}
   .falas{grid-template-columns:1fr;border-top:0}
   .falas li,.falas li+li{padding:24px 0;border-left:0;border-top:1px solid #333}
   .passos{grid-template-columns:1fr;gap:32px}
   .passos li{padding:0 0 0 64px}
   .passos li:not(:last-child)::after{display:none}
 }
-@media (max-width:600px){
-  .tabela-rolagem{overflow:visible}
-  .comparacao{min-width:0}
-  .comparacao thead{display:none}
-  .comparacao tbody{display:block}
-  .comparacao tr{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;padding:18px 0;border-top:1px solid #333}
-  .comparacao tbody th{grid-column:1/-1;border:0;padding:0 0 10px;color:var(--branco)}
-  .comparacao td{border:0;padding:12px 14px;border-radius:12px;font-size:1rem}
-  .comparacao td::before{content:attr(data-rot);display:block;font-size:.8125rem;font-weight:700;margin-bottom:4px;color:#9A9A95}
-  .comparacao td.nosso::before{color:var(--lima)}
-  .comparacao tbody tr:last-child .nosso{border-radius:12px}
-}
 @media (max-width:420px){
-  .topo-link{display:none}
-  .barras li{grid-template-columns:6.5em 1fr auto;gap:8px;font-size:.875rem}
+  .topo-link{padding:8px 12px;font-size:.875rem}
+  .abas span{font-size:.6875rem;padding:6px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .amostra{padding:10px}
+  .evol,.consultor,.rosca-bloco{padding:14px}
+  .evol-barras,.evol-meses{gap:6px;padding-inline:0}
+  .evol-meses{font-size:.625rem}
+  .marca svg{width:44px;height:44px}
+  .marca-nome{font-size:1.625rem}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -446,7 +451,7 @@ details .resp p+p{margin-top:10px}
           <div class="app-card app-sanfona">Gastos por categoria</div>
         </div>
       </div>
-      <p class="legenda-celular">O ditado é o do próprio teclado do celular: toque no microfone e fale.</p>
+      <p class="legenda-celular">O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.</p>
     </div>
   </div>
 </section>
@@ -506,41 +511,64 @@ details .resp p+p{margin-top:10px}
       </div>
       <div class="ver-item">
         <h3>Para onde foi</h3>
-        <p>Os gastos por categoria e por forma de pagamento. Toque numa categoria para ver os maiores lançamentos dela.</p>
+        <p>Os gastos por categoria, com a parte de cada uma no total. Toque numa categoria para ver os maiores lançamentos. E a busca soma qualquer gasto: digite “uber” e veja quantas corridas foram e quanto deram no mês.</p>
         <div class="amostra">
-          <ul class="barras">
-            <li><span>Alimentação</span><span class="b"><span style="width:100%;background:#9B3FE8"></span></span><span class="n">R$ 684</span></li>
-            <li><span>Transporte</span><span class="b"><span style="width:60%;background:#2F6BE8"></span></span><span class="n">R$ 412</span></li>
-            <li><span>Moradia</span><span class="b"><span style="width:57%;background:#E8342C"></span></span><span class="n">R$ 390</span></li>
-            <li><span>Lazer</span><span class="b"><span style="width:35%;background:#F7801F"></span></span><span class="n">R$ 236</span></li>
-            <li><span>Outros</span><span class="b"><span style="width:17%;background:#22A447"></span></span><span class="n">R$ 118</span></li>
-          </ul>
+          <div class="rosca-bloco">
+            <div class="rosca">
+              <svg viewBox="0 0 42 42" aria-hidden="true">
+                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#9B3FE8" stroke-width="5.5" stroke-dasharray="37.2 62.8" stroke-dashoffset="25"/>
+                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#2F6BE8" stroke-width="5.5" stroke-dasharray="22.4 77.6" stroke-dashoffset="-12.2"/>
+                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#E8342C" stroke-width="5.5" stroke-dasharray="21.2 78.8" stroke-dashoffset="-34.6"/>
+                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#F7801F" stroke-width="5.5" stroke-dasharray="12.8 87.2" stroke-dashoffset="-55.8"/>
+                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#22A447" stroke-width="5.5" stroke-dasharray="6.4 93.6" stroke-dashoffset="-68.6"/>
+              </svg>
+              <div class="rosca-centro"><small>TOTAL</small><b>R$ 1.840,00</b></div>
+            </div>
+            <ul class="legenda">
+              <li><i style="background:#9B3FE8"></i><b>Alimentação</b><span>R$ 684,00 · 37.2%</span></li>
+              <li><i style="background:#2F6BE8"></i><b>Transporte</b><span>R$ 412,00 · 22.4%</span></li>
+              <li><i style="background:#E8342C"></i><b>Moradia</b><span>R$ 390,00 · 21.2%</span></li>
+              <li><i style="background:#F7801F"></i><b>Lazer</b><span>R$ 236,00 · 12.8%</span></li>
+              <li><i style="background:#22A447"></i><b>Outros</b><span>R$ 118,00 · 6.4%</span></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="ver-item">
         <h3>As parcelas que você esqueceu</h3>
-        <p>Cada compra parcelada já entra nas faturas dos meses seguintes. Quando a fatura chega, as parcelas já estavam somadas nela.</p>
+        <p>Cada compra parcelada já entra nas faturas dos meses seguintes. Na Evolução Mensal, os meses à frente mostram o que as parcelas já comprometeram.</p>
         <div class="amostra">
-          <ul class="parcelas-lista">
-            <li><span>Geladeira · 4/10</span><span>R$ 289,90</span></li>
-            <li><span>Passagem · 2/6</span><span>R$ 173,33</span></li>
-            <li><span>Óculos · 5/5</span><span>R$ 96,00</span></li>
-          </ul>
+          <div class="evol">
+            <div class="evol-tit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>Evolução Mensal</div>
+            <div class="abas"><span class="ativa">Total geral</span><span>Por pagamento</span><span>Diário</span></div>
+            <div class="evol-barras" aria-hidden="true">
+              <i style="height:88%"></i><i style="height:97%"></i><i style="height:100%"></i><i style="height:94%"></i><i style="height:33%"></i><i style="height:21%"></i>
+            </div>
+            <div class="evol-meses" id="evolMeses"><span>Jul/26</span><span>Ago/26</span><span>Set/26</span><span>Out/26</span><span>Nov/26</span><span>Dez/26</span></div>
+            <div class="evol-rodape"><div>Total no período<b>R$ 8.475,00</b></div><div>Média mensal<b>R$ 1.412,50</b></div></div>
+          </div>
         </div>
       </div>
       <div class="ver-item">
         <h3>Alguém lê os números por você</h3>
-        <p>Pergunte ao Consultor IA e receba a conclusão em português, sem gráfico para interpretar. O app faz todas as contas; a IA só lê os resultados e explica.</p>
+        <p>Escolha uma pergunta pronta ou escreva a sua, e o Consultor IA responde em português. O app faz todas as contas; a IA só lê os resultados e explica.</p>
         <div class="amostra">
-          <div class="conversa">
-            <div class="balao pergunta">O que mudou nos meus gastos?</div>
-            <div class="balao resposta">Alimentação subiu em relação aos últimos meses, puxada por pedidos de delivery no fim de semana. Transporte ficou estável.</div>
+          <div class="consultor">
+            <div class="rot-app">PERÍODO ANALISADO</div>
+            <div class="abas"><span class="ativa">3 meses</span><span>6 meses</span><span>12 meses</span></div>
+            <div class="rot-app">MEUS GASTOS</div>
+            <div class="grupo"><div class="perg">O que mudou nos meus gastos?</div><div class="perg">Qual foi meu mês mais caro e por quê?</div></div>
+            <div class="rot-app">ECONOMIZE</div>
+            <div class="grupo"><div class="perg">Onde meu dinheiro está saindo sem eu perceber?</div></div>
+            <div class="rot-app">PREVEJA</div>
+            <div class="grupo"><div class="perg">Quanto realmente sobra por mês depois do que já está comprometido?</div></div>
+            <div class="profunda">Análise Profunda</div>
           </div>
         </div>
-        <p class="rotulo-exemplo">As comparações entre meses ficam melhores depois de uns 30 dias de uso.</p>
+        <p class="rotulo-exemplo">Comparações entre meses começam quando duas faturas completas fecham. Antes disso, o Consultor avisa que ainda não há dados suficientes, em vez de inventar.</p>
       </div>
     </div>
-    <p class="rotulo-exemplo" style="margin-top:32px">Valores e respostas acima são exemplos ilustrativos.</p>
+    <p class="rotulo-exemplo" style="margin-top:32px">As telas acima reproduzem o app, com valores de exemplo.</p>
   </div>
 </section>
 
@@ -554,8 +582,8 @@ details .resp p+p{margin-top:10px}
     <ul class="afirmacoes">
       <li><b>Você abre e vê tudo</b><p>Seus lançamentos ficam numa planilha que é sua. Não é cópia de segurança, é o original.</p></li>
       <li><b>Não pedimos senha de banco. Nunca.</b><p>O CentaVoz não se conecta a banco nenhum. Você fala o gasto, ele registra.</p></li>
-      <li><b>Nós não vemos seus gastos</b><p>O único dado que chega até nós é o e-mail da sua conta, para confirmar que a compra é sua.</p></li>
-      <li><b>Continua seu mesmo que o CentaVoz acabe</b><p>Se o CentaVoz deixar de existir, a planilha continua abrindo, com tudo dentro.</p></li>
+      <li><b>Nós não vemos seus gastos</b><p>O único dado que chega até nós é o e-mail da sua conta, que o app usa para confirmar, de tempos em tempos, que a compra está ativa.</p></li>
+      <li><b>O histórico é seu, com tudo dentro</b><p>A planilha com os seus lançamentos fica no seu Drive e abre sem depender de nós. Se um dia o CentaVoz deixar de existir, seu histórico continua lá.</p></li>
     </ul>
   </div>
 </section>
@@ -564,18 +592,7 @@ details .resp p+p{margin-top:10px}
 <section class="unico escuro" aria-labelledby="t-unico">
   <div class="miolo">
     <h2 id="t-unico">Um app de controle de gastos não deveria virar mensalidade.</h2>
-    <div class="tabela-rolagem">
-      <table class="comparacao">
-        <thead>
-          <tr><td></td><th scope="col">Na maioria dos apps por assinatura</th><th scope="col" class="nosso">No CentaVoz</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Pagamento</th><td data-rot="Por assinatura">Você paga todo mês, enquanto usar.</td><td class="nosso" data-rot="CentaVoz">Você paga uma vez.</td></tr>
-          <tr><th scope="row">Seus dados</th><td data-rot="Por assinatura">Ficam no servidor da empresa.</td><td class="nosso" data-rot="CentaVoz">Ficam na sua conta Google.</td></tr>
-          <tr><th scope="row">Se o serviço acabar</th><td data-rot="Por assinatura">O histórico costuma ir junto.</td><td class="nosso" data-rot="CentaVoz">A planilha continua sua, com tudo dentro.</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="texto">Você paga uma vez e não existe cobrança mensal. Seus lançamentos ficam na sua conta Google, e não num servidor que a gente precise cobrar todo mês para manter.</p>
   </div>
 </section>
 
@@ -644,6 +661,7 @@ details .resp p+p{margin-top:10px}
         <details><summary>Dá para lançar digitando?</summary><div class="resp"><p>Sim. O campo aceita texto digitado do mesmo jeito que aceita o ditado.</p></div></details>
         <details><summary>Ele separa por cartão e entende parcelamento?</summary><div class="resp"><p>Sim. Cada cartão tem o seu dia de fechamento e de vencimento, e cada compra entra na fatura certa. Compras parceladas geram uma parcela em cada mês em que vão ser cobradas.</p></div></details>
         <details><summary>Tenho cartão adicional. Como cadastro?</summary><div class="resp"><p>Cartão adicional divide a mesma fatura do titular, então entra como um cartão só. O guia de instalação explica esse passo.</p></div></details>
+        <details><summary>Troquei de celular. Perco meus gastos?</summary><div class="resp"><p>Não. Seus lançamentos ficam na planilha da sua conta Google, e não no aparelho. No celular novo, é só abrir o link do seu app e salvar o atalho na tela inicial de novo.</p></div></details>
         <details><summary>Funciona sem internet?</summary><div class="resp"><p>Não. Como seus lançamentos moram na sua conta Google, e não no celular, o app precisa de conexão para gravar e mostrar os números.</p></div></details>
         <details><summary>Meu marido ou minha esposa pode usar junto?</summary><div class="resp"><p>Sim. Uma compra vale para uma casa. Os gastos de cada um se separam pelo nome do cartão.</p></div></details>
       </div>
@@ -655,12 +673,12 @@ details .resp p+p{margin-top:10px}
       </div>
       <div class="grupo-faq">
         <h3>Privacidade e IA</h3>
-        <details><summary>Vocês têm acesso aos meus gastos?</summary><div class="resp"><p>Não. Seus lançamentos ficam só na sua conta Google. O único dado que chega até nós é o e-mail da conta, para confirmar a compra.</p></div></details>
+        <details><summary>Vocês têm acesso aos meus gastos?</summary><div class="resp"><p>Não. Seus lançamentos ficam só na sua conta Google. O único dado que chega até nós é o e-mail da conta, que o app usa para confirmar, de tempos em tempos, que a compra está ativa.</p></div></details>
         <details><summary>Preciso conectar a conta do banco?</summary><div class="resp"><p>Não. O CentaVoz não pede senha de banco e não se conecta a banco nenhum.</p></div></details>
         <details><summary>O que a IA vê dos meus dados?</summary><div class="resp"><p>O Consultor só entra em ação quando você pergunta. Nessa hora, o app envia um resumo dos números do período ao Gemini, a IA do Google, usando a sua própria chave. Nada passa por nós. O uso segue os termos do Gemini, que você aceita ao criar a chave.</p></div></details>
         <details><summary>A IA pode inventar número?</summary><div class="resp"><p>As contas não são feitas pela IA. O app calcula todos os valores antes, e a IA só lê os resultados e explica em português.</p></div></details>
         <details><summary>Ela dá conselho de investimento?</summary><div class="resp"><p>Não. O CentaVoz mostra para onde foi o seu dinheiro. Onde aplicar não é o assunto dele.</p></div></details>
-        <details><summary>Preciso pagar à parte pela IA?</summary><div class="resp"><p>Não. A chave do Gemini é gratuita e dá conta do uso normal do Consultor.</p></div></details>
+        <details><summary>Preciso pagar à parte pela IA?</summary><div class="resp"><p>Hoje, não. A chave do Gemini tem uso gratuito, que atende ao uso normal do Consultor. Essas condições são do Google e podem mudar.</p></div></details>
       </div>
       <div class="grupo-faq">
         <h3>Compra</h3>
@@ -712,6 +730,15 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var dataHoje = String(hoje.getDate()).padStart(2,"0") + "/" + String(hoje.getMonth()+1).padStart(2,"0") + "/" + hoje.getFullYear();
 
   document.querySelectorAll(".mes-seguinte").forEach(function(el){ el.textContent = mesSeguinte; });
+
+  var ABREV = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+  var evolMeses = document.getElementById("evolMeses");
+  if (evolMeses) {
+    evolMeses.querySelectorAll("span").forEach(function(el, k){
+      var d = new Date(hoje.getFullYear(), hoje.getMonth() - 2 + k, 1);
+      el.textContent = ABREV[d.getMonth()] + "/" + String(d.getFullYear()).slice(2);
+    });
+  }
 
   var $ = function(id){ return document.getElementById(id); };
   $("pagarEm").textContent = "Você vai pagar em " + mesSeguinte;
