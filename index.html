@@ -139,8 +139,17 @@ p{margin:0}
 .lanc-rot{color:#6B6E66;font-size:10.5px;display:flex;align-items:center;gap:4px}
 .lanc-rot svg{width:11px;height:11px}
 .campo{background:var(--branco);border:1px solid #E3E4DF;border-radius:9px;padding:7px 9px;min-height:30px;color:var(--tinta)}
-.campo.ditado{min-height:40px}
+.campo.ditado{min-height:40px;transition:border-color .2s,box-shadow .2s}
+.campo.ditado .ph{display:none;color:#9A9D94}
+.campo.ditado.sem-texto .ph{display:inline}
+.campo.ditado.foco{border:2px solid #7FB8F5;padding:6px 8px;box-shadow:0 0 0 3px rgba(127,184,245,.35)}
+.lanc-dica{font-size:9.5px;line-height:1.4;color:#6B6E66}
+.campo.vazio-ph{color:#9A9D94}
+.campo.sel{position:relative;padding-right:24px}
+.campo.sel::after{content:"";position:absolute;right:11px;top:50%;width:5px;height:5px;border-right:1.5px solid #777;border-bottom:1.5px solid #777;transform:translateY(-70%) rotate(45deg)}
+.campo.preenchendo{border-color:var(--tinta);box-shadow:0 0 0 2px rgba(214,244,60,.9)}
 .cursor{display:inline-block;width:1px;height:12px;background:var(--tinta);vertical-align:-2px;margin-left:1px;animation:pisca 1s steps(1) infinite}
+.cursor[hidden]{display:none}
 @keyframes pisca{50%{opacity:0}}
 .btn-roxo{background:var(--roxo);color:#fff;border-radius:9px;text-align:center;font-weight:700;padding:8px;transition:transform .12s,filter .12s}
 .btn-roxo.apertado,.btn-lima.apertado{transform:scale(.96);filter:brightness(.9)}
@@ -150,7 +159,7 @@ p{margin:0}
 .linha-campo .campo{transition:background .4s}
 .linha-campo.recente .campo{background:#F6FCDD}
 .btn-lima{background:var(--voz);border-radius:9px;text-align:center;font-weight:700;padding:9px;margin-top:2px;transition:transform .12s,filter .12s}
-.vazio .entendi,.vazio .linha-campo{opacity:0}
+.vazio .entendi{opacity:0}
 
 .teclado{
   position:absolute;left:0;right:0;bottom:0;background:#D5D7DC;padding:8px 5px 22px;
@@ -167,10 +176,6 @@ p{margin:0}
 .ouvindo .tec-mic::before{animation:onda 1.4s ease-out infinite}
 .ouvindo .tec-mic::after{animation:onda 1.4s ease-out .7s infinite}
 @keyframes onda{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.9);opacity:0}}
-.tec-aviso{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);white-space:nowrap;background:var(--tinta);color:var(--branco);font-size:10.5px;padding:5px 10px;border-radius:999px}
-.tec-aviso span{color:var(--voz)}
-.teclado.guardado .tec-aviso{opacity:0}
-.tec-aviso{transition:opacity .2s}
 
 .toast{position:absolute;left:14px;right:14px;top:44px;background:var(--tinta);color:var(--branco);border-radius:10px;padding:9px 12px;font-weight:600;display:flex;gap:8px;align-items:center;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease;z-index:4}
 .toast.visivel{opacity:1;transform:none}
@@ -183,6 +188,24 @@ p{margin:0}
 .app-topo small{display:block;font-size:10px;color:#CFCFCF;margin-top:2px}
 .app-mic{width:52px;height:52px;border-radius:50%;background:var(--voz);margin:14px auto 4px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 7px rgba(214,244,60,.28),0 0 22px rgba(214,244,60,.7)}
 .app-mic svg{width:20px;height:20px}
+.app-mic{transition:transform .12s}
+.app-mic.apertado{transform:scale(.92)}
+.app-fatura{padding:10px 12px 12px}
+.app-fatura .rot{font-size:8.5px;font-weight:800;letter-spacing:.09em;color:#6B6E66}
+.app-fatura .seletor{margin-top:6px;border:1px solid #E3E4DF;background:#F8F9F7;border-radius:9px;padding:7px 10px;font-size:12px}
+.chamar{animation:chamar 1.1s ease-out infinite}
+@keyframes chamar{0%{box-shadow:0 0 0 0 rgba(214,244,60,.95)}100%{box-shadow:0 0 0 11px rgba(214,244,60,0)}}
+.balao{
+  position:absolute;z-index:7;left:0;top:0;width:max-content;max-width:190px;
+  background:var(--tinta);color:#fff;border:2px solid var(--voz);border-radius:13px;
+  padding:8px 12px;font-weight:700;font-size:11.5px;line-height:1.3;text-align:center;
+  box-shadow:0 8px 18px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .25s ease;
+}
+.balao.visivel{opacity:1;animation:flutua 1.3s ease-in-out infinite}
+.balao::after{content:"";position:absolute;left:var(--seta,50%);width:11px;height:11px;margin-left:-6px;background:var(--tinta);transform:rotate(45deg)}
+.balao.acima::after{bottom:-7px;border-right:2px solid var(--voz);border-bottom:2px solid var(--voz)}
+.balao.abaixo::after{top:-7px;border-left:2px solid var(--voz);border-top:2px solid var(--voz)}
+@keyframes flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 .app-mic-rot{text-align:center;font-weight:700;font-size:10.5px}
 .app-card{background:#fff;border-radius:12px;margin:10px 12px 0;padding:11px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .app-card .t{font-weight:700;font-size:12px}
@@ -463,37 +486,41 @@ details .resp p+p{margin-top:10px}
       <p class="so-leitor">Demonstração: a pessoa lança dois gastos falando pelo microfone do teclado, "Supermercado, 85 reais e 19 centavos, BTG" e "Uber, 23 reais e 50 centavos, Itaú". O CentaVoz preenche os campos, cada compra é cadastrada e o valor da próxima fatura sobe. Depois, a pessoa abre Gerenciar Compras, busca “uber” e vê quantas corridas foram no mês e quanto somaram.</p>
       <div class="celular" aria-hidden="true">
         <!-- Tela de lançamento -->
-        <div class="tela" id="telaLanc">
-          <div class="lanc" id="lanc">
+        <div class="tela oculta" id="telaLanc">
+          <div class="lanc vazio" id="lanc">
             <div class="lanc-rot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Ditado por voz</div>
-            <div class="campo ditado"><span id="fala">Uber R$ 23,50 Itaú</span><span class="cursor" id="cursor" hidden></span></div>
+            <div class="lanc-dica">Toque no campo abaixo e use o microfone do teclado para ditar tudo de uma vez. Depois toque em “Interpretar”.</div>
+            <div class="campo ditado sem-texto" id="campoDitado"><span id="fala"></span><span class="cursor" id="cursor" hidden></span><span class="ph">Ex.: almoço no shopping, 50 reais, Nubank, 3x, alimentação</span></div>
             <div class="btn-roxo" id="btnInterpretar">↗ Interpretar e preencher campos</div>
-            <div class="entendi"><b>Entendi:</b> <span id="entendi">“Uber” · R$ 23,50 · à vista · Cartão de crédito Itaú</span></div>
-            <div class="linha-campo"><div class="lanc-rot">Descrição</div><div class="campo" id="fDesc">Uber</div></div>
+            <div class="entendi"><b>Entendi:</b> <span id="entendi"></span></div>
+            <div class="linha-campo"><div class="lanc-rot">Descrição</div><div class="campo vazio-ph" id="fDesc">Ex.: Mercado do mês</div></div>
             <div class="linha-campo"><div class="lanc-rot">Data</div><div class="campo" id="fData">29/09/2026</div></div>
-            <div class="linha-campo"><div class="lanc-rot">Forma de pagamento</div><div class="campo" id="fForma">Cartão de crédito Itaú</div></div>
-            <div class="linha-campo"><div class="lanc-rot">Valor total (R$)</div><div class="campo" id="fValor">23,50</div></div>
-            <div class="linha-campo"><div class="lanc-rot">Categoria</div><div class="campo" id="fCat">Transporte</div></div>
+            <div class="linha-campo"><div class="lanc-rot">Forma de pagamento</div><div class="campo sel vazio-ph" id="fForma">Selecione</div></div>
+            <div class="linha-campo"><div class="lanc-rot">Valor total (R$)</div><div class="campo vazio-ph" id="fValor">0,00</div></div>
+            <div class="linha-campo"><div class="lanc-rot">Categoria</div><div class="campo sel vazio-ph" id="fCat">Selecione</div></div>
             <div class="btn-lima" id="btnCadastrar">Cadastrar compra</div>
           </div>
           <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="#D6F43C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Compra cadastrada</div>
           <div class="teclado guardado" id="teclado">
-            <div class="tec-aviso">Microfone <span>do teclado</span></div>
             <div class="tec-linha"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
             <div class="tec-linha"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
             <div class="tec-linha"><i class="medio"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="medio"></i></div>
-            <div class="tec-linha"><i class="medio"></i><i class="largo"></i><i class="tec-mic"><svg viewBox="0 0 24 24" fill="none" stroke="#D6F43C" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><i class="medio"></i></div>
+            <div class="tec-linha"><i class="medio"></i><i class="largo"></i><i class="tec-mic" id="tecMic"><svg viewBox="0 0 24 24" fill="none" stroke="#D6F43C" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><i class="medio"></i></div>
           </div>
         </div>
 
         <!-- Tela principal -->
-        <div class="tela oculta" id="telaPrincipal">
+        <div class="tela" id="telaPrincipal">
           <div class="app-topo"><b>Centa<span>Voz</span></b><small>Sua voz vira controle.</small><div class="pilulas"><span id="btnEvol">Evolução</span><span id="btnCompras">Compras</span><span>Ajustes</span><span>Atualizar</span></div></div>
           <div class="app-mic" id="appMic"><svg viewBox="0 0 24 24" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
-          <div class="app-mic-rot">Fale seus gastos</div>
+          <div class="app-mic-rot" id="appMicRot">Fale seus gastos</div>
+          <div class="app-card app-fatura">
+            <div class="rot">FATURA QUE VENCE EM</div>
+            <div class="seletor" id="selFat">10/2026</div>
+          </div>
           <div class="app-card">
             <div class="t" id="pagarEm">Você vai pagar em outubro</div>
-            <div class="v" id="total">R$ 1.863,50</div>
+            <div class="v" id="total">R$ 1.840,00</div>
             <div class="s">Atualiza a cada gasto que você fala.</div>
           </div>
           <div class="app-card app-sanfona">Pergunte ao Consultor IA</div>
@@ -513,9 +540,10 @@ details .resp p+p{margin-top:10px}
           </div>
         </div>
 
+        <div class="balao" id="balao" aria-hidden="true"><span id="balaoTxt"></span></div>
         <div class="toque" id="toque"></div>
       </div>
-      <p class="legenda-celular" id="legendaCel" aria-hidden="true">O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.</p>
+      <p class="legenda-celular" id="legendaCel" aria-hidden="true">Tela inicial do app: o botão verde abre o lançamento por voz. Valores de exemplo.</p>
     </div>
   </div>
 </section>
@@ -854,8 +882,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var reduzir = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var cenas = [
-    { fala:"Supermercado R$ 85,19 BTG", desc:"Supermercado", valor:85.19, forma:"Cartão de crédito BTG",  cat:"Alimentação" },
-    { fala:"Uber R$ 23,50 Itaú",        desc:"Uber",         valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" }
+    { fala:"Uber R$ 23,50 Itaú", desc:"Uber", valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" }
   ];
   var BASE = 1840.00;
   var timers = [];
@@ -867,12 +894,13 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var campos = ["fDesc","fData","fForma","fValor","fCat"];
 
   var LEG = {
+    inicio:"Tela inicial do app: o botão verde abre o lançamento por voz. Valores de exemplo.",
     lanc:"O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.",
     principal:"A fatura do mês sobe a cada gasto cadastrado.",
     compras:"Digite “uber” na busca e veja quantas compras foram e quanto somam."
   };
-  function mostrar(nome){
-    $("legendaCel").textContent = LEG[nome];
+  function mostrar(nome, legenda){
+    $("legendaCel").textContent = legenda || LEG[nome];
     Object.keys(telas).forEach(function(k){ telas[k].classList.toggle("oculta", k !== nome); });
   }
   function tocar(el){
@@ -881,6 +909,22 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     t.style.top = (re.top - rc.top + re.height / 2) + "px";
     t.classList.remove("ativo"); void t.offsetWidth; t.classList.add("ativo");
   }
+  // Balão de instrução ancorado num elemento do celular (acima ou abaixo dele)
+  var bal = $("balao"), balTxt = $("balaoTxt");
+  function balao(el, txt, onde){
+    balTxt.textContent = txt;
+    bal.classList.remove("acima", "abaixo"); bal.classList.add(onde);
+    bal.style.left = "0px"; bal.style.top = "0px";
+    var rc = celular.getBoundingClientRect(), re = el.getBoundingClientRect();
+    var w = bal.offsetWidth, h = bal.offsetHeight;
+    var alvoX = re.left - rc.left + re.width / 2;
+    var esq = Math.max(20, Math.min(alvoX - w / 2, rc.width - 20 - w));
+    var topo = onde === "acima" ? (re.top - rc.top - h - 12) : (re.bottom - rc.top + 12);
+    bal.style.left = esq + "px"; bal.style.top = topo + "px";
+    bal.style.setProperty("--seta", Math.max(18, Math.min(alvoX - esq, w - 18)) + "px");
+    bal.classList.add("visivel");
+  }
+  function esconderBalao(){ bal.classList.remove("visivel"); }
   function dataMenos(dias){
     var d = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() - dias);
     return String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + d.getFullYear();
@@ -913,11 +957,12 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   }
   var ubers = compras.filter(function(x){ return x.d === "Uber"; });
   var totalUber = ubers.reduce(function(a, x){ return a + x.v; }, 0);
-  var totalFinal = BASE + cenas[0].valor + cenas[1].valor;
+  var totalFinal = BASE + cenas[0].valor;
   $("filtroMes").textContent = String(proximo.getMonth()+1).padStart(2,"0") + "/" + proximo.getFullYear();
+  $("selFat").textContent = $("filtroMes").textContent;
 
   if (reduzir) {
-    telas.lanc.classList.add("oculta");
+    telas.principal.classList.add("oculta");
     telas.compras.classList.remove("oculta");
     $("busca").classList.add("foco"); $("busca").textContent = "uber";
     montarLista("uber");
@@ -928,19 +973,22 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     return;
   }
 
-  function limparLanc(){
-    lanc.classList.add("vazio");
-    lanc.querySelectorAll(".linha-campo").forEach(function(l){ l.classList.remove("recente"); });
-    fala.textContent = "";
-    cursor.hidden = false;
-    $("toast").classList.remove("visivel");
-    teclado.classList.remove("guardado");
-    teclado.classList.add("ouvindo");
-  }
+  var PH = { fDesc:"Ex.: Mercado do mês", fForma:"Selecione", fValor:"0,00", fCat:"Selecione" };
+  function setFala(txt){ fala.textContent = txt; $("campoDitado").classList.toggle("sem-texto", !txt); }
+  function setCampo(id, txt){ var el = $(id); el.textContent = txt; el.classList.remove("vazio-ph"); }
 
   function preparar(){
-    limparLanc();
-    mostrar("lanc");
+    esconderBalao();
+    lanc.classList.add("vazio");
+    Object.keys(PH).forEach(function(id){ var el = $(id); el.textContent = PH[id]; el.classList.add("vazio-ph"); });
+    campos.forEach(function(id){ $(id).classList.remove("preenchendo"); $(id).parentNode.classList.remove("recente"); });
+    $("fData").textContent = dataHoje;
+    setFala(""); cursor.hidden = true; $("campoDitado").classList.remove("foco");
+    $("toast").classList.remove("visivel");
+    teclado.classList.remove("ouvindo"); teclado.classList.add("guardado");
+    $("tecMic").classList.remove("chamar"); $("btnInterpretar").classList.remove("chamar", "apertado");
+    $("appMic").classList.remove("apertado"); $("btnCadastrar").classList.remove("apertado");
+    mostrar("principal", LEG.inicio);
     $("total").textContent = brl(BASE);
     var busca = $("busca"); busca.classList.remove("foco"); busca.textContent = "Buscar por descrição, categoria ou cartão";
     $("qtdCompras").textContent = "42 compras";
@@ -949,67 +997,104 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     montarLista("");
   }
 
-  // Um lançamento completo; devolve o instante em que termina
-  function lancar(c, t, totalAntes){
-    var i;
-    for (i = 1; i <= c.fala.length; i++) {
-      (function(n){ depois(t + n * 60, function(){ fala.textContent = c.fala.slice(0, n); }); })(i);
-    }
-    t += c.fala.length * 60 + 450;
-    depois(t, function(){ teclado.classList.remove("ouvindo"); cursor.hidden = true; });
-    depois(t + 250, function(){ teclado.classList.add("guardado"); });
-    t += 750;
+  function rodar(){
+    preparar();
+    var c = cenas[0], t = 900, i;
 
-    depois(t, function(){ tocar($("btnInterpretar")); $("btnInterpretar").classList.add("apertado"); });
-    depois(t + 180, function(){
+    // 1. Tela inicial: balão no botão verde, toque, abre o lançamento
+    depois(t, function(){ balao($("appMicRot"), "Toque no botão verde para lançar um gasto", "abaixo"); });
+    t += 3000;
+    depois(t, function(){ esconderBalao(); tocar($("appMic")); $("appMic").classList.add("apertado"); });
+    depois(t + 220, function(){ $("appMic").classList.remove("apertado"); });
+    depois(t + 500, function(){ mostrar("lanc"); });
+    t += 1700;
+
+    // 2. Toque no campo de ditado: o teclado abre
+    depois(t, function(){ tocar($("campoDitado")); $("campoDitado").classList.add("foco"); cursor.hidden = false; });
+    t += 600;
+    depois(t, function(){ teclado.classList.remove("guardado"); });
+    t += 1200;
+
+    // 3. Balão no microfone do teclado, depois toque nele e começa a ouvir
+    depois(t, function(){ $("tecMic").classList.add("chamar"); balao($("tecMic"), "Aperte no microfone para fazer o lançamento", "acima"); });
+    t += 3200;
+    depois(t, function(){ esconderBalao(); $("tecMic").classList.remove("chamar"); tocar($("tecMic")); });
+    depois(t + 350, function(){ teclado.classList.add("ouvindo"); });
+    t += 1300;
+
+    // 4. A fala aparece no campo, devagar
+    for (i = 1; i <= c.fala.length; i++) {
+      (function(n){ depois(t + n * 115, function(){ setFala(c.fala.slice(0, n)); }); })(i);
+    }
+    t += c.fala.length * 115 + 800;
+    depois(t, function(){ teclado.classList.remove("ouvindo"); cursor.hidden = true; });
+    t += 900;
+
+    // 5. Balão no botão Interpretar, depois toque
+    depois(t, function(){ $("btnInterpretar").classList.add("chamar"); balao($("btnInterpretar"), "Aperte aqui depois de falar o seu gasto", "abaixo"); });
+    t += 3200;
+    depois(t, function(){ esconderBalao(); $("btnInterpretar").classList.remove("chamar"); tocar($("btnInterpretar")); $("btnInterpretar").classList.add("apertado"); });
+    depois(t + 200, function(){
       $("btnInterpretar").classList.remove("apertado");
       $("entendi").textContent = "“" + c.desc + "” · " + brl(c.valor) + " · à vista · " + c.forma;
-      $("fDesc").textContent = c.desc; $("fData").textContent = dataHoje; $("fForma").textContent = c.forma;
-      $("fValor").textContent = c.valor.toFixed(2).replace(".", ","); $("fCat").textContent = c.cat;
       lanc.classList.remove("vazio");
     });
-    t += 300;
-    campos.forEach(function(id, k){ depois(t + k * 120, function(){ $(id).parentNode.classList.add("recente"); }); });
-    t += campos.length * 120 + 800;
+    depois(t + 500, function(){ teclado.classList.add("guardado"); $("campoDitado").classList.remove("foco"); });
+    t += 1700;
 
+    // 6. Os campos se preenchem sozinhos, um a um
+    var seq = [
+      { id:"fDesc",  txt:c.desc,  digitar:true },
+      { id:"fForma", txt:c.forma },
+      { id:"fValor", txt:c.valor.toFixed(2).replace(".", ","), digitar:true },
+      { id:"fCat",   txt:c.cat }
+    ];
+    seq.forEach(function(passo){
+      var campo = $(passo.id);
+      depois(t, function(){
+        campos.forEach(function(id){ $(id).classList.remove("preenchendo"); });
+        campo.classList.add("preenchendo"); campo.parentNode.classList.add("recente");
+      });
+      if (passo.digitar) {
+        for (var k = 1; k <= passo.txt.length; k++) {
+          (function(n){ depois(t + 300 + n * 110, function(){ setCampo(passo.id, passo.txt.slice(0, n)); }); })(k);
+        }
+        t += 300 + passo.txt.length * 110 + 800;
+      } else {
+        depois(t + 600, function(){ setCampo(passo.id, passo.txt); });
+        t += 600 + 1000;
+      }
+    });
+    depois(t, function(){ campos.forEach(function(id){ $(id).classList.remove("preenchendo"); }); });
+    t += 1200;
+
+    // 7. Cadastrar compra
     depois(t, function(){ tocar($("btnCadastrar")); $("btnCadastrar").classList.add("apertado"); });
-    depois(t + 180, function(){ $("btnCadastrar").classList.remove("apertado"); $("toast").classList.add("visivel"); });
-    t += 1100;
+    depois(t + 200, function(){ $("btnCadastrar").classList.remove("apertado"); $("toast").classList.add("visivel"); });
+    t += 1500;
 
+    // 8. Tela inicial: a fatura sobe
     depois(t, function(){
-      mostrar("principal");
+      mostrar("principal", LEG.principal);
       var passos = 18, p = 0;
       var anima = setInterval(function(){
         p++;
-        $("total").textContent = brl(totalAntes + c.valor * (p / passos));
-        if (p >= passos) { clearInterval(anima); $("total").textContent = brl(totalAntes + c.valor); }
-      }, 40);
+        $("total").textContent = brl(BASE + c.valor * (p / passos));
+        if (p >= passos) { clearInterval(anima); $("total").textContent = brl(BASE + c.valor); }
+      }, 45);
     });
-    return t + 1900;
-  }
+    t += 3400;
 
-  function rodar(){
-    preparar();
-    var t = 700, i;
-
-    // 1. Primeiro gasto
-    t = lancar(cenas[0], t, BASE);
-
-    // 2. Toca em "Fale seus gastos" e lança o segundo
-    depois(t, function(){ tocar($("appMic")); });
-    depois(t + 350, function(){ limparLanc(); mostrar("lanc"); });
-    t = lancar(cenas[1], t + 900, BASE + cenas[0].valor);
-
-    // 3. Gerenciar Compras: busca "uber"
+    // 9. Gerenciar Compras: busca "uber"
     depois(t, function(){ tocar($("btnCompras")); });
     depois(t + 350, function(){ mostrar("compras"); });
-    t += 1600;
+    t += 1700;
     depois(t, function(){ tocar($("busca")); var b = $("busca"); b.classList.add("foco"); b.textContent = ""; });
     var termo = "uber";
     for (i = 1; i <= termo.length; i++) {
-      (function(n){ depois(t + 250 + n * 170, function(){ $("busca").textContent = termo.slice(0, n); }); })(i);
+      (function(n){ depois(t + 300 + n * 220, function(){ $("busca").textContent = termo.slice(0, n); }); })(i);
     }
-    t += 250 + termo.length * 170 + 250;
+    t += 300 + termo.length * 220 + 300;
     depois(t, function(){ $("comprasLista").classList.add("trocando"); });
     depois(t + 250, function(){
       montarLista("uber");
@@ -1018,7 +1103,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
       $("totalCompras").textContent = brl(totalUber);
       $("totalCompras").classList.add("mudou"); $("resumoCompras").classList.add("destaque");
     });
-    t += 4500;
+    t += 5000;
 
     depois(t, rodar);
   }
