@@ -77,6 +77,18 @@ p{margin:0}
 .botao:active{transform:translateY(3px);box-shadow:0 1px 0 var(--tinta)}
 .botao svg{width:20px;height:20px}
 .escuro .botao{border-color:var(--lima);box-shadow:0 4px 0 var(--oliva)}
+/* Bloco da demo pública */
+.secao.experimente .miolo{display:grid;gap:28px}
+.experimente .intro{max-width:52ch}
+.experimente .acoes-demo{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:4px}
+.experimente .botao.destaque{
+  min-height:64px;padding:0 40px;font-size:1.1875rem;
+  border-width:3px;box-shadow:0 6px 0 var(--tinta);
+}
+.experimente .botao.destaque:hover{box-shadow:0 7px 0 var(--tinta)}
+.experimente .botao.destaque:active{box-shadow:0 2px 0 var(--tinta)}
+.experimente .nota-demo{max-width:52ch;font-size:.9375rem;color:#555;margin:0;text-align:center}
+@media (max-width:720px){.experimente .botao.destaque{width:100%;padding:0 24px;font-size:1.0625rem}}
 
 /* Cabeçalho — mesmo preto do cabeçalho do app */
 .topo{
@@ -522,10 +534,10 @@ details .resp p+p{margin-top:10px}
 </section>
 
 <!-- 3. Como funciona -->
-<section class="secao" id="como-funciona" aria-labelledby="t-como">
+<section class="secao experimente" id="como-funciona" aria-labelledby="t-como">
   <div class="miolo">
-    <h2 id="t-como">Um gasto, uma frase.</h2>
-    <p class="intro">Você registra no momento em que gasta, sem parar o que está fazendo.</p>
+    <h2 id="t-como">Experimente antes de comprar.</h2>
+    <p class="intro">Uma versão de demonstração do CentaVoz, aberta no celular, com dados fictícios. Sem cadastro, sem instalação. Toque no microfone, fale um gasto e veja a compra entrar na fatura.</p>
     <ol class="passos">
       <li>
         <h3>Fale</h3>
@@ -538,9 +550,16 @@ details .resp p+p{margin-top:10px}
       </li>
       <li>
         <h3>Pronto</h3>
-        <p>A compra entra na fatura do cartão certo, respeitando o dia de fechamento de cada um. Se for parcelada, cada parcela já vai para o mês em que será cobrada.</p>
+        <p>A compra entra na fatura do cartão certo. Se for parcelada, cada parcela já vai para o mês em que será cobrada.</p>
       </li>
     </ol>
+    <div class="acoes-demo">
+      <a class="botao destaque" href="https://script.google.com/macros/s/AKfycbxKC4kN1NNAPQumE_wquxghEYWHFkWZ7HX7YPIIIdpnABQCG3GlXyMtWE7FPPxf3az_6g/exec" target="_blank" rel="noopener" data-demo>
+        Experimente agora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </a>
+      <p class="nota-demo">Funciona melhor no celular. Demonstração compartilhada, com dados fictícios apagados a cada hora. O Consultor IA fica desligado só na demonstração — na sua versão, ele analisa os seus gastos.</p>
+    </div>
     <p class="aparte">Prefere digitar? Também funciona. E Pix, débito e dinheiro entram do mesmo jeito que cartão.</p>
   </div>
 </section>
@@ -563,7 +582,7 @@ details .resp p+p{margin-top:10px}
       </div>
       <div class="ver-item">
         <h3>Para onde foi</h3>
-        <p>Os gastos por categoria, com a parte de cada uma no total. Toque numa categoria para ver os maiores lançamentos. E a busca soma qualquer gasto: digite “uber” e veja quantas corridas foram e quanto deram no mês.</p>
+        <p>Os gastos por categoria, com a parte de cada uma no total. Toque numa categoria para ver os maiores lançamentos.</p>
         <div class="amostra">
           <div class="rosca-bloco">
             <div class="rosca">
@@ -633,8 +652,7 @@ details .resp p+p{margin-top:10px}
       <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#161616"/><path d="M9.5 16.5l4.5 4.5 8.5-9.5" fill="none" stroke="#D4F742" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Você paga as contas em dia e mesmo assim chega ao fim do mês sem saber para onde o dinheiro foi.</span></li>
       <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#161616"/><path d="M9.5 16.5l4.5 4.5 8.5-9.5" fill="none" stroke="#D4F742" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Você já tentou planilha ou app de finanças e abandonou no meio.</span></li>
       <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#161616"/><path d="M9.5 16.5l4.5 4.5 8.5-9.5" fill="none" stroke="#D4F742" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Você usa o cartão para quase tudo, inclusive valores pequenos, e parcela compras sem acompanhar as parcelas.</span></li>
-      <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#161616"/><path d="M9.5 16.5l4.5 4.5 8.5-9.5" fill="none" stroke="#D4F742" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Você resolve quase tudo pelo celular e não quer aprender uma ferramenta nova.</span></li>
-    </ul>
+      </ul>
   </div>
 </section>
 
@@ -647,7 +665,6 @@ details .resp p+p{margin-top:10px}
     </div>
     <ul class="afirmacoes">
       <li><b>Você abre e vê tudo</b><p>Seus lançamentos ficam numa planilha que é sua. Não é cópia de segurança, é o original.</p></li>
-      <li><b>Não pedimos senha de banco. Nunca.</b><p>O CentaVoz não se conecta a banco nenhum. Você fala o gasto, ele registra.</p></li>
       <li><b>Nós não vemos seus gastos</b><p>O único dado que chega até nós é o e-mail da sua conta, que o app usa para confirmar, de tempos em tempos, que a compra está ativa.</p></li>
       <li><b>O histórico é seu, com tudo dentro</b><p>A planilha com os seus lançamentos fica no seu Drive e abre sem depender de nós. Se um dia o CentaVoz deixar de existir, seu histórico continua lá.</p></li>
     </ul>
@@ -655,13 +672,6 @@ details .resp p+p{margin-top:10px}
 </section>
 
 <!-- 6. Pagamento único -->
-<section class="unico escuro" aria-labelledby="t-unico">
-  <div class="miolo">
-    <h2 id="t-unico">Um app de controle de gastos não deveria virar mensalidade.</h2>
-    <p class="texto">Você paga uma vez e não existe cobrança mensal. Seus lançamentos ficam na sua conta Google, e não num servidor que a gente precise cobrar todo mês para manter.</p>
-  </div>
-</section>
-
 <!-- 7. Instalação -->
 <section class="secao instalacao" id="instalacao" aria-labelledby="t-inst">
   <div class="miolo">
@@ -723,8 +733,6 @@ details .resp p+p{margin-top:10px}
       <div class="grupo-faq">
         <h3>No dia a dia</h3>
         <details><summary>Preciso falar de um jeito certo?</summary><div class="resp"><p>Só um cuidado: diga o valor com a palavra “reais”, e “centavos” se tiver. Número solto não é reconhecido como valor. De resto, fale naturalmente o que foi e como pagou. Por exemplo, “mercado, 87 reais e 40 centavos, BTG” ou “farmácia, 32 reais, Pix”. O app mostra o que entendeu e você confere antes de salvar.</p></div></details>
-        <details><summary>E se o app entender errado?</summary><div class="resp"><p>Todos os campos ficam abertos para você corrigir antes de cadastrar. Se perceber depois, dá para editar ou excluir a compra.</p></div></details>
-        <details><summary>Dá para lançar digitando?</summary><div class="resp"><p>Sim. O campo aceita texto digitado do mesmo jeito que aceita o ditado.</p></div></details>
         <details><summary>Ele separa por cartão e entende parcelamento?</summary><div class="resp"><p>Sim. Cada cartão tem o seu dia de fechamento e de vencimento, e cada compra entra na fatura certa. Compras parceladas geram uma parcela em cada mês em que vão ser cobradas.</p></div></details>
         <details><summary>Tenho cartão adicional. Como cadastro?</summary><div class="resp"><p>Cartão adicional divide a mesma fatura do titular, então entra como um cartão só. O guia de instalação explica esse passo.</p></div></details>
         <details><summary>Troquei de celular. Perco meus gastos?</summary><div class="resp"><p>Não. Seus lançamentos ficam na planilha da sua conta Google, e não no aparelho. No celular novo, é só abrir o link do seu app e salvar o atalho na tela inicial de novo.</p></div></details>
@@ -734,21 +742,16 @@ details .resp p+p{margin-top:10px}
       <div class="grupo-faq">
         <h3>Instalação</h3>
         <details><summary>Preciso instalar alguma coisa no celular?</summary><div class="resp"><p>Não precisa baixar nada da loja de apps. O CentaVoz abre pelo navegador, e você salva um atalho na tela inicial para abrir como um app. Funciona no iPhone e no Android.</p></div></details>
-        <details><summary>Por que a instalação é pelo computador?</summary><div class="resp"><p>Porque ela acontece dentro da sua conta Google, e as telas do Google para isso funcionam melhor no computador. Você faz uma vez só. Depois, usa tudo pelo celular.</p></div></details>
         <details><summary>E se eu travar na instalação?</summary><div class="resp"><p>Escreva para <a href="mailto:contato.centavoz@gmail.com">contato.centavoz@gmail.com</a>. Problema de instalação a gente resolve com você, mesmo depois do prazo de reembolso.</p></div></details>
       </div>
       <div class="grupo-faq">
         <h3>Privacidade e IA</h3>
-        <details><summary>Vocês têm acesso aos meus gastos?</summary><div class="resp"><p>Não. Seus lançamentos ficam só na sua conta Google. O único dado que chega até nós é o e-mail da conta, que o app usa para confirmar, de tempos em tempos, que a compra está ativa.</p></div></details>
-        <details><summary>Preciso conectar a conta do banco?</summary><div class="resp"><p>Não. O CentaVoz não pede senha de banco e não se conecta a banco nenhum.</p></div></details>
         <details><summary>O que a IA vê dos meus dados?</summary><div class="resp"><p>O Consultor só entra em ação quando você pergunta. Nessa hora, o app envia um resumo dos números do período ao Gemini, a IA do Google, usando a sua própria chave. Nada passa por nós. O uso segue os termos do Gemini, que você aceita ao criar a chave.</p></div></details>
         <details><summary>A IA pode inventar número?</summary><div class="resp"><p>As contas não são feitas pela IA. O app calcula todos os valores antes, e a IA só lê os resultados e explica em português.</p></div></details>
-        <details><summary>Ela dá conselho de investimento?</summary><div class="resp"><p>Não. O CentaVoz mostra para onde foi o seu dinheiro. Onde aplicar não é o assunto dele.</p></div></details>
         <details><summary>Preciso pagar à parte pela IA?</summary><div class="resp"><p>Hoje, não. A chave do Gemini tem uso gratuito, que atende ao uso normal do Consultor. Essas condições são do Google e podem mudar.</p></div></details>
       </div>
       <div class="grupo-faq">
         <h3>Compra</h3>
-        <details><summary>É pagamento único ou mensalidade?</summary><div class="resp"><p>Pagamento único. Você paga uma vez e o app é seu.</p></div></details>
         <details><summary>Se eu não gostar, consigo o reembolso?</summary><div class="resp"><p>Sim. Você tem 7 dias a partir da compra para pedir o reembolso pela Kiwify.</p></div></details>
       </div>
     </div>
