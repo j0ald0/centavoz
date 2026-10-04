@@ -325,7 +325,7 @@ p{margin:0}
 .falas{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid #333}
 .falas li{padding:28px 28px 0 0}
 .falas li+li{padding-left:28px;border-left:1px solid #333}
-.falas q{display:block;font-family:var(--f-titulo);font-weight:800;font-size:1.625rem;letter-spacing:-.02em;line-height:1.15;quotes:"“" "”"}
+.falas q{color:var(--lima);display:block;font-family:var(--f-titulo);font-weight:800;font-size:1.625rem;letter-spacing:-.02em;line-height:1.15;quotes:"“" "”"}
 .falas p{color:#BDBDB8;margin-top:10px;max-width:30ch}
 
 /* Seções claras */
@@ -346,7 +346,9 @@ p{margin:0}
 .aparte{margin-top:40px;padding:18px 22px;border-left:4px solid var(--lima);background:var(--branco);border-radius:0 12px 12px 0;max-width:62ch}
 
 /* O que você enxerga */
-.ver h2,.ver h3{color:var(--branco)}
+.ver h2{color:var(--branco)}
+.ver h3{color:var(--lima)}
+.escuro h2 .verde{color:var(--lima)}
 .ver .amostra{color:var(--tinta)}
 .ver .rotulo-exemplo,.ver .cta-meio p{color:#C9CBC2}
 .ver-grade{margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,56px) clamp(24px,4vw,64px)}
@@ -726,7 +728,7 @@ details .resp p+p{margin-top:10px}
 <!-- 4. O que você enxerga -->
 <section class="secao ver escuro" aria-labelledby="t-ver">
   <div class="miolo">
-    <h2 id="t-ver">No fim do mês, uma resposta em vez de uma dúvida.</h2>
+    <h2 id="t-ver">No fim do mês, <span class="verde">uma resposta em vez de uma dúvida.</span></h2>
     <div class="ver-grade">
       <div class="ver-item">
         <h3>Quanto você vai pagar</h3>
@@ -886,7 +888,7 @@ details .resp p+p{margin-top:10px}
 <section class="oferta escuro" id="oferta" aria-labelledby="t-oferta">
   <div class="miolo">
     <div>
-      <h2 id="t-oferta">Lote de fundadores</h2>
+      <h2 id="t-oferta"><span class="verde">Lote de fundadores</span></h2>
       <p class="texto">Para as primeiras 50 pessoas. O preço é menor porque, em troca, queremos ouvir como está sendo o seu uso. Quando as vagas acabarem, o preço passa a ser R$ 197.</p>
     </div>
     <div class="cartao-preco">
@@ -946,7 +948,7 @@ details .resp p+p{margin-top:10px}
 <!-- 10. Chamada final -->
 <section class="final escuro" aria-labelledby="t-final">
   <div class="miolo">
-    <h2 id="t-final">Seu próximo gasto pode ser o primeiro que você registra falando.</h2>
+    <h2 id="t-final">Seu próximo gasto pode ser <span class="verde">o primeiro que você registra falando.</span></h2>
     <p>Pagamento único, seus dados na sua conta, e um app que cabe no meio da correria.</p>
     <a class="botao" data-checkout href="#oferta">Quero o CentaVoz</a>
   </div>
