@@ -119,7 +119,16 @@ p{margin:0}
 .cta-meio p{margin:0;font-weight:600;color:#35372F}
 .quemfez{background:var(--branco);padding-block:clamp(56px,8vw,104px)}
 .quemfez h2{max-width:none}
-.quemfez-texto{max-width:60ch;margin-top:8px}
+.quemfez-corpo{display:grid;grid-template-columns:280px minmax(0,60ch);gap:48px;align-items:start;margin-top:20px}
+.quemfez-foto{margin:0;text-align:center}
+.quemfez-foto img{width:100%;max-width:280px;height:auto;border-radius:18px;display:block;background:#F3F4F2}
+.quemfez-foto figcaption{font-size:.9375rem;color:#5E6358;margin-top:12px;font-weight:600}
+@media (max-width:720px){
+  .quemfez-corpo{grid-template-columns:1fr;gap:24px;justify-items:center}
+  .quemfez-foto img{max-width:220px}
+  .quemfez-texto{text-align:left}
+}
+.quemfez-texto{max-width:60ch;margin-top:0}
 .quemfez-texto p{font-size:var(--t-lead);line-height:1.6;color:#2E302A;margin-top:18px}
 .quemfez-texto .assina{font-weight:700;color:var(--tinta);margin-top:26px}
 .cartao-preco .depois{font-size:.9375rem;color:var(--cinza);margin-top:4px}
@@ -811,12 +820,18 @@ details .resp p+p{margin-top:10px}
 <section class="quemfez" aria-labelledby="t-quemfez">
   <div class="miolo">
     <h2 id="t-quemfez">Por trás do CentaVoz</h2>
+    <div class="quemfez-corpo">
+      <figure class="quemfez-foto">
+        <img src="joaldo.jpg" alt="Joaldo, criador do CentaVoz" width="560" height="585" loading="lazy" decoding="async">
+        <figcaption>Joaldo, criador do CentaVoz</figcaption>
+      </figure>
     <div class="quemfez-texto">
       <p>Meu nome é Joaldo, e eu criei o CentaVoz para resolver um problema que também era meu.</p>
       <p>Todo mês eu definia um limite de gastos, mas acabava ultrapassando. E, quando tentava entender para onde o dinheiro tinha ido, muitas vezes nem sabia dizer.</p>
       <p>Eu gosto de mexer com planilhas. Mas, mesmo assim, tinha dificuldade em registrar todos os meus gastos.</p>
       <p>Foi aí que pensei: e se controlar o dinheiro pudesse ser tão simples quanto falar?</p>
       <p>Uso o CentaVoz no meu dia a dia desde agosto de 2026. O app que você recebe é o mesmo que eu uso para cuidar das minhas finanças.</p>
+    </div>
     </div>
   </div>
 </section>
