@@ -205,6 +205,15 @@ p{margin:0}
 .app-mic{transition:transform .12s}
 .app-mic.apertado{transform:scale(.92)}
 .app-fatura{padding:10px 12px 12px}
+.app-lanc-titulo{font-size:11.5px;font-weight:800;margin:1px 2px -1px}
+.app-lanc-card{background:#fff;border-radius:11px;padding:2px 9px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.app-lanc-item{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center;padding:5px 2px;border-bottom:1px solid #EEEFEB}
+.app-lanc-item:last-child{border-bottom:none}
+.app-lanc-item.recente{background:#F3FBD9;border-radius:7px;padding:5px 6px;border-bottom-color:transparent}
+.app-lanc-desc{font-weight:700;font-size:10.5px;line-height:1.2;color:var(--tinta)}
+.app-lanc-meta{font-size:8.5px;color:#6B6E66;margin-top:1px;line-height:1.25}
+.app-lanc-fatura{font-size:8px;color:#5E6358;margin-top:1px}
+.app-lanc-valor{font-weight:800;font-size:11px;color:var(--tinta);font-variant-numeric:tabular-nums;white-space:nowrap}
 .app-fatura .rot{font-size:8.5px;font-weight:800;letter-spacing:.09em;color:#6B6E66}
 .app-fatura .seletor{margin-top:6px;border:1px solid #E3E4DF;background:#F8F9F7;border-radius:9px;padding:7px 10px;font-size:12px}
 .chamar{animation:chamar 1.1s ease-out infinite}
@@ -571,6 +580,8 @@ details .resp p+p{margin-top:10px}
             <div class="v" id="total">R$ 1.840,00</div>
             <div class="s">Atualiza a cada gasto que você fala.</div>
           </div>
+          <div class="app-lanc-titulo">Últimos lançamentos</div>
+          <div class="app-lanc-card" id="appLanc"></div>
           <div class="app-card app-sanfona">Pergunte ao Consultor IA</div>
           <div class="app-card app-sanfona">Gastos por categoria</div>
         </div>
@@ -1013,6 +1024,28 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     { fala:"Uber R$ 23,50 Itaú", desc:"Uber", valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" }
   ];
   var BASE = 1840.00;
+
+  // Últimos lançamentos: 3 itens antes do cadastro; depois, o Uber entra no topo e empurra o Uber antigo (de 02/10) para fora da lista
+  var LANC_INICIAL = [
+    { desc:"Supermercado", data:"02/10/2026", cat:"Alimentação", forma:"Cartão de crédito BTG",  fatura:"10/2026", valor:85.19 },
+    { desc:"Padaria",      data:"02/10/2026", cat:"Alimentação", forma:"Cartão de crédito BTG",  fatura:"10/2026", valor:7.75 },
+    { desc:"Uber",         data:"02/10/2026", cat:"Transporte",  forma:"Cartão de crédito BTG",  fatura:"10/2026", valor:13.14 }
+  ];
+  var LANC_NOVO = { desc:"Uber", data:"03/10/2026", cat:"Transporte", forma:"Cartão de crédito Itaú", fatura:"10/2026", valor:23.50 };
+
+  function montarAppLanc(lista, idxDestacar){
+    var box = $("appLanc"); box.innerHTML = "";
+    lista.forEach(function(it, idx){
+      var el = document.createElement("div");
+      el.className = "app-lanc-item" + (idx === idxDestacar ? " recente" : "");
+      el.innerHTML =
+        '<div><div class="app-lanc-desc">' + it.desc + '</div>' +
+        '<div class="app-lanc-meta">' + it.data + " · " + it.cat + " · " + it.forma + '</div>' +
+        '<div class="app-lanc-fatura">Entrou na fatura de ' + it.fatura + '</div></div>' +
+        '<div class="app-lanc-valor">' + brl(it.valor) + '</div>';
+      box.appendChild(el);
+    });
+  }
   var timers = [];
   function depois(ms, fn){ timers.push(setTimeout(fn, ms)); }
 
@@ -1127,6 +1160,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     $("totalCompras").textContent = brl(totalFinal);
     $("totalCompras").classList.remove("mudou"); $("resumoCompras").classList.remove("destaque");
     montarLista("");
+    montarAppLanc(LANC_INICIAL, -1);
   }
 
   function rodar(){
@@ -1185,9 +1219,10 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     depois(t + 200, function(){ $("btnCadastrar").classList.remove("apertado"); $("toast").classList.add("visivel"); });
     t += 1500;
 
-    // 8. Tela inicial: a fatura sobe
+    // 8. Tela inicial: a fatura sobe e o novo lançamento aparece no topo do card
     depois(t, function(){
       mostrar("principal", LEG.principal);
+      montarAppLanc([LANC_NOVO, LANC_INICIAL[0], LANC_INICIAL[1]], 0);
       var passos = 18, p = 0;
       var anima = setInterval(function(){
         p++;
@@ -1195,7 +1230,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
         if (p >= passos) { clearInterval(anima); $("total").textContent = brl(BASE + c.valor); }
       }, 45);
     });
-    t += 3400;
+    t += 5000;
 
     // 9. Gerenciar Compras: busca "uber"
     depois(t, function(){ tocar($("btnCompras")); });
