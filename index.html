@@ -346,9 +346,11 @@ p{margin:0}
 .aparte{margin-top:40px;padding:18px 22px;border-left:4px solid var(--lima);background:var(--branco);border-radius:0 12px 12px 0;max-width:62ch}
 
 /* O que você enxerga */
-.ver{background:var(--branco);border-block:1px solid var(--linha)}
+.ver h2,.ver h3{color:var(--branco)}
+.ver .amostra{color:var(--tinta)}
+.ver .rotulo-exemplo,.ver .cta-meio p{color:#C9CBC2}
 .ver-grade{margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,56px) clamp(24px,4vw,64px)}
-.ver-item p{margin-top:10px;color:#35372F;max-width:44ch}
+.ver-item p{margin-top:10px;color:#D6D6D2;max-width:44ch}
 .amostra{margin-top:20px;background:var(--papel);border-radius:18px;padding:18px}
 .amostra-card{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .amostra-card .t{font-weight:700}
@@ -399,6 +401,7 @@ p{margin:0}
 @media (max-width:760px){ .paraquem-lista{grid-template-columns:1fr} .paraquem-lista li{padding:18px 18px;font-size:1.0625rem} }
 
 /* Dados */
+.dados{background:var(--voz)}
 .dados .miolo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,88px);align-items:start}
 .afirmacoes{list-style:none;padding:0;margin:0;display:grid;gap:0}
 .afirmacoes li{padding:22px 0;border-top:1.5px solid var(--tinta)}
@@ -721,7 +724,7 @@ details .resp p+p{margin-top:10px}
 </section>
 
 <!-- 4. O que você enxerga -->
-<section class="secao ver" aria-labelledby="t-ver">
+<section class="secao ver escuro" aria-labelledby="t-ver">
   <div class="miolo">
     <h2 id="t-ver">No fim do mês, uma resposta em vez de uma dúvida.</h2>
     <div class="ver-grade">
