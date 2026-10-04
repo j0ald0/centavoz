@@ -112,7 +112,21 @@ p{margin:0}
 .dobra h1{font-size:var(--t-h1);max-width:12ch}
 .dobra .lead{font-size:var(--t-lead);line-height:1.5;color:#2E302A;max-width:34ch;margin-top:24px}
 .dobra .acoes{margin-top:32px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.nota-instalacao{font-size:var(--t-pequeno);color:var(--cinza);max-width:40ch}
+.botao.contorno{background:var(--branco);box-shadow:0 4px 0 rgba(22,22,22,.18)}
+.botao.contorno:hover{box-shadow:0 5px 0 rgba(22,22,22,.18)}
+.botao.contorno:active{box-shadow:0 1px 0 rgba(22,22,22,.18)}
+.cta-meio{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.cta-meio p{margin:0;font-weight:600;color:#35372F}
+.quemfez{background:var(--branco);padding-block:clamp(56px,8vw,104px)}
+.quemfez h2{max-width:none}
+.quemfez-texto{max-width:60ch;margin-top:8px}
+.quemfez-texto p{font-size:var(--t-lead);line-height:1.6;color:#2E302A;margin-top:18px}
+.quemfez-texto .assina{font-weight:700;color:var(--tinta);margin-top:26px}
+.cartao-preco .depois{font-size:.9375rem;color:var(--cinza);margin-top:4px}
+.nota-instalacao{display:flex;gap:12px;align-items:flex-start;max-width:44ch;margin:6px 0 0;padding:14px 16px;background:var(--branco);border:2px solid var(--tinta);border-radius:16px;font-size:.9375rem;line-height:1.45;color:#2E302A}
+.nota-instalacao svg{flex:none;width:24px;height:24px;margin-top:1px;color:var(--tinta)}
+.nota-instalacao b{color:var(--tinta)}
+@media (max-width:720px){.dobra .acoes .botao{width:100%}}
 .garantias{list-style:none;padding:0;margin:36px 0 0;display:grid;gap:12px}
 .garantias li{display:flex;gap:12px;align-items:center;font-weight:600}
 .garantias svg{flex:none;width:28px;height:28px}
@@ -500,7 +514,14 @@ details .resp p+p{margin-top:10px}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
           Quero controlar falando
         </a>
-        <p class="nota-instalacao">A instalação é feita uma vez, pelo computador, com um guia passo a passo. Depois, é só usar no celular.</p>
+        <a class="botao contorno" href="#como-funciona">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></svg>
+          Teste antes de comprar
+        </a>
+        <p class="nota-instalacao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          <span><b>A instalação é feita pelo computador, uma única vez.</b> Você segue um guia passo a passo e, depois, usa só no celular.</span>
+        </p>
       </div>
       <ul class="garantias">
         <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M8.5 14.5l3.5 3.5 7.5-8" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pagamento único, sem mensalidade</li>
@@ -510,7 +531,7 @@ details .resp p+p{margin-top:10px}
     </div>
 
     <div class="palco">
-      <p class="so-leitor">Demonstração: a pessoa lança dois gastos falando pelo microfone do teclado, "Supermercado, 85 reais e 19 centavos, BTG" e "Uber, 23 reais e 50 centavos, Itaú". O CentaVoz preenche os campos, cada compra é cadastrada e o valor da próxima fatura sobe. Depois, a pessoa abre Gerenciar Compras, busca “uber” e vê quantas corridas foram no mês e quanto somaram.</p>
+      <p class="so-leitor">Demonstração: na tela inicial, a pessoa toca no botão verde, abre o teclado, toca no microfone e fala “Uber, 23 reais e 50 centavos, Itaú”. Ao tocar em Interpretar, o CentaVoz preenche sozinho descrição, forma de pagamento, valor e categoria. A compra é cadastrada e o valor da próxima fatura sobe. Depois, a pessoa busca “uber” em Gerenciar Compras e passa pela Evolução Mensal, pelos gastos por categoria e pelo Consultor IA.</p>
       <div class="celular" aria-hidden="true">
         <!-- Tela de lançamento -->
         <div class="tela oculta" id="telaLanc">
@@ -711,11 +732,11 @@ details .resp p+p{margin-top:10px}
               <div class="rosca-centro"><small>TOTAL</small><b>R$ 1.840,00</b></div>
             </div>
             <ul class="legenda">
-              <li><i style="background:#9B3FE8"></i><b>Alimentação</b><span>R$ 684,00 · 37.2%</span></li>
-              <li><i style="background:#2F6BE8"></i><b>Transporte</b><span>R$ 412,00 · 22.4%</span></li>
-              <li><i style="background:#E8342C"></i><b>Moradia</b><span>R$ 390,00 · 21.2%</span></li>
-              <li><i style="background:#F7801F"></i><b>Lazer</b><span>R$ 236,00 · 12.8%</span></li>
-              <li><i style="background:#22A447"></i><b>Outros</b><span>R$ 118,00 · 6.4%</span></li>
+              <li><i style="background:#9B3FE8"></i><b>Alimentação</b><span>R$ 684,00 · 37,2%</span></li>
+              <li><i style="background:#2F6BE8"></i><b>Transporte</b><span>R$ 412,00 · 22,4%</span></li>
+              <li><i style="background:#E8342C"></i><b>Moradia</b><span>R$ 390,00 · 21,2%</span></li>
+              <li><i style="background:#F7801F"></i><b>Lazer</b><span>R$ 236,00 · 12,8%</span></li>
+              <li><i style="background:#22A447"></i><b>Outros</b><span>R$ 118,00 · 6,4%</span></li>
             </ul>
           </div>
         </div>
@@ -755,6 +776,10 @@ details .resp p+p{margin-top:10px}
       </div>
     </div>
     <p class="rotulo-exemplo" style="margin-top:32px">As telas acima reproduzem o app, com valores de exemplo.</p>
+    <div class="cta-meio">
+      <a class="botao" href="#oferta">Quero o CentaVoz</a>
+      <p>R$ 97, pagamento único. Sem mensalidade.</p>
+    </div>
   </div>
 </section>
 
@@ -771,6 +796,20 @@ details .resp p+p{margin-top:10px}
   </div>
 </section>
 
+<!-- Quem fez -->
+<section class="quemfez" aria-labelledby="t-quemfez">
+  <div class="miolo">
+    <h2 id="t-quemfez">Por trás do CentaVoz</h2>
+    <div class="quemfez-texto">
+      <p>Meu nome é Joaldo, e eu criei o CentaVoz para resolver um problema que também era meu.</p>
+      <p>Todo mês eu definia um limite de gastos, mas acabava ultrapassando. E, quando tentava entender para onde o dinheiro tinha ido, muitas vezes nem sabia dizer.</p>
+      <p>Eu gosto de mexer com planilhas. Mas, mesmo assim, tinha dificuldade em registrar todos os meus gastos.</p>
+      <p>Foi aí que pensei: e se controlar o dinheiro pudesse ser tão simples quanto falar?</p>
+      <p>Uso o CentaVoz no meu dia a dia desde agosto de 2026. O app que você recebe é o mesmo que eu uso para cuidar das minhas finanças.</p>
+    </div>
+  </div>
+</section>
+
 <!-- 5. Dados -->
 <section class="secao dados" aria-labelledby="t-dados">
   <div class="miolo">
@@ -780,7 +819,7 @@ details .resp p+p{margin-top:10px}
     </div>
     <ul class="afirmacoes">
       <li><b>Você abre e vê tudo</b><p>Seus lançamentos ficam numa planilha que é sua. Não é cópia de segurança, é o original.</p></li>
-      <li><b>Nós não vemos seus gastos</b><p>O único dado que chega até nós é o e-mail da sua conta, que o app usa para confirmar, de tempos em tempos, que a compra está ativa.</p></li>
+      <li><b>Nós não vemos seus gastos</b><p>Para confirmar, de tempos em tempos, que a compra está ativa, o app nos envia só três coisas: o seu e-mail, o código de ativação e o identificador da sua planilha, que não dá acesso ao conteúdo dela. Nenhum lançamento, valor ou cartão.</p></li>
       <li><b>O histórico é seu, com tudo dentro</b><p>A planilha com os seus lançamentos fica no seu Drive e abre sem depender de nós. Se um dia o CentaVoz deixar de existir, seu histórico continua lá.</p></li>
     </ul>
   </div>
@@ -791,7 +830,7 @@ details .resp p+p{margin-top:10px}
 <section class="secao instalacao" id="instalacao" aria-labelledby="t-inst">
   <div class="miolo">
     <div>
-      <h2 id="t-inst">Antes de comprar, veja o que vem depois.</h2>
+      <h2 id="t-inst">Você instala uma vez. Depois, é só falar.</h2>
       <p class="intro">O CentaVoz é instalado na sua própria conta Google. É isso que deixa seus dados com você e dispensa mensalidade. Você faz uma vez, seguindo o guia de instalação, que mostra cada passo com as telas.</p>
       <div class="requisitos">
         <b>Você vai precisar de</b>
@@ -819,12 +858,13 @@ details .resp p+p{margin-top:10px}
   <div class="miolo">
     <div>
       <h2 id="t-oferta">Lote de fundadores</h2>
-      <p class="texto">Para as primeiras 50 pessoas. O preço é menor porque, em troca, queremos ouvir como está sendo o seu uso. Quando as vagas acabarem, o preço sobe.</p>
+      <p class="texto">Para as primeiras 50 pessoas. O preço é menor porque, em troca, queremos ouvir como está sendo o seu uso. Quando as vagas acabarem, o preço passa a ser R$ 197.</p>
     </div>
     <div class="cartao-preco">
       <div class="rot">CentaVoz, lote de fundadores</div>
       <div class="preco"><small>R$</small>97</div>
       <div class="forma">Pagamento único. Sem mensalidade.</div>
+      <div class="depois">Depois do lote de fundadores: R$ 197.</div>
       <ul class="inclui">
         <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>O app CentaVoz instalado na sua conta Google</li>
         <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Guia de instalação passo a passo, com as telas</li>
@@ -867,6 +907,7 @@ details .resp p+p{margin-top:10px}
       </div>
       <div class="grupo-faq">
         <h3>Compra</h3>
+        <details><summary>Qual a diferença para os bots de WhatsApp que anotam gastos?</summary><div class="resp"><p>Os bots de WhatsApp costumam cobrar mensalidade e guardar os seus lançamentos nos servidores da empresa. No CentaVoz, o pagamento é único e os lançamentos ficam numa planilha da sua própria conta Google. Em troca, o CentaVoz pede uma instalação, feita uma vez.</p></div></details>
         <details><summary>Se eu não gostar, consigo o reembolso?</summary><div class="resp"><p>Sim. Você tem 7 dias a partir da compra para pedir o reembolso pela Kiwify.</p></div></details>
       </div>
     </div>
@@ -1211,6 +1252,32 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
       if (entradas[0].isIntersecting) { iniciar(); obs.disconnect(); }
     }, { threshold: .3 }).observe(celular);
   } else { iniciar(); }
+})();
+
+/* ============================================================
+   CONTADOR DE VISITAS E CLIQUES (próprio, sem cookies)
+   Para ligar: cole entre as aspas a URL /exec do contador
+   (o Apps Script do arquivo Contador.gs). Vazio = desligado.
+   Conta quatro coisas, somadas por dia, sem identificar ninguém:
+   visita, viu_oferta, demo (clique em Experimente agora) e
+   comprar (clique nos botões que levam ao checkout).
+   ============================================================ */
+(function(){
+  var CONTADOR_URL = "https://script.google.com/macros/s/AKfycbyK7JJAWqcNqcSWrP7nROiM8ML9fKpxuYmlWIBZInGZuuSMgzpW8HYzC5rlNxe3eyWA/exec";
+  if (!CONTADOR_URL) return;
+  function contar(evento){
+    try { fetch(CONTADOR_URL + "?e=" + evento, { mode:"no-cors", keepalive:true }); } catch (e) {}
+  }
+  contar("visita");
+  document.querySelectorAll("[data-demo]").forEach(function(a){ a.addEventListener("click", function(){ contar("demo"); }); });
+  document.querySelectorAll("[data-checkout]").forEach(function(a){ a.addEventListener("click", function(){ contar("comprar"); }); });
+  var oferta = document.getElementById("oferta");
+  if (oferta && "IntersectionObserver" in window) {
+    var visto = new IntersectionObserver(function(entradas){
+      if (entradas.some(function(x){ return x.isIntersecting; })) { contar("viu_oferta"); visto.disconnect(); }
+    }, { threshold:0.3 });
+    visto.observe(oferta);
+  }
 })();
 
 /* ============================================================
