@@ -117,6 +117,12 @@ p{margin:0}
 .botao.contorno:active{box-shadow:0 1px 0 rgba(22,22,22,.18)}
 .cta-meio{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 .cta-meio p{margin:0;font-weight:600;color:#35372F}
+@media (max-width:720px){
+  .cta-meio{align-items:stretch}
+  .cta-meio .botao{width:100%}
+  .experimente .acoes-demo{align-items:stretch}
+  .experimente .nota-demo{text-align:left;max-width:none}
+}
 .quemfez{background:var(--branco);padding-block:clamp(56px,8vw,104px)}
 .quemfez h2{max-width:none}
 .quemfez-corpo{display:grid;grid-template-columns:280px minmax(0,60ch);gap:48px;align-items:start;margin-top:20px}
@@ -130,6 +136,7 @@ p{margin:0}
 }
 .quemfez-texto{max-width:60ch;margin-top:0}
 .quemfez-texto p{font-size:var(--t-lead);line-height:1.6;color:#2E302A;margin-top:18px}
+.quemfez-texto p:first-child{margin-top:0}
 .quemfez-texto .assina{font-weight:700;color:var(--tinta);margin-top:26px}
 .cartao-preco .depois{font-size:.9375rem;color:var(--cinza);margin-top:4px}
 .nota-instalacao{display:flex;gap:12px;align-items:flex-start;max-width:44ch;margin:6px 0 0;padding:14px 16px;background:var(--branco);border:2px solid var(--tinta);border-radius:16px;font-size:.9375rem;line-height:1.45;color:#2E302A}
@@ -835,7 +842,8 @@ details .resp p+p{margin-top:10px}
       <p>Todo mês eu definia um limite de gastos, mas acabava ultrapassando. E, quando tentava entender para onde o dinheiro tinha ido, muitas vezes nem sabia dizer.</p>
       <p>Eu gosto de mexer com planilhas. Mas, mesmo assim, tinha dificuldade em registrar todos os meus gastos.</p>
       <p>Foi aí que pensei: e se controlar o dinheiro pudesse ser tão simples quanto falar?</p>
-      <p>Uso o CentaVoz no meu dia a dia desde agosto de 2026. O app que você recebe é o mesmo que eu uso para cuidar das minhas finanças.</p>
+      <p>Uso o CentaVoz no meu dia a dia desde agosto de 2026. Ainda ultrapasso o limite às vezes, mas agora sei exatamente para onde o dinheiro foi.</p>
+      <p>O app que você recebe é o mesmo que eu uso para cuidar das minhas finanças.</p>
     </div>
     </div>
   </div>
