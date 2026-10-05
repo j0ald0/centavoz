@@ -1017,13 +1017,18 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     return o;
   }
   // Origem resumida para o contador da página (bloco mais abaixo). Único lugar
-  // onde se decide que uma visita "veio do Google": utm_source=google ou a
-  // presença do código de clique do Google Ads.
+  // onde se decide de onde a visita veio. Vale o utm_source do link, se for uma
+  // das origens acompanhadas (a mesma lista ORIGENS do Contador.gs). Sem
+  // utm_source conhecido, a presença do código de clique do Google Ads conta
+  // como "google". Anúncio no YouTube feito pelo Google Ads traz as duas coisas
+  // (utm_source=youtube e gclid): conta como "youtube".
+  var ORIGENS_CONTADOR = ["google","instagram","youtube","tiktok"];
   function origemParaContador(){
     var o = origemDoVisitante();
-    var veioDoGoogle = String(o.utm_source || "").toLowerCase() === "google" ||
-      PARAMS_CLIQUE_GOOGLE.some(function(k){ return !!o[k]; });
-    return veioDoGoogle ? "google" : "";
+    var fonte = String(o.utm_source || "").toLowerCase();
+    if (ORIGENS_CONTADOR.indexOf(fonte) !== -1) return fonte;
+    if (PARAMS_CLIQUE_GOOGLE.some(function(k){ return !!o[k]; })) return "google";
+    return "";
   }
   window.CV_ORIGEM_CONTADOR = origemParaContador();
 
@@ -1343,8 +1348,9 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
    Conta quatro coisas, somadas por dia, sem identificar ninguém:
    visita, viu_oferta, demo (clique em Experimente agora) e
    comprar (clique nos botões que levam ao checkout).
-   Quando a visita veio de anúncio do Google, manda também "o=google":
-   o contador soma esses eventos uma segunda vez, na aba "Google".
+   Quando a visita veio de uma origem acompanhada (google, instagram,
+   youtube ou tiktok), manda também "o=<origem>": o contador soma esses
+   eventos uma segunda vez, na aba daquela origem.
    ============================================================ */
 (function(){
   var CONTADOR_URL = "https://script.google.com/macros/s/AKfycbyK7JJAWqcNqcSWrP7nROiM8ML9fKpxuYmlWIBZInGZuuSMgzpW8HYzC5rlNxe3eyWA/exec";
