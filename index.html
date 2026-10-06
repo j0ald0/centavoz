@@ -10,11 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta name="theme-color" content="#161616">
+<script>if(window.IntersectionObserver&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))document.documentElement.classList.add("js");</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23D4F742' stroke='%23161616' stroke-width='3'/%3E%3Crect x='24' y='12' width='16' height='26' rx='8' fill='%23161616'/%3E%3Cpath d='M18 28v2a14 14 0 0 0 28 0v-2M32 44v7M25 51h14' fill='none' stroke='%23161616' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter+Tight:wght@600;800&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <!-- O Pixel da Meta é carregado pelo script no fim da página, só depois do aceite de cookies. -->
 
@@ -31,6 +32,8 @@
   --roxo:#6C5CE7;
 
   --f-titulo:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;
+  --f-display:"Inter Tight","Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:"Instrument Serif",Georgia,"Times New Roman",serif;
   --f-texto:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 
   --t-pequeno:.875rem;
@@ -56,7 +59,7 @@ img,svg{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--oliva);outline-offset:3px;border-radius:6px}
 .escuro :focus-visible{outline-color:var(--lima)}
-h1,h2,h3{font-family:var(--f-titulo);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:0}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin:0}
 h2{font-size:var(--t-h2);max-width:18ch}
 h3{font-size:var(--t-h3);letter-spacing:-.015em;line-height:1.2}
 p{margin:0}
@@ -327,12 +330,12 @@ p{margin:0}
 .escuro{background:var(--tinta);color:var(--branco)}
 .dor{padding-block:clamp(64px,9vw,120px)}
 .dor h2{max-width:16ch;font-size:clamp(2.2rem,5.4vw,3.9rem)}
-.dor h2 .segunda{display:block;color:var(--lima)}
+.dor h2 .segunda{display:block}
 .dor .texto{max-width:52ch;color:#D6D6D2;font-size:var(--t-lead);line-height:1.55;margin-top:28px}
 .falas{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid #333}
 .falas li{padding:28px 28px 0 0}
 .falas li+li{padding-left:28px;border-left:1px solid #333}
-.falas q{color:var(--lima);display:block;font-family:var(--f-titulo);font-weight:800;font-size:1.625rem;letter-spacing:-.02em;line-height:1.15;quotes:"“" "”"}
+.falas q{color:var(--lima);display:block;font-family:var(--f-display);font-weight:800;font-size:1.625rem;letter-spacing:-.02em;line-height:1.15;quotes:"“" "”"}
 .falas p{color:#BDBDB8;margin-top:10px;max-width:30ch}
 
 /* Seções claras */
@@ -415,7 +418,7 @@ p{margin:0}
 .afirmacoes{list-style:none;padding:0;margin:0;display:grid;gap:0}
 .afirmacoes li{padding:22px 0;border-top:1.5px solid var(--tinta)}
 .afirmacoes li:last-child{border-bottom:1.5px solid var(--tinta)}
-.afirmacoes b{display:block;font-family:var(--f-titulo);font-size:var(--t-h3);letter-spacing:-.015em;line-height:1.2}
+.afirmacoes b{display:block;font-family:var(--f-display);font-size:var(--t-h3);letter-spacing:-.015em;line-height:1.2}
 .afirmacoes p{margin-top:6px;color:#35372F;max-width:52ch}
 
 /* Pagamento único */
@@ -443,7 +446,7 @@ p{margin:0}
 .oferta .texto{color:#D6D6D2;font-size:var(--t-lead);line-height:1.55;margin-top:22px;max-width:44ch}
 .cartao-preco{background:var(--lima);color:var(--tinta);border-radius:28px;padding:clamp(24px,4vw,40px);border:2px solid var(--lima)}
 .cartao-preco .rot{font-weight:700}
-.preco{font-family:var(--f-titulo);font-weight:800;font-size:clamp(4rem,10vw,6.5rem);line-height:1;letter-spacing:-.04em;margin-top:8px;font-variant-numeric:tabular-nums}
+.preco{font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,10vw,6.5rem);line-height:1;letter-spacing:-.04em;margin-top:8px;font-variant-numeric:tabular-nums}
 .preco small{font-size:.32em;letter-spacing:0;vertical-align:.95em;margin-right:.12em}
 .cartao-preco .forma{font-weight:600;margin-top:6px}
 .inclui{list-style:none;padding:0;margin:24px 0;display:grid;gap:10px}
@@ -516,6 +519,57 @@ details .resp p+p{margin-top:10px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* ===== Tipografia de destaque: palavra em itálico serifado ===== */
+.it{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:1.1em;letter-spacing:-.01em;color:var(--oliva)}
+.escuro .it{color:var(--lima)}
+.paraquem .it,.dados .it{color:var(--tinta)}
+
+/* ===== Animações (rodam uma vez, ao entrar na tela; só com .js) ===== */
+.pw{display:inline-block;overflow:hidden;vertical-align:top;padding:.06em .05em .16em 0;margin:-.06em -.05em -.16em 0}
+.pi{display:inline-block}
+.js h1,.js h2{visibility:hidden;animation:titulo-seguro 0s linear 2.5s forwards}
+.js h1.pronto,.js h2.pronto{visibility:visible;animation:none}
+@keyframes titulo-seguro{to{visibility:visible}}
+.js .pi{transform:translateY(112%);transition:transform .6s cubic-bezier(.2,.75,.2,1)}
+.js .in .pi,.js .pi.in{transform:none}
+
+.js .rev{opacity:0;transform:translateY(18px)}
+.js .rev.in{opacity:1;transform:none;transition:opacity .6s ease var(--d,0ms),transform .65s cubic-bezier(.2,.75,.2,1) var(--d,0ms)}
+
+/* passos e trilha: número surge e a linha se desenha */
+.js .passos li::before,.js .trilha li::before{transform:scale(.55);opacity:0}
+.js .passos li.in::before,.js .trilha li.in::before{transform:none;opacity:1;transition:transform .5s cubic-bezier(.3,1.4,.5,1) calc(var(--d,0ms) + 80ms),opacity .3s ease calc(var(--d,0ms) + 80ms)}
+.js .passos li:not(:last-child)::after{clip-path:inset(0 100% 0 0)}
+.js .passos li.in:not(:last-child)::after{clip-path:inset(0);transition:clip-path .8s ease calc(var(--d,0ms) + 350ms)}
+.js .trilha li:not(:last-child)::after{transform:scaleY(0);transform-origin:top}
+.js .trilha li.in:not(:last-child)::after{transform:none;transition:transform .7s ease calc(var(--d,0ms) + 300ms)}
+
+/* "Pra quem é": o check se desenha */
+.js .paraquem-lista li path{stroke-dasharray:24;stroke-dashoffset:24}
+.js .paraquem-lista li.in path{stroke-dashoffset:0;transition:stroke-dashoffset .5s ease calc(var(--d,0ms) + 250ms)}
+
+/* "No fim do mês": perguntas do Consultor entram em cascata */
+.js .consultor .perg,.js .consultor .profunda{opacity:0;transform:translateY(8px)}
+.js .ver-item.in .consultor .perg,.js .ver-item.in .consultor .profunda{opacity:1;transform:none;transition:opacity .45s ease calc(var(--i,0) * 90ms + 300ms),transform .45s ease calc(var(--i,0) * 90ms + 300ms)}
+
+/* Foto: revelação em círculo + anel que se desenha */
+@property --p{syntax:"<angle>";inherits:false;initial-value:0deg}
+.moldura{position:relative;display:inline-block;width:100%;max-width:220px}
+.moldura img{margin:0 auto}
+.moldura::before{content:"";position:absolute;inset:-9px;border-radius:27px;border:4px solid var(--lima);box-shadow:0 0 0 1px rgba(22,22,22,.12);pointer-events:none;opacity:0}
+.js .quemfez-foto.rev{transform:none}
+.js .quemfez-foto .moldura img{clip-path:circle(0% at 50% 50%)}
+.js .quemfez-foto.in .moldura img{clip-path:circle(75% at 50% 50%);transition:clip-path 1s cubic-bezier(.3,.1,.2,1)}
+.js .quemfez-foto .moldura::before{opacity:1;-webkit-mask:conic-gradient(#000 var(--p),transparent 0);mask:conic-gradient(#000 var(--p),transparent 0)}
+.js .quemfez-foto.in .moldura::before{animation:anel 1.1s cubic-bezier(.4,.1,.2,1) .3s forwards}
+@keyframes anel{to{--p:360deg}}
+.js .quemfez-foto figcaption{opacity:0}
+.js .quemfez-foto.in figcaption{opacity:1;transition:opacity .5s ease .9s}
+
+/* Perguntas frequentes: a resposta abre com suavidade */
+details[open] .resp{animation:abre .35s ease}
+@keyframes abre{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -537,7 +591,7 @@ details .resp p+p{margin-top:10px}
   <div class="miolo">
     <div>
       <p class="etiqueta">CONTROLE DE GASTOS POR VOZ</p>
-      <h1 id="titulo">Fale o que você gastou. O resto o CentaVoz faz.</h1>
+      <h1 id="titulo">Fale o que você <em class="it">gastou</em>. O resto o CentaVoz faz.</h1>
       <p class="lead">Registre cada gasto dizendo uma frase. O app coloca a compra na fatura certa e mostra quanto você vai pagar e para onde o dinheiro foi.</p>
       <div class="acoes">
         <a class="botao" href="#oferta">
@@ -691,7 +745,7 @@ details .resp p+p{margin-top:10px}
 <!-- 2. Identificação -->
 <section class="dor escuro" aria-labelledby="t-dor">
   <div class="miolo">
-    <h2 id="t-dor">Você não desistiu por preguiça. <span class="segunda">Desistiu por cansaço.</span></h2>
+    <h2 id="t-dor">Você não desistiu por preguiça. <span class="segunda">Desistiu por <em class="it">cansaço</em>.</span></h2>
     <p class="texto">Anotar gasto exigia parar o que você estava fazendo, lembrar o valor e digitar linha por linha. Ninguém sustenta isso no meio da correria. O problema era o método, não você.</p>
     <ul class="falas">
       <li><q>Depois eu anoto.</q><p>E o gasto some da memória antes de você chegar em casa.</p></li>
@@ -704,7 +758,7 @@ details .resp p+p{margin-top:10px}
 <!-- 3. Como funciona -->
 <section class="secao experimente" id="como-funciona" aria-labelledby="t-como">
   <div class="miolo">
-    <h2 id="t-como">Experimente antes de comprar.</h2>
+    <h2 id="t-como"><em class="it">Experimente</em> antes de comprar.</h2>
     <p class="intro">Uma versão de demonstração do CentaVoz, aberta no celular, com dados fictícios. Sem cadastro, sem instalação. Toque no microfone, fale um gasto e veja a compra entrar na fatura.</p>
     <ol class="passos">
       <li>
@@ -726,7 +780,7 @@ details .resp p+p{margin-top:10px}
         Experimente agora
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
       </a>
-      <p class="nota-demo">Funciona melhor no celular. Demonstração compartilhada, com dados fictícios apagados a cada hora. O Consultor IA fica desligado só na demonstração — na sua versão, ele analisa os seus gastos.</p>
+      <p class="nota-demo">Funciona melhor no celular. Demonstração compartilhada, com dados fictícios apagados a cada hora. O Consultor IA fica desligado só na demonstração — na sua versão, ele analisa os seus gastos. No topo do app aparece uma faixa cinza do Google, também na versão instalada: dá para fechar, mas ela volta cada vez que o app é aberto.</p>
     </div>
     <p class="aparte">Prefere digitar? Também funciona. E Pix, débito e dinheiro entram do mesmo jeito que cartão.</p>
   </div>
@@ -735,7 +789,7 @@ details .resp p+p{margin-top:10px}
 <!-- 4. O que você enxerga -->
 <section class="secao ver escuro" aria-labelledby="t-ver">
   <div class="miolo">
-    <h2 id="t-ver">No fim do mês, <span class="verde">uma resposta em vez de uma dúvida.</span></h2>
+    <h2 id="t-ver">No fim do mês, uma <em class="it">resposta</em> em vez de uma dúvida.</h2>
     <div class="ver-grade">
       <div class="ver-item">
         <h3>Quanto você vai pagar</h3>
@@ -818,7 +872,7 @@ details .resp p+p{margin-top:10px}
 <!-- Pra quem é -->
 <section class="paraquem" aria-labelledby="t-paraquem">
   <div class="miolo">
-    <h2 id="t-paraquem">Pra quem é o CentaVoz</h2>
+    <h2 id="t-paraquem">Pra <em class="it">quem</em> é o CentaVoz</h2>
     <p class="intro">É pra você se…</p>
     <ul class="paraquem-lista">
       <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#161616"/><path d="M9.5 16.5l4.5 4.5 8.5-9.5" fill="none" stroke="#D4F742" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Você paga as contas em dia e mesmo assim chega ao fim do mês sem saber para onde o dinheiro foi.</span></li>
@@ -831,10 +885,10 @@ details .resp p+p{margin-top:10px}
 <!-- Quem fez -->
 <section class="quemfez" aria-labelledby="t-quemfez">
   <div class="miolo">
-    <h2 id="t-quemfez">Por trás do CentaVoz</h2>
+    <h2 id="t-quemfez">Por trás do <em class="it">CentaVoz</em></h2>
     <div class="quemfez-corpo">
       <figure class="quemfez-foto">
-        <img src="joaldo.jpg" alt="Joaldo, criador do CentaVoz" width="560" height="585" loading="lazy" decoding="async">
+        <div class="moldura"><img src="joaldo.jpg" alt="Joaldo, criador do CentaVoz" width="560" height="585" loading="lazy" decoding="async"></div>
         <figcaption>Joaldo, criador do CentaVoz</figcaption>
       </figure>
     <div class="quemfez-texto">
@@ -853,7 +907,7 @@ details .resp p+p{margin-top:10px}
 <section class="secao dados" aria-labelledby="t-dados">
   <div class="miolo">
     <div>
-      <h2 id="t-dados">Seus gastos moram na sua conta, não na nossa.</h2>
+      <h2 id="t-dados">Seus gastos moram na <em class="it">sua</em> conta, não na nossa.</h2>
       <p class="intro">O CentaVoz não tem servidor guardando seus lançamentos. Tudo fica num arquivo do seu próprio Google Drive.</p>
     </div>
     <ul class="afirmacoes">
@@ -869,7 +923,7 @@ details .resp p+p{margin-top:10px}
 <section class="secao instalacao" id="instalacao" aria-labelledby="t-inst">
   <div class="miolo">
     <div>
-      <h2 id="t-inst">Você instala uma vez. Depois, é só falar.</h2>
+      <h2 id="t-inst">Você instala <em class="it">uma vez</em>. Depois, é só falar.</h2>
       <p class="intro">O CentaVoz é instalado na sua própria conta Google. É isso que deixa seus dados com você e dispensa mensalidade. Você faz uma vez, seguindo o guia de instalação, que mostra cada passo com as telas.</p>
       <div class="requisitos">
         <b>Você vai precisar de</b>
@@ -896,7 +950,7 @@ details .resp p+p{margin-top:10px}
 <section class="oferta escuro" id="oferta" aria-labelledby="t-oferta">
   <div class="miolo">
     <div>
-      <h2 id="t-oferta"><span class="verde">Lote de fundadores</span></h2>
+      <h2 id="t-oferta">Lote de <em class="it">fundadores</em></h2>
       <p class="texto">Para as primeiras 50 pessoas. O preço é menor porque, em troca, queremos ouvir como está sendo o seu uso. Quando as vagas acabarem, o preço passa a ser R$ 197.</p>
     </div>
     <div class="cartao-preco">
@@ -920,7 +974,7 @@ details .resp p+p{margin-top:10px}
 <section class="secao faq" aria-labelledby="t-faq">
   <div class="miolo">
     <div>
-      <h2 id="t-faq">Perguntas antes de comprar</h2>
+      <h2 id="t-faq">Perguntas antes de <em class="it">comprar</em></h2>
       <p class="contato">Não achou a sua? Escreva para <a href="mailto:contato.centavoz@gmail.com">contato.centavoz@gmail.com</a>.</p>
     </div>
     <div>
@@ -928,6 +982,7 @@ details .resp p+p{margin-top:10px}
         <h3>No dia a dia</h3>
         <details><summary>Preciso falar de um jeito certo?</summary><div class="resp"><p>Só um cuidado: diga o valor com a palavra “reais”, e “centavos” se tiver. Número solto não é reconhecido como valor. De resto, fale naturalmente o que foi e como pagou. Por exemplo, “mercado, 87 reais e 40 centavos, BTG” ou “farmácia, 32 reais, Pix”. O app mostra o que entendeu e você confere antes de salvar.</p></div></details>
         <details><summary>Ele separa por cartão e entende parcelamento?</summary><div class="resp"><p>Sim. Cada cartão tem o seu dia de fechamento e de vencimento, e cada compra entra na fatura certa. Compras parceladas geram uma parcela em cada mês em que vão ser cobradas.</p></div></details>
+        <details><summary>Funciona com qualquer banco ou cartão?</summary><div class="resp"><p>Sim. Você cadastra cada cartão pelo nome, com o dia de fechamento e o de vencimento, e o app separa as compras por cartão. Como o CentaVoz não se conecta a banco nenhum, não importa de qual banco ou bandeira é o cartão. Pix, débito e dinheiro também entram.</p></div></details>
         <details><summary>Tenho cartão adicional. Como cadastro?</summary><div class="resp"><p>Cartão adicional divide a mesma fatura do titular, então entra como um cartão só. O guia de instalação explica esse passo.</p></div></details>
         <details><summary>Troquei de celular. Perco meus gastos?</summary><div class="resp"><p>Não. Seus lançamentos ficam na planilha da sua conta Google, e não no aparelho. No celular novo, é só abrir o link do seu app e salvar o atalho na tela inicial de novo.</p></div></details>
         <details><summary>Funciona sem internet?</summary><div class="resp"><p>Não. Como seus lançamentos moram na sua conta Google, e não no celular, o app precisa de conexão para gravar e mostrar os números.</p></div></details>
@@ -956,7 +1011,7 @@ details .resp p+p{margin-top:10px}
 <!-- 10. Chamada final -->
 <section class="final escuro" aria-labelledby="t-final">
   <div class="miolo">
-    <h2 id="t-final">Seu próximo gasto pode ser <span class="verde">o primeiro que você registra falando.</span></h2>
+    <h2 id="t-final">Seu próximo gasto pode ser o primeiro que você registra <em class="it">falando</em>.</h2>
     <p>Pagamento único, seus dados na sua conta, e um app que cabe no meio da correria.</p>
     <a class="botao" data-checkout href="#oferta">Quero o CentaVoz</a>
   </div>
@@ -1415,6 +1470,134 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var escolha = ler();
   if (escolha === "aceito") carregarPixel();
   else if (!escolha) aviso.hidden = false;
+})();
+</script>
+
+<script>
+/* Animações de entrada: títulos por palavra, blocos em cascata, mockups da seção
+   "No fim do mês" e a foto de "Por trás do CentaVoz". Rodam uma vez, só se o aparelho
+   permite movimento. Se algo falhar, os títulos aparecem sozinhos depois de 2,5 s. */
+(function(){
+  try {
+    var raiz = document.documentElement;
+    if (!raiz.classList.contains("js")) return;
+    var $$ = function(sel, ctx){ return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
+
+    /* ---- 1. Títulos: cada palavra sobe de baixo; a palavra em itálico entra por último ---- */
+    function dividirPalavras(titulo){
+      var n = 0;
+      (function andar(no, dentroDoItalico){
+        Array.prototype.slice.call(no.childNodes).forEach(function(c){
+          if (c.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            c.textContent.split(/(\s+)/).forEach(function(p){
+              if (!p) return;
+              if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+              var w = document.createElement("span"); w.className = "pw";
+              var i = document.createElement("span"); i.className = "pi"; i.textContent = p;
+              i.style.transitionDelay = (n * 50 + (dentroDoItalico ? 170 : 0)) + "ms";
+              n++; w.appendChild(i); frag.appendChild(w);
+            });
+            c.parentNode.replaceChild(frag, c);
+          } else if (c.nodeType === 1) {
+            andar(c, dentroDoItalico || c.classList.contains("it"));
+          }
+        });
+      })(titulo, false);
+    }
+    var titulos = $$("main h1, main h2, h1, h2").filter(function(h, k, a){ return a.indexOf(h) === k; });
+    titulos.forEach(function(h){ dividirPalavras(h); h.classList.add("pronto"); });
+
+    /* ---- 2. Blocos que entram em cascata ---- */
+    var GRUPOS = [
+      [".dor .texto", 0], [".falas li", 90],
+      [".experimente .intro", 0], [".passos li", 110], [".acoes-demo", 0],
+      [".ver-item", 0],
+      [".paraquem .intro", 0], [".paraquem-lista li", 100],
+      [".quemfez-foto", 0], [".quemfez-texto p", 70],
+      [".dados .intro", 0], [".afirmacoes li", 100],
+      [".instalacao .intro", 0], [".trilha li", 110]
+    ];
+    var alvos = [];
+    GRUPOS.forEach(function(g){
+      $$(g[0]).forEach(function(el, k){
+        el.classList.add("rev");
+        el.style.setProperty("--d", Math.min(k * g[1], 400) + "ms");
+        alvos.push(el);
+      });
+    });
+    $$(".consultor .perg, .consultor .profunda").forEach(function(el, k){ el.style.setProperty("--i", k); });
+
+    /* ---- 3. Mockups da seção "No fim do mês" ---- */
+    function brl(v){ return "R$ " + v.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+    var itens = $$(".ver-item");
+
+    var fatura = document.querySelector(".ver-item .amostra-card .v");
+    var faturaTexto = fatura ? fatura.textContent : "";
+    var faturaValor = 0;
+    if (fatura) {
+      var m = faturaTexto.replace(/[^\d,]/g, "").replace(",", ".");
+      faturaValor = parseFloat(m) || 0;
+      if (faturaValor) fatura.textContent = brl(0);
+    }
+    function contar(){
+      if (!fatura || !faturaValor) return;
+      var ini = null, dur = 1100;
+      function passo(t){
+        if (ini === null) ini = t;
+        var p = Math.min((t - ini) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+        fatura.textContent = p < 1 ? brl(faturaValor * e) : faturaTexto;
+        if (p < 1) requestAnimationFrame(passo);
+      }
+      requestAnimationFrame(passo);
+    }
+
+    var fatias = $$(".rosca svg circle");
+    fatias.forEach(function(c){
+      c.setAttribute("data-da", c.getAttribute("stroke-dasharray"));
+      c.style.strokeDasharray = "0 100";
+    });
+    function desenharRosca(){
+      var acum = 0;
+      fatias.forEach(function(c){
+        var da = c.getAttribute("data-da"), p = parseFloat(da);
+        c.style.transition = "stroke-dasharray " + Math.round(p * 18) + "ms linear " + Math.round(acum * 18) + "ms";
+        c.style.strokeDasharray = da;
+        acum += p;
+      });
+    }
+
+    var barras = $$(".evol-barras i");
+    barras.forEach(function(b){ b.setAttribute("data-h", b.style.height); b.style.height = "0%"; });
+    function subirBarras(){
+      barras.forEach(function(b, k){
+        b.style.transition = "height .8s cubic-bezier(.2,.75,.2,1) " + (k * 120) + "ms";
+        b.style.height = b.getAttribute("data-h");
+      });
+    }
+
+    function aoEntrar(el){
+      var k = itens.indexOf(el);
+      if (k === 0) contar();
+      else if (k === 1) desenharRosca();
+      else if (k === 2) subirBarras();
+    }
+
+    /* ---- 4. Observador único ---- */
+    var io = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        io.unobserve(el);
+        el.classList.add("in");
+        if (el.classList.contains("rev") && itens.indexOf(el) > -1) aoEntrar(el);
+      });
+    }, { threshold: 0.2, rootMargin: "0px 0px -6% 0px" });
+    alvos.forEach(function(el){ io.observe(el); });
+    titulos.forEach(function(h){ io.observe(h); });
+  } catch (err) {
+    document.documentElement.classList.remove("js");
+  }
 })();
 </script>
 </body>
