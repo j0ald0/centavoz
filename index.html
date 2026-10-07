@@ -342,6 +342,30 @@ p{margin:0}
 .mini-rot{font-size:8.5px;font-weight:800;letter-spacing:.07em;color:#5E6358;margin-top:2px}
 .mini-pergs{display:grid;gap:4px}
 .mini-perg{border:1px solid #E3E4DF;background:#fff;border-radius:8px;padding:6px 9px;font-size:10.5px;font-weight:600;color:var(--tinta);line-height:1.3}
+/* Gastos por forma de pagamento */
+.pg-desc{font-size:9.5px;line-height:1.4;color:#6B6E66;background:#F3F4F2;border-radius:8px;padding:7px 9px}
+.pg-grupo{display:grid;gap:7px}
+.pg-linha{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:baseline}
+.pg-linha b{font-size:11px;font-weight:700;color:var(--tinta)}
+.pg-linha b.g{font-family:var(--f-titulo);font-size:13.5px;font-weight:800}
+.pg-linha span{font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+.pg-linha span.g{font-size:13.5px;font-weight:800}
+.pg-linha small{grid-column:1 / -1;font-size:8.5px;color:#6B6E66}
+.pg-barra{grid-column:1 / -1;height:6px;border-radius:99px;background:#E6E7EA;overflow:hidden;margin-top:3px}
+.pg-barra i{display:block;height:100%;width:0;border-radius:99px;background:#3B5BDB;transition:width .9s cubic-bezier(.2,.75,.2,1) var(--a,0ms)}
+.pg-cheio .pg-barra i{width:var(--w)}
+.pg-sub{display:grid;gap:7px;padding-left:9px;border-left:2px solid #E6E7EA}
+/* Resposta do Consultor IA */
+.mini-perg.escolhida{border-color:var(--tinta);background:#F1FBC8}
+.ia-perg{align-self:flex-end;max-width:88%;background:var(--tinta);color:#fff;border-radius:11px 11px 3px 11px;padding:7px 10px;font-size:10.5px;font-weight:600;line-height:1.3}
+.ia-pensando[hidden]{display:none}
+.ia-pensando{font-size:10px;color:#6B6E66;display:flex;align-items:center;gap:6px}
+.ia-pensando i{width:5px;height:5px;border-radius:50%;background:#9AA08C;animation:pisca 1s steps(1) infinite}
+.ia-pensando i:nth-child(2){animation-delay:.2s}.ia-pensando i:nth-child(3){animation-delay:.4s}
+.ia-resp{background:#F3F4F2;border-radius:3px 11px 11px 11px;padding:9px 10px;font-size:10.5px;line-height:1.45;color:var(--tinta);display:grid;gap:6px}
+.ia-resp p{margin:0;opacity:0;transform:translateY(5px);transition:opacity .45s ease var(--a,0ms),transform .45s ease var(--a,0ms)}
+.ia-resp.pronta p{opacity:1;transform:none}
+.ia-resp b{font-weight:700}
 .mini-profunda{background:linear-gradient(90deg,var(--voz),#A6B04A);border-radius:9px;text-align:center;font-weight:800;padding:8px;font-size:11px;color:var(--tinta);margin-top:3px}
 
 /* Tela Evolução Mensal (réplica) */
@@ -639,7 +663,7 @@ details[open] .resp{animation:abre .35s ease}
     </div>
 
     <div class="palco">
-      <p class="so-leitor">Demonstração: na tela inicial, a pessoa toca no botão verde, abre o teclado, toca no microfone e fala “Uber, 23 reais e 50 centavos, Itaú”. Ao tocar em Interpretar, o CentaVoz preenche sozinho descrição, forma de pagamento, valor e categoria. A compra é cadastrada e o valor da próxima fatura sobe. Depois, a pessoa busca “uber” em Gerenciar Compras e passa pela Evolução Mensal, pelos gastos por categoria e pelo Consultor IA.</p>
+      <p class="so-leitor">Demonstração: na tela inicial, a pessoa toca no botão verde, abre o teclado, toca no microfone e fala “Uber, 23 reais e 50 centavos, Itaú”. Ao tocar em Interpretar, o CentaVoz preenche sozinho descrição, forma de pagamento, valor e categoria. A compra é cadastrada e o valor da próxima fatura sobe. Depois, a pessoa busca “uber” em Gerenciar Compras e passa pela Evolução Mensal, pelos gastos por categoria e pelos gastos por forma de pagamento. Por fim, toca numa pergunta do Consultor IA e lê a resposta, escrita com os números do mês.</p>
       <p class="legenda-celular" id="legendaCel" aria-hidden="true"><b>Tela inicial</b><span>O botão verde abre o lançamento por voz.</span></p>
       <div class="celular" aria-hidden="true">
         <!-- Tela de lançamento -->
@@ -684,6 +708,8 @@ details[open] .resp{animation:abre .35s ease}
           <div class="app-lanc-card" id="appLanc"></div>
           <div class="app-card app-sanfona">Pergunte ao Consultor IA</div>
           <div class="app-card app-sanfona">Gastos por categoria</div>
+          <div class="app-card app-sanfona">Gastos por forma de pagamento</div>
+          <div style="height:26px"></div>
         </div>
 
         <!-- Tela Gerenciar Compras -->
@@ -753,9 +779,41 @@ details[open] .resp{animation:abre .35s ease}
             </div>
             <div class="mini-rot">ECONOMIZE</div>
             <div class="mini-pergs">
-              <div class="mini-perg">Onde meu dinheiro está saindo sem eu perceber?</div>
+              <div class="mini-perg" id="pergIA">Onde meu dinheiro está saindo sem eu perceber?</div>
             </div>
             <div class="mini-profunda">Análise Profunda</div>
+          </div>
+        </div>
+
+        <!-- Tela Gastos por forma de pagamento -->
+        <div class="tela oculta" id="telaPagamento">
+          <div class="p-modal">
+            <div class="p-cab"><span>Por forma de pagamento</span><span class="x">✕</span></div>
+            <div class="pg-desc">Compare os valores usados em cada forma de pagamento. Os cartões entram somados em “Cartões”.</div>
+            <div class="pg-grupo" id="pgGrupo">
+              <div class="pg-linha"><b class="g">Cartões</b><span class="g">R$ 1.563,50</span><small>83,9% do total</small><div class="pg-barra"><i style="--w:83.9%"></i></div></div>
+              <div class="pg-sub">
+                <div class="pg-linha"><b>Cartão de crédito BTG</b><span>R$ 842,30</span><div class="pg-barra"><i style="--w:53.9%;--a:150ms"></i></div></div>
+                <div class="pg-linha"><b>Cartão de crédito Itaú</b><span>R$ 421,70</span><div class="pg-barra"><i style="--w:27%;--a:280ms"></i></div></div>
+                <div class="pg-linha"><b>Cartão de crédito Nubank</b><span>R$ 299,50</span><div class="pg-barra"><i style="--w:19.1%;--a:410ms"></i></div></div>
+              </div>
+              <div class="pg-linha"><b class="g">Pix</b><span class="g">R$ 212,00</span><small>11,4% do total</small><div class="pg-barra"><i style="--w:11.4%;--a:540ms"></i></div></div>
+              <div class="pg-linha"><b class="g">Débito</b><span class="g">R$ 88,00</span><small>4,7% do total</small><div class="pg-barra"><i style="--w:4.7%;--a:670ms"></i></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tela Resposta do Consultor IA -->
+        <div class="tela oculta" id="telaResposta">
+          <div class="p-modal">
+            <div class="p-cab"><span>Consultor IA</span><span class="x">✕</span></div>
+            <div class="ia-perg">Onde meu dinheiro está saindo sem eu perceber?</div>
+            <div class="ia-pensando" id="iaPensando"><i></i><i></i><i></i>Lendo os seus números</div>
+            <div class="ia-resp" id="iaResp" hidden>
+              <p>Os pequenos gastos que mais pesaram na fatura foram <b>Uber</b> (6 vezes, R$ 89,22), <b>Padaria</b> (5 vezes, R$ 41,30) e <b>Açaí</b> (4 vezes, R$ 38,00).</p>
+              <p style="--a:350ms">No total, 19 compras avulsas abaixo de R$ 30,00 somaram <b>R$ 236,40</b>. Esses três nomes representam R$ 168,52, ou 71% desse total.</p>
+              <p style="--a:700ms">Se quiser cortar sem sentir, comece pelo Uber: é o que mais se repete.</p>
+            </div>
           </div>
         </div>
 
@@ -1185,7 +1243,8 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var celular = document.querySelector(".celular");
   var lanc = $("lanc"), teclado = $("teclado"), fala = $("fala"), cursor = $("cursor");
   var telas = { lanc:$("telaLanc"), principal:$("telaPrincipal"), compras:$("telaCompras"),
-                 evol:$("telaEvol"), categorias:$("telaCategorias"), consultor:$("telaConsultor") };
+                 evol:$("telaEvol"), categorias:$("telaCategorias"), consultor:$("telaConsultor"),
+                 pagamento:$("telaPagamento"), resposta:$("telaResposta") };
   var campos = ["fDesc","fData","fForma","fValor","fCat"];
 
   var LEG = {
@@ -1195,7 +1254,10 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     compras:["Gerenciar compras","Digite “uber” e veja quantas compras foram e quanto somam."],
     evol:["Evolução Mensal","As parcelas dos próximos meses já aparecem."],
     categorias:["Gastos por categoria","Para onde o dinheiro foi no mês."],
-    consultor:["Consultor IA","Lê os seus números e explica em português."]
+    abaixo:["Tela inicial","Mais abaixo: categorias, pagamentos e Consultor IA."],
+    pagamento:["Por forma de pagamento","Quanto saiu em cada cartão, no Pix e no débito."],
+    consultor:["Consultor IA","Escolha uma pergunta pronta ou escreva a sua."],
+    resposta:["Consultor IA","Responde em português, com os seus números."]
   };
   function legendar(l){
     var el = $("legendaCel");
@@ -1204,6 +1266,20 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   function mostrar(nome, legenda){
     legendar(legenda || LEG[nome]);
     Object.keys(telas).forEach(function(k){ telas[k].classList.toggle("oculta", k !== nome); });
+    if (nome === "principal") telas.principal.scrollTop = 0;
+  }
+  // Rola a tela principal até o fim, para os cartões de baixo aparecerem antes do toque
+  function fimDaPrincipal(){ return Math.max(0, telas.principal.scrollHeight - telas.principal.clientHeight); }
+  function rolarPrincipal(dur){
+    var el = telas.principal, de = el.scrollTop, ate = fimDaPrincipal(), ini = null;
+    if (!dur || ate <= de) { el.scrollTop = ate; return; }
+    function passo(agora){
+      if (ini === null) ini = agora;
+      var p = Math.min((agora - ini) / dur, 1), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      el.scrollTop = de + (ate - de) * e;
+      if (p < 1 && !el.classList.contains("oculta")) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
   }
   function tocar(el){
     var t = $("toque"), rc = celular.getBoundingClientRect(), re = el.getBoundingClientRect();
@@ -1403,17 +1479,34 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
 
     // 12. Volta e abre Gastos por categoria (quarto card da tela principal)
     depois(t, function(){ mostrar("principal", LEG.principal); });
-    t += 700;
+    depois(t + 600, function(){ legendar(LEG.abaixo); rolarPrincipal(800); });
+    t += 2000;
     depois(t, function(){ tocar(document.querySelectorAll("#telaPrincipal .app-sanfona")[1]); });
     depois(t + 350, function(){ mostrar("categorias"); });
     t += 3800;
 
-    // 13. Volta e abre Consultor IA (terceiro card da tela principal)
-    depois(t, function(){ mostrar("principal", LEG.principal); });
-    t += 700;
+    // 13. Volta e abre Gastos por forma de pagamento (as barras enchem)
+    depois(t, function(){ mostrar("principal", LEG.abaixo); rolarPrincipal(0); });
+    t += 1000;
+    depois(t, function(){ tocar(document.querySelectorAll("#telaPrincipal .app-sanfona")[2]); });
+    depois(t + 350, function(){ $("pgGrupo").classList.remove("pg-cheio"); mostrar("pagamento"); });
+    depois(t + 650, function(){ $("pgGrupo").classList.add("pg-cheio"); });
+    t += 4600;
+
+    // 14. Volta, abre o Consultor IA, toca numa pergunta e a resposta aparece
+    depois(t, function(){ mostrar("principal", LEG.abaixo); rolarPrincipal(0); });
+    t += 1000;
     depois(t, function(){ tocar(document.querySelectorAll("#telaPrincipal .app-sanfona")[0]); });
-    depois(t + 350, function(){ mostrar("consultor"); });
-    t += 3800;
+    depois(t + 350, function(){ $("pergIA").classList.remove("escolhida"); mostrar("consultor"); });
+    t += 2200;
+    depois(t, function(){ tocar($("pergIA")); $("pergIA").classList.add("escolhida"); });
+    depois(t + 550, function(){
+      $("iaResp").hidden = true; $("iaResp").classList.remove("pronta"); $("iaPensando").hidden = false;
+      mostrar("resposta");
+    });
+    depois(t + 1850, function(){ $("iaPensando").hidden = true; $("iaResp").hidden = false; });
+    depois(t + 1900, function(){ $("iaResp").classList.add("pronta"); });
+    t += 8200;
 
     depois(t, rodar);
   }
