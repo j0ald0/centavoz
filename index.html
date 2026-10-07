@@ -177,6 +177,8 @@ p{margin:0}
   position:relative;z-index:1;width:292px;height:600px;flex:none;
   background:var(--tinta);border-radius:46px;padding:10px;
   box-shadow:0 0 0 1px rgba(212,247,66,.9),0 0 46px 10px rgba(212,247,66,.75),0 30px 60px -20px rgba(22,22,22,.45);
+  /* --esc: o script reduz o celular quando a tela é baixa, para caber junto com a legenda */
+  transform:scale(var(--esc,1));transform-origin:top center;margin-bottom:calc(600px * (var(--esc,1) - 1));
 }
 .celular::after{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:12px;background:var(--tinta);z-index:5}
 .tela{position:absolute;inset:10px;border-radius:37px;overflow:hidden;background:var(--papel);font-size:11.5px;line-height:1.35}
@@ -1205,8 +1207,9 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   }
   function tocar(el){
     var t = $("toque"), rc = celular.getBoundingClientRect(), re = el.getBoundingClientRect();
-    t.style.left = (re.left - rc.left + re.width / 2) + "px";
-    t.style.top = (re.top - rc.top + re.height / 2) + "px";
+    var k = (rc.width / celular.offsetWidth) || 1; /* escala do celular em telas baixas */
+    t.style.left = ((re.left - rc.left + re.width / 2) / k) + "px";
+    t.style.top = ((re.top - rc.top + re.height / 2) / k) + "px";
     t.classList.remove("ativo"); void t.offsetWidth; t.classList.add("ativo");
   }
   // Balão de instrução ancorado num elemento do celular (acima ou abaixo dele)
@@ -1217,9 +1220,10 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     bal.style.left = "0px"; bal.style.top = "0px";
     var rc = celular.getBoundingClientRect(), re = el.getBoundingClientRect();
     var w = bal.offsetWidth, h = bal.offsetHeight;
-    var alvoX = re.left - rc.left + re.width / 2;
-    var esq = Math.max(20, Math.min(alvoX - w / 2, rc.width - 20 - w));
-    var topo = onde === "acima" ? (re.top - rc.top - h - 12) : (re.bottom - rc.top + 12);
+    var k = (rc.width / celular.offsetWidth) || 1; /* escala do celular em telas baixas */
+    var alvoX = (re.left - rc.left + re.width / 2) / k;
+    var esq = Math.max(20, Math.min(alvoX - w / 2, celular.offsetWidth - 20 - w));
+    var topo = onde === "acima" ? ((re.top - rc.top) / k - h - 12) : ((re.bottom - rc.top) / k + 12);
     bal.style.left = esq + "px"; bal.style.top = topo + "px";
     bal.style.setProperty("--seta", Math.max(18, Math.min(alvoX - esq, w - 18)) + "px");
     bal.classList.add("visivel");
@@ -1498,6 +1502,30 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var escolha = ler();
   if (escolha === "aceito") carregarPixel();
   else if (!escolha) aviso.hidden = false;
+})();
+</script>
+
+<script>
+/* Celular + legenda cabem juntos na tela: em telas baixas o celular encolhe um pouco.
+   Calculado ao abrir e quando a largura muda (não a cada rolagem, para não tremer). */
+(function(){
+  try {
+    var palco = document.querySelector(".palco"), leg = document.getElementById("legendaCel");
+    if (!palco || !leg) return;
+    var larguraAnterior = 0;
+    function ajustar(){
+      var w = window.innerWidth;
+      if (w === larguraAnterior) return;
+      larguraAnterior = w;
+      var topo = document.querySelector(".topo");
+      var fixo = topo && getComputedStyle(topo).position === "sticky" ? topo.offsetHeight : 0;
+      var livre = window.innerHeight - fixo - leg.offsetHeight - 22 - 28; /* 22 = espaço entre legenda e celular; 28 = respiro */
+      var esc = Math.max(0.72, Math.min(1, livre / 600));
+      palco.style.setProperty("--esc", esc.toFixed(3));
+    }
+    ajustar();
+    window.addEventListener("resize", ajustar);
+  } catch (e) {}
 })();
 </script>
 
