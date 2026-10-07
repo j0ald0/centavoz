@@ -125,7 +125,7 @@ p{margin:0}
 .topo-link:hover{border-color:var(--lima)}
 
 /* Primeira dobra */
-.dobra{padding-block:clamp(40px,7vw,88px) clamp(56px,8vw,104px)}
+.dobra{padding-block:clamp(40px,7vw,88px) clamp(56px,8vw,104px);overflow-x:clip}
 .dobra .miolo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,72px);align-items:center}
 .etiqueta{display:inline-flex;align-items:center;gap:10px;background:var(--tinta);color:var(--branco);font-weight:700;font-size:.8125rem;letter-spacing:.08em;padding:8px 16px 8px 12px;border-radius:999px;margin-bottom:22px}
 .etiqueta::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--voz);box-shadow:0 0 0 3px rgba(214,244,60,.28)}
@@ -169,19 +169,23 @@ p{margin:0}
 /* Celular */
 .palco{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
 .palco::before{
-  content:"";position:absolute;width:min(440px,92vw);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle, rgba(214,244,60,.55) 0%, rgba(214,244,60,.18) 45%, rgba(214,244,60,0) 70%);
-  top:50%;left:50%;transform:translate(-50%,-54%);z-index:0;
+  content:"";position:absolute;width:min(620px,118%);height:118%;border-radius:50%;
+  background:radial-gradient(closest-side, rgba(212,247,66,.9) 0%, rgba(212,247,66,.55) 42%, rgba(212,247,66,.2) 72%, rgba(212,247,66,0) 100%);
+  top:50%;left:50%;transform:translate(-50%,-53%);z-index:0;pointer-events:none;
 }
 .celular{
   position:relative;z-index:1;width:292px;height:600px;flex:none;
   background:var(--tinta);border-radius:46px;padding:10px;
-  box-shadow:0 30px 60px -20px rgba(22,22,22,.45);
+  box-shadow:0 0 0 1px rgba(212,247,66,.9),0 0 46px 10px rgba(212,247,66,.75),0 30px 60px -20px rgba(22,22,22,.45);
 }
 .celular::after{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:12px;background:var(--tinta);z-index:5}
 .tela{position:absolute;inset:10px;border-radius:37px;overflow:hidden;background:var(--papel);font-size:11.5px;line-height:1.35}
 .tela.oculta{display:none}
-.legenda-celular{position:relative;z-index:1;font-size:var(--t-pequeno);color:var(--cinza);text-align:center;max-width:32ch}
+.legenda-celular{position:relative;z-index:1;margin:0 0 4px;width:100%;max-width:340px;min-height:5.6em;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;color:var(--tinta)}
+.legenda-celular b{display:inline-flex;align-items:center;gap:9px;background:var(--tinta);color:#fff;font-size:1.0625rem;font-weight:700;line-height:1.2;padding:8px 18px 8px 14px;border-radius:999px}
+.legenda-celular b::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--voz);box-shadow:0 0 0 3px rgba(214,244,60,.28)}
+.legenda-celular span{display:block;text-wrap:balance;margin-top:10px;font-size:1.0625rem;line-height:1.35;font-weight:600;color:var(--tinta)}
+.nota-exemplo-cel{position:relative;z-index:1;margin:0;font-size:.8125rem;color:#4A4D44;text-align:center}
 
 /* Tela de lançamento (réplica do app) */
 .lanc{padding:48px 14px 14px;display:flex;flex-direction:column;gap:7px}
@@ -464,7 +468,9 @@ p{margin:0}
 .cartao-preco .rot{font-weight:700}
 .preco{font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,10vw,6.5rem);line-height:1;letter-spacing:-.04em;margin-top:8px;font-variant-numeric:tabular-nums}
 .preco small{font-size:.32em;letter-spacing:0;vertical-align:.95em;margin-right:.12em}
-.cartao-preco .forma{font-weight:600;margin-top:6px}
+.cartao-preco .parcela{font-size:1.125rem;line-height:1.35;margin-top:8px}
+.cartao-preco .parcela b{font-weight:800}
+.cartao-preco .forma{font-weight:600;margin-top:12px}
 .inclui{list-style:none;padding:0;margin:24px 0;display:grid;gap:10px}
 .inclui li{display:flex;gap:10px;align-items:flex-start}
 .inclui svg{flex:none;width:22px;height:22px;margin-top:2px}
@@ -546,11 +552,11 @@ details .resp p+p{margin-top:10px}
 /* ===== Animações (rodam uma vez, ao entrar na tela; só com .js) ===== */
 .pw{display:inline-block}
 .pi{display:inline-block}
-.js h1,.js h2{visibility:hidden;animation:titulo-seguro 0s linear 2.5s forwards}
-.js h1.pronto,.js h2.pronto{visibility:visible;animation:none}
+.js h1{visibility:hidden;animation:titulo-seguro 0s linear 2.5s forwards}
+.js h1.pronto{visibility:visible;animation:none}
 @keyframes titulo-seguro{to{visibility:visible}}
-.js .pi{opacity:0;transform:translateY(.5em);transition:opacity .5s ease,transform .65s cubic-bezier(.2,.75,.2,1)}
-.js .in .pi,.js .pi.in{opacity:1;transform:none}
+.js h1 .pi{opacity:0;transform:translateY(.5em);transition:opacity .5s ease,transform .65s cubic-bezier(.2,.75,.2,1)}
+.js h1.in .pi{opacity:1;transform:none}
 
 .js .rev{opacity:0;transform:translateY(18px)}
 .js .rev.in{opacity:1;transform:none;transition:opacity .6s ease var(--d,0ms),transform .65s cubic-bezier(.2,.75,.2,1) var(--d,0ms)}
@@ -632,6 +638,7 @@ details[open] .resp{animation:abre .35s ease}
 
     <div class="palco">
       <p class="so-leitor">Demonstração: na tela inicial, a pessoa toca no botão verde, abre o teclado, toca no microfone e fala “Uber, 23 reais e 50 centavos, Itaú”. Ao tocar em Interpretar, o CentaVoz preenche sozinho descrição, forma de pagamento, valor e categoria. A compra é cadastrada e o valor da próxima fatura sobe. Depois, a pessoa busca “uber” em Gerenciar Compras e passa pela Evolução Mensal, pelos gastos por categoria e pelo Consultor IA.</p>
+      <p class="legenda-celular" id="legendaCel" aria-hidden="true"><b>Tela inicial</b><span>O botão verde abre o lançamento por voz.</span></p>
       <div class="celular" aria-hidden="true">
         <!-- Tela de lançamento -->
         <div class="tela oculta" id="telaLanc">
@@ -753,7 +760,7 @@ details[open] .resp{animation:abre .35s ease}
         <div class="balao" id="balao" aria-hidden="true"><span id="balaoTxt"></span></div>
         <div class="toque" id="toque"></div>
       </div>
-      <p class="legenda-celular" id="legendaCel" aria-hidden="true">Tela inicial do app: o botão verde abre o lançamento por voz. Valores de exemplo.</p>
+      <p class="nota-exemplo-cel">Valores de exemplo.</p>
     </div>
   </div>
 </section>
@@ -971,7 +978,8 @@ details[open] .resp{animation:abre .35s ease}
     <div class="cartao-preco">
       <div class="rot">CentaVoz, lote de fundadores</div>
       <div class="preco"><small>R$</small>97</div>
-      <div class="forma">Pagamento único. Sem mensalidade.</div>
+      <div class="parcela">à vista no Pix ou no cartão<br>ou <b>12x de R$ 10,03</b> no cartão</div>
+      <div class="forma">Você compra uma vez. Sem mensalidade.</div>
       <div class="depois">Depois do lote de fundadores: R$ 197.</div>
       <ul class="inclui">
         <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>O app CentaVoz instalado na sua conta Google</li>
@@ -980,7 +988,7 @@ details[open] .resp{animation:abre .35s ease}
         <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ajuda por e-mail se você travar na instalação</li>
       </ul>
       <a class="botao" data-checkout href="#oferta">Quero o CentaVoz</a>
-      <p class="miudo">Você tem 7 dias para pedir o reembolso. Pagamento processado pela Kiwify.</p>
+      <p class="miudo">O parcelamento tem juros do cartão: 12x de R$ 10,03 somam R$ 120,36. Você tem 7 dias para pedir o reembolso. Pagamento processado pela Kiwify.</p>
     </div>
   </div>
 </section>
@@ -1017,6 +1025,7 @@ details[open] .resp{animation:abre .35s ease}
       <div class="grupo-faq">
         <h3>Compra</h3>
         <details><summary>Qual a diferença para os bots de WhatsApp que anotam gastos?</summary><div class="resp"><p>Os bots de WhatsApp costumam cobrar mensalidade e guardar os seus lançamentos nos servidores da empresa. No CentaVoz, o pagamento é único e os lançamentos ficam numa planilha da sua própria conta Google. Em troca, o CentaVoz pede uma instalação, feita uma vez.</p></div></details>
+        <details><summary>Quais são as formas de pagamento?</summary><div class="resp"><p>Pix ou cartão de crédito. À vista, nos dois, são R$ 97. No cartão você também pode parcelar em até 12x de R$ 10,03. O parcelamento tem juros do cartão, e o total fica em R$ 120,36.</p></div></details>
         <details><summary>Se eu não gostar, consigo o reembolso?</summary><div class="resp"><p>Sim. Você tem 7 dias a partir da compra para pedir o reembolso pela Kiwify.</p></div></details>
       </div>
     </div>
@@ -1178,16 +1187,20 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var campos = ["fDesc","fData","fForma","fValor","fCat"];
 
   var LEG = {
-    inicio:"Tela inicial do app: o botão verde abre o lançamento por voz. Valores de exemplo.",
-    lanc:"O ditado é o do próprio teclado do celular: toque no microfone e fale. Valores de exemplo.",
-    principal:"A fatura do mês sobe a cada gasto cadastrado.",
-    compras:"Digite “uber” na busca e veja quantas compras foram e quanto somam.",
-    evol:"Evolução Mensal: as parcelas dos próximos meses já aparecem.",
-    categorias:"Gastos por categoria: para onde o dinheiro foi no mês.",
-    consultor:"O Consultor IA lê os seus números e explica em português."
+    inicio:["Tela inicial","O botão verde abre o lançamento por voz."],
+    lanc:["Lançamento por voz","Toque no microfone do teclado e fale o gasto."],
+    principal:["Fatura do mês","O valor sobe a cada gasto cadastrado."],
+    compras:["Gerenciar compras","Digite “uber” e veja quantas compras foram e quanto somam."],
+    evol:["Evolução Mensal","As parcelas dos próximos meses já aparecem."],
+    categorias:["Gastos por categoria","Para onde o dinheiro foi no mês."],
+    consultor:["Consultor IA","Lê os seus números e explica em português."]
   };
+  function legendar(l){
+    var el = $("legendaCel");
+    el.firstChild.textContent = l[0]; el.lastChild.textContent = l[1];
+  }
   function mostrar(nome, legenda){
-    $("legendaCel").textContent = legenda || LEG[nome];
+    legendar(legenda || LEG[nome]);
     Object.keys(telas).forEach(function(k){ telas[k].classList.toggle("oculta", k !== nome); });
   }
   function tocar(el){
@@ -1256,7 +1269,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     $("qtdCompras").textContent = ubers.length + " compras";
     $("totalCompras").textContent = brl(totalUber);
     $("totalCompras").classList.add("mudou"); $("resumoCompras").classList.add("destaque");
-    $("legendaCel").textContent = LEG.compras;
+    legendar(LEG.compras);
     return;
   }
 
@@ -1489,11 +1502,11 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
 </script>
 
 <script>
-/* Animações de entrada: títulos por palavra, blocos em cascata, mockups da seção
-   "No fim do mês" e a foto de "Por trás do CentaVoz". Rodam uma vez, só se o aparelho
-   permite movimento. Só começam quando o elemento já está dentro da tela (acima dos
-   30% inferiores), para dar tempo de o visitante ver. Se algo falhar, os títulos
-   aparecem sozinhos depois de 2,5 s. */
+/* Animações de entrada, reduzidas ao que tem função: o título do topo por palavra,
+   os passos e a trilha (sequência), o check de "Pra quem é", os mockups da seção
+   "No fim do mês" e a foto. Textos e demais títulos aparecem direto. Rodam uma vez,
+   só se o aparelho permite movimento. Se algo falhar, o título aparece sozinho
+   depois de 2,5 s. */
 (function(){
   try {
     var raiz = document.documentElement;
@@ -1526,19 +1539,19 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     titulos.forEach(function(h){ dividirPalavras(h); h.classList.add("pronto"); });
 
     /* ---- 2. Blocos que entram em cascata ---- */
+    /* Só o que tem sequência ou função: passos, trilha, check de "Pra quem é" e a foto.
+       Textos corridos e demais blocos ficam visíveis desde o início. O terceiro valor
+       "false" marca itens que não somem: só recebem a classe "in" para o detalhe animar. */
     var GRUPOS = [
-      [".dor .texto", 0], [".falas li", 90],
-      [".experimente .intro", 0], [".passos li", 110], [".acoes-demo", 0],
-      [".ver-item", 0],
-      [".paraquem .intro", 0], [".paraquem-lista li", 100],
-      [".quemfez-foto", 0], [".quemfez-texto p", 70],
-      [".dados .intro", 0], [".afirmacoes li", 100],
-      [".instalacao .intro", 0], [".trilha li", 110]
+      [".passos li", 110, true],
+      [".paraquem-lista li", 100, false],
+      [".quemfez-foto", 0, true],
+      [".trilha li", 110, true]
     ];
     var alvos = [];
     GRUPOS.forEach(function(g){
       $$(g[0]).forEach(function(el, k){
-        el.classList.add("rev");
+        if (g[2]) el.classList.add("rev");
         el.style.setProperty("--d", Math.min(k * g[1], 400) + "ms");
         alvos.push(el);
       });
@@ -1602,7 +1615,7 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
       });
     }, { threshold: 0, rootMargin: "0px 0px -30% 0px" });
     alvos.forEach(function(el){ io.observe(el); });
-    titulos.forEach(function(h){ io.observe(h); });
+    $$("h1").forEach(function(h){ io.observe(h); });
 
     // mockups: só quando mais da metade deles está na tela
     var ioMock = new IntersectionObserver(function(entradas){
