@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://centavoz.com.br/sitemap.xml
