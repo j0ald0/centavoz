@@ -1340,6 +1340,8 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
   var totalFinal = BASE + cenas[0].valor;
   $("filtroMes").textContent = String(proximo.getMonth()+1).padStart(2,"0") + "/" + proximo.getFullYear();
   $("selFat").textContent = $("filtroMes").textContent;
+  $("catMes").textContent = $("filtroMes").textContent;
+  $("catTotal").textContent = brl(totalFinal);
 
   if (reduzir) {
     telas.principal.classList.add("oculta");
