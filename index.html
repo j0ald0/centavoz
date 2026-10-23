@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CentaVoz — Fale o que você gastou. O resto o CentaVoz faz.</title>
-<meta name="description" content="Registre gastos falando uma frase. O CentaVoz separa valor, cartão e parcela, coloca cada compra na fatura certa e mostra para onde o dinheiro foi. Pagamento único, dados na sua conta Google.">
+<title>CentaVoz — App de controle de gastos por voz</title>
+<meta name="description" content="App de controle de gastos pessoais por voz. Registre cada gasto falando uma frase: o CentaVoz separa valor, cartão e parcela, coloca cada compra na fatura certa e mostra para onde o dinheiro foi. Pagamento único, dados na sua conta Google.">
 <meta property="og:title" content="CentaVoz — Sua voz vira controle.">
 <meta property="og:description" content="Fale o que você gastou. O resto o CentaVoz faz. Pagamento único, sem mensalidade.">
 <link rel="canonical" href="https://centavoz.com.br/">
@@ -354,9 +354,9 @@ p{margin:0}
 .sa-cab .circ{width:28px;height:28px;font-size:13px}
 .sa-cab::after{content:"";margin-left:auto;width:6px;height:6px;border-left:1.8px solid #333;border-top:1.8px solid #333;transform:rotate(45deg) translateY(2px);flex:none}
 .sa-desc{font-size:10px;line-height:1.4;color:#5B6170}
-.sa-mes{align-self:flex-start;font-size:9.5px;font-weight:800;background:#F1F1F1;border-radius:999px;padding:3px 9px}
+.sa-mes{display:none;align-self:flex-start;font-size:9.5px;font-weight:800;background:#F1F1F1;border-radius:999px;padding:3px 9px}
 
-.mini-rosca{position:relative;width:128px;height:128px;margin:2px auto}
+.mini-rosca{position:relative;width:145px;height:145px;margin:2px auto}
 .mini-rosca svg{width:100%;height:100%}
 .mini-rosca-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .mini-rosca-c small{font-size:8px;color:#5B6170;letter-spacing:.06em;font-weight:700}
@@ -705,7 +705,7 @@ details[open] .resp{animation:abre .35s ease}
 <section class="dobra" aria-labelledby="titulo">
   <div class="miolo">
     <div>
-      <p class="etiqueta">CONTROLE DE GASTOS POR VOZ</p>
+      <p class="etiqueta">CONTROLE DE GASTOS PESSOAIS</p>
       <h1 id="titulo">Fale o que você <em class="it">gastou</em>. O resto o CentaVoz faz.</h1>
       <p class="lead">Registre cada gasto dizendo uma frase. O app coloca a compra na fatura certa e mostra quanto você vai pagar e para onde o dinheiro foi.</p>
       <div class="acoes">
@@ -847,20 +847,20 @@ details[open] .resp{animation:abre .35s ease}
             <span class="sa-mes">Fatura <span id="catMes">10/2026</span></span>
             <div class="mini-rosca">
               <svg viewBox="0 0 42 42" aria-hidden="true">
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#2563EB" stroke-width="6" stroke-dasharray="36.7 63.3" stroke-dashoffset="25"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#16A34A" stroke-width="6" stroke-dasharray="21.9 78.1" stroke-dashoffset="-12.2"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#F97316" stroke-width="6" stroke-dasharray="20.7 79.3" stroke-dashoffset="-34.6"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#9333EA" stroke-width="6" stroke-dasharray="12.3 87.7" stroke-dashoffset="-55.8"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#DC2626" stroke-width="6" stroke-dasharray="6.4 93.6" stroke-dashoffset="-68.6"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#2563EB" stroke-width="7.5" stroke-dasharray="36.11 63.89" stroke-dashoffset="25.00"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#16A34A" stroke-width="7.5" stroke-dasharray="21.51 78.49" stroke-dashoffset="-11.71"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#F97316" stroke-width="7.5" stroke-dasharray="20.33 79.67" stroke-dashoffset="-33.81"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#9333EA" stroke-width="7.5" stroke-dasharray="12.06 87.94" stroke-dashoffset="-54.74"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#DC2626" stroke-width="7.5" stroke-dasharray="6.99 93.01" stroke-dashoffset="-67.41"/>
               </svg>
               <div class="mini-rosca-c"><small>TOTAL</small><b id="catTotal">R$ 1.840,00</b></div>
             </div>
             <ul class="mini-legenda">
-              <li><i style="background:#2563EB"></i><b>Alimentação</b><span>R$ 684,00</span><em>37%</em></li>
-              <li><i style="background:#16A34A"></i><b>Transporte</b><span>R$ 412,00</span><em>22%</em></li>
-              <li><i style="background:#F97316"></i><b>Moradia</b><span>R$ 390,00</span><em>21%</em></li>
-              <li><i style="background:#9333EA"></i><b>Lazer</b><span>R$ 236,00</span><em>13%</em></li>
-              <li><i style="background:#DC2626"></i><b>Outros</b><span>R$ 141,50</span><em>7%</em></li>
+              <li><i style="background:#2563EB"></i><b>Alimentação</b><span>R$ 684,00</span><em>36,7%</em></li>
+              <li><i style="background:#16A34A"></i><b>Transporte</b><span>R$ 412,00</span><em>22,1%</em></li>
+              <li><i style="background:#F97316"></i><b>Moradia</b><span>R$ 390,00</span><em>20,9%</em></li>
+              <li><i style="background:#9333EA"></i><b>Lazer</b><span>R$ 236,00</span><em>12,7%</em></li>
+              <li><i style="background:#DC2626"></i><b>Outros</b><span>R$ 141,50</span><em>7,6%</em></li>
             </ul>
           </div></div>
         </div>
@@ -995,11 +995,11 @@ details[open] .resp{animation:abre .35s ease}
           <div class="rosca-bloco">
             <div class="rosca">
               <svg viewBox="0 0 42 42" aria-hidden="true">
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#2563EB" stroke-width="6" stroke-dasharray="37.2 62.8" stroke-dashoffset="25"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#16A34A" stroke-width="6" stroke-dasharray="22.4 77.6" stroke-dashoffset="-12.2"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#F97316" stroke-width="6" stroke-dasharray="21.2 78.8" stroke-dashoffset="-34.6"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#9333EA" stroke-width="6" stroke-dasharray="12.8 87.2" stroke-dashoffset="-55.8"/>
-                <circle cx="21" cy="21" r="15.915" fill="none" stroke="#DC2626" stroke-width="6" stroke-dasharray="6.4 93.6" stroke-dashoffset="-68.6"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#2563EB" stroke-width="7.5" stroke-dasharray="36.57 63.43" stroke-dashoffset="25.00"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#16A34A" stroke-width="7.5" stroke-dasharray="21.79 78.21" stroke-dashoffset="-12.17"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#F97316" stroke-width="7.5" stroke-dasharray="20.60 79.40" stroke-dashoffset="-34.57"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#9333EA" stroke-width="7.5" stroke-dasharray="12.23 87.77" stroke-dashoffset="-55.76"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#DC2626" stroke-width="7.5" stroke-dasharray="5.81 94.19" stroke-dashoffset="-68.59"/>
               </svg>
               <div class="rosca-centro"><small>TOTAL</small><b>R$ 1.840,00</b></div>
             </div>
@@ -1327,14 +1327,15 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
     { fala:"Uber R$ 23,50 Itaú", desc:"Uber", valor:23.50, forma:"Cartão de crédito Itaú", cat:"Transporte" }
   ];
   var BASE = 1840.00;
+  var FAT = String(proximo.getMonth()+1).padStart(2,"0") + "/" + proximo.getFullYear();
 
   // Últimos lançamentos: 3 itens antes do cadastro; depois, o Uber entra no topo e empurra o Uber antigo (de 02/10) para fora da lista
   var LANC_INICIAL = [
-    { desc:"Supermercado", data:"02/10/2026", cat:"Alimentação", forma:"Cartão de crédito BTG",  fatura:"10/2026", valor:85.19 },
-    { desc:"Padaria",      data:"02/10/2026", cat:"Alimentação", forma:"Cartão de crédito BTG",  fatura:"10/2026", valor:7.75 },
-    { desc:"Uber",         data:"02/10/2026", cat:"Transporte",  forma:"Cartão de crédito BTG",  fatura:"10/2026", valor:13.14 }
+    { desc:"Supermercado", data:dataMenos(0), cat:"Alimentação", forma:"Cartão de crédito BTG",  fatura:FAT, valor:85.19 },
+    { desc:"Padaria",      data:dataMenos(1), cat:"Alimentação", forma:"Cartão de crédito BTG",  fatura:FAT, valor:7.75 },
+    { desc:"Uber",         data:dataMenos(1), cat:"Transporte",  forma:"Cartão de crédito BTG",  fatura:FAT, valor:13.14 }
   ];
-  var LANC_NOVO = { desc:"Uber", data:"03/10/2026", cat:"Transporte", forma:"Cartão de crédito Itaú", fatura:"10/2026", valor:23.50 };
+  var LANC_NOVO = { desc:"Uber", data:dataHoje, cat:"Transporte", forma:"Cartão de crédito Itaú", fatura:FAT, valor:23.50 };
 
   function montarAppLanc(lista, idxDestacar){
     var box = $("appLanc"); box.innerHTML = "";
