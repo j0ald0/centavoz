@@ -418,6 +418,7 @@ p{margin:0}
 .falas li+li{padding-left:28px;border-left:1px solid #333}
 .falas q{color:var(--lima);display:block;font-family:var(--f-display);font-weight:800;font-size:1.625rem;letter-spacing:-.02em;line-height:1.15;quotes:"“" "”"}
 .falas p{color:#BDBDB8;margin-top:10px;max-width:30ch}
+.dor .fecho{margin-top:56px;max-width:30ch;color:var(--branco);font-family:var(--f-display);font-weight:800;font-size:clamp(1.5rem,2.8vw,2rem);letter-spacing:-.02em;line-height:1.2}
 
 /* Seções claras */
 .secao{padding-block:clamp(64px,9vw,120px)}
@@ -707,7 +708,7 @@ details[open] .resp{animation:abre .35s ease}
     <div>
       <p class="etiqueta">CONTROLE DE GASTOS PESSOAIS</p>
       <h1 id="titulo">Fale o que você <em class="it">gastou</em>. O resto o CentaVoz faz.</h1>
-      <p class="lead">Registre cada gasto dizendo uma frase. O app coloca a compra na fatura certa e mostra quanto você vai pagar e para onde o dinheiro foi.</p>
+      <p class="lead">Registre cada gasto dizendo uma frase. Você enxerga para onde o dinheiro vai e decide quanto fica para os seus planos.</p>
       <div class="acoes">
         <a class="botao" href="#oferta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
@@ -848,19 +849,19 @@ details[open] .resp{animation:abre .35s ease}
             <div class="mini-rosca">
               <svg viewBox="0 0 42 42" aria-hidden="true">
                 <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#2563EB" stroke-width="7.5" stroke-dasharray="36.11 63.89" stroke-dashoffset="25.00"/>
-                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#16A34A" stroke-width="7.5" stroke-dasharray="21.51 78.49" stroke-dashoffset="-11.71"/>
-                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#F97316" stroke-width="7.5" stroke-dasharray="20.33 79.67" stroke-dashoffset="-33.81"/>
-                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#9333EA" stroke-width="7.5" stroke-dasharray="12.06 87.94" stroke-dashoffset="-54.74"/>
-                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#DC2626" stroke-width="7.5" stroke-dasharray="6.99 93.01" stroke-dashoffset="-67.41"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#16A34A" stroke-width="7.5" stroke-dasharray="22.77 77.23" stroke-dashoffset="-11.71"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#F97316" stroke-width="7.5" stroke-dasharray="20.33 79.67" stroke-dashoffset="-35.08"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#9333EA" stroke-width="7.5" stroke-dasharray="12.06 87.94" stroke-dashoffset="-56.00"/>
+                <circle cx="21" cy="21" r="17.25" pathLength="100" fill="none" stroke="#DC2626" stroke-width="7.5" stroke-dasharray="5.73 94.27" stroke-dashoffset="-68.67"/>
               </svg>
-              <div class="mini-rosca-c"><small>TOTAL</small><b id="catTotal">R$ 1.840,00</b></div>
+              <div class="mini-rosca-c"><small>TOTAL</small><b id="catTotal">R$ 1.863,50</b></div>
             </div>
             <ul class="mini-legenda">
               <li><i style="background:#2563EB"></i><b>Alimentação</b><span>R$ 684,00</span><em>36,7%</em></li>
-              <li><i style="background:#16A34A"></i><b>Transporte</b><span>R$ 412,00</span><em>22,1%</em></li>
+              <li><i style="background:#16A34A"></i><b>Transporte</b><span>R$ 435,50</span><em>23,4%</em></li>
               <li><i style="background:#F97316"></i><b>Moradia</b><span>R$ 390,00</span><em>20,9%</em></li>
               <li><i style="background:#9333EA"></i><b>Lazer</b><span>R$ 236,00</span><em>12,7%</em></li>
-              <li><i style="background:#DC2626"></i><b>Outros</b><span>R$ 141,50</span><em>7,6%</em></li>
+              <li><i style="background:#DC2626"></i><b>Outros</b><span>R$ 118,00</span><em>6,3%</em></li>
             </ul>
           </div></div>
         </div>
@@ -937,6 +938,7 @@ details[open] .resp{animation:abre .35s ease}
       <li><q>Foi só R$ 20.</q><p>Sozinho não pesa. Somado com os outros, se transforma na fatura que assusta.</p></li>
       <li><q>Quantas parcelas ainda faltam?</q><p>Ninguém faz essa conta de cabeça, cartão por cartão, mês a mês.</p></li>
     </ul>
+    <p class="fecho">E no fim do ano, a viagem fica para depois sem você saber por quê.</p>
   </div>
 </section>
 
@@ -1200,8 +1202,8 @@ details[open] .resp{animation:abre .35s ease}
 <!-- 10. Chamada final -->
 <section class="final escuro" aria-labelledby="t-final">
   <div class="miolo">
-    <h2 id="t-final">Seu próximo gasto pode ser o primeiro que você registra <em class="it">falando</em>.</h2>
-    <p>Pagamento único, seus dados na sua conta, e um app que cabe no meio da correria.</p>
+    <h2 id="t-final">O dinheiro dos seus <em class="it">planos</em> já passa pela sua mão.</h2>
+    <p>Falta saber para onde ele vai. Com o CentaVoz, você descobre falando, sem mensalidade e com os dados na sua conta.</p>
     <a class="botao" data-checkout href="#oferta">Quero o CentaVoz</a>
   </div>
 </section>
