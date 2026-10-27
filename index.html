@@ -686,9 +686,27 @@ details .resp p+p{margin-top:10px}
 /* Perguntas frequentes: a resposta abre com suavidade */
 details[open] .resp{animation:abre .35s ease}
 @keyframes abre{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* ---- Refinos de acabamento (sem mudar visual nem texto) ---- */
+/* Quebra de linha: títulos equilibrados, sem palavra sozinha na última linha */
+/* h1 e h2 ficam como estavam: as palavras são separadas pela animação e o balanceamento solta o ponto final */
+h3{text-wrap:balance}
+p,li{text-wrap:pretty}
+/* Alvos de toque de pelo menos 44px, sem alterar o desenho */
+.topo-link{display:inline-flex;align-items:center;min-height:44px}
+.rodape a{display:inline-block;padding-block:11px;margin-block:-11px}
+/* Toque no celular responde na hora, sem esperar o duplo toque */
+a,button,summary,.botao{touch-action:manipulation}
+/* Âncoras (#oferta, #como-funciona) não colam no topo da tela */
+[id]{scroll-margin-top:16px}
+main:focus{outline:none}
+/* Link "pular para o conteúdo": só aparece para quem navega pelo teclado */
+.pular{position:absolute;left:12px;top:-100px;z-index:100;background:var(--lima);color:var(--tinta);font-weight:700;padding:12px 20px;border-radius:999px;border:2px solid var(--tinta);text-decoration:none}
+.pular:focus{top:12px}
 </style>
 </head>
 <body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <header class="topo">
   <div class="miolo">
@@ -700,7 +718,7 @@ details[open] .resp{animation:abre .35s ease}
   </div>
 </header>
 
-<main>
+<main id="conteudo" tabindex="-1">
 
 <!-- 1. Primeira dobra -->
 <section class="dobra" aria-labelledby="titulo">
