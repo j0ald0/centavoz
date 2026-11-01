@@ -449,14 +449,16 @@ var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
 
 /* ============================================================
    MEDIÇÃO (contador próprio, sem cookies)
-   DESLIGADA até conferir o Contador.gs: ele precisa aceitar os eventos
-   com prefixo q_ e somá-los separados dos da página principal, para não
-   misturar as duas páginas. Para ligar, cole a URL /exec entre as aspas.
-   Eventos: q_inicio, q_p1 a q_p4 (cada pergunta respondida), q_resultado,
-   q_viu_oferta, q_demo e q_comprar. Cada um conta uma vez por visita.
+   Usa o MESMO contador da página principal (mesma URL /exec do index.html).
+   O Contador.gs de 01/11/2026 soma os eventos q_ em abas próprias ("Quiz" e
+   "Quiz Google"...), separadas das da página de vendas. Antes de o
+   Contador.gs novo ser publicado, estes eventos são ignorados sem erro.
+   Eventos: q_visita (abriu a página), q_inicio, q_p1 a q_p4 (cada pergunta
+   respondida), q_resultado, q_viu_oferta, q_demo e q_comprar. Cada um conta
+   uma vez por visita.
    ============================================================ */
 var CV_CONTAR = (function(){
-  var CONTADOR_URL = "";
+  var CONTADOR_URL = "https://script.google.com/macros/s/AKfycbyK7JJAWqcNqcSWrP7nROiM8ML9fKpxuYmlWIBZInGZuuSMgzpW8HYzC5rlNxe3eyWA/exec";
   var ORIGEM = window.CV_ORIGEM_CONTADOR || "";
   var ja = {};
   return function(evento){
@@ -466,6 +468,7 @@ var CV_CONTAR = (function(){
     try { fetch(CONTADOR_URL + "?e=" + evento + (ORIGEM ? "&o=" + ORIGEM : ""), { mode:"no-cors", keepalive:true }); } catch (e) {}
   };
 })();
+CV_CONTAR("q_visita");
 
 /* ============================================================
    A ENQUETE
