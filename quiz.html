@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Por que seu dinheiro some no fim do mês? Teste de 1 minuto | CentaVoz</title>
+<meta name="description" content="Responda 4 perguntas e descubra por que o dinheiro some antes do fim do mês, o que isso custa aos seus planos e uma dica de controle de gastos para usar hoje.">
+<link rel="canonical" href="https://centavoz.com.br/quiz">
+<!-- Página feita para o anúncio: fora da busca orgânica, para não disputar com a página principal. -->
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="CentaVoz">
+<meta property="og:title" content="Por que seu dinheiro some no fim do mês?">
+<meta property="og:description" content="4 perguntas, 1 minuto. Descubra para onde o dinheiro está indo e o que isso custa aos seus planos.">
+<meta property="og:url" content="https://centavoz.com.br/quiz">
+<meta property="og:image" content="https://centavoz.com.br/quiz-previa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Por que o seu dinheiro some antes do fim do mês? Teste de 1 minuto do CentaVoz, com a tela do app no celular.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Por que seu dinheiro some no fim do mês?">
+<meta name="twitter:description" content="4 perguntas, 1 minuto. Descubra para onde o dinheiro está indo e o que isso custa aos seus planos.">
+<meta name="twitter:image" content="https://centavoz.com.br/quiz-previa.jpg">
+<meta name="theme-color" content="#161616">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23D4F742' stroke='%23161616' stroke-width='3'/%3E%3Crect x='24' y='12' width='16' height='26' rx='8' fill='%23161616'/%3E%3Cpath d='M18 28v2a14 14 0 0 0 28 0v-2M32 44v7M25 51h14' fill='none' stroke='%23161616' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter+Tight:ital,wght@0,800;1,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* Mesma identidade da página principal (index.html): cores, fontes e botões. */
+:root{
+  --lima:#D4F742;--voz:#D6F43C;--oliva:#5F6644;--tinta:#161616;--papel:#F5F5F5;
+  --branco:#FFFFFF;--cinza:#55584F;--linha:#DFE1D8;
+  --f-titulo:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;
+  --f-display:"Inter Tight","Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-texto:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-pequeno:.875rem;--t-texto:1.0625rem;--t-lead:1.25rem;
+  --margem:clamp(20px,5vw,48px);
+  /* Curvas das skills de animação (Emil Kowalski): saída forte para UI */
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--f-texto);font-size:var(--t-texto);line-height:1.6;padding-bottom:env(safe-area-inset-bottom,0px)}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--oliva);outline-offset:3px;border-radius:6px}
+.escuro{background:var(--tinta);color:var(--branco)}
+.escuro :focus-visible{outline-color:var(--lima)}
+[tabindex="-1"]:focus{outline:none}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:1.08;letter-spacing:-.015em;word-spacing:.04em;margin:0}
+h3{text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.it{font-style:italic;font-weight:800;background-image:linear-gradient(transparent 60%,var(--lima) 60%,var(--lima) 93%,transparent 93%);padding:0 .07em;margin:0 -.07em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.escuro .it{color:var(--lima);background-image:none;padding:0;margin:0}
+.miolo{max-width:720px;margin-inline:auto;padding-inline:var(--margem)}
+[hidden]{display:none!important}
+
+/* Botão principal (igual ao da página principal) */
+.botao{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  min-height:56px;padding:0 28px;border-radius:999px;
+  background:var(--lima);color:var(--tinta);
+  font-family:var(--f-texto);font-weight:700;font-size:1.0625rem;text-decoration:none;
+  border:2px solid var(--tinta);box-shadow:0 4px 0 var(--tinta);cursor:pointer;
+  transition:transform .12s ease,box-shadow .12s ease;touch-action:manipulation;
+}
+.botao:active{transform:translateY(3px);box-shadow:0 1px 0 var(--tinta)}
+@media (hover:hover){.botao:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--tinta)}}
+.botao svg{width:20px;height:20px}
+.botao.grande{min-height:64px;padding:0 40px;font-size:1.1875rem;border-width:3px;box-shadow:0 6px 0 var(--tinta)}
+.botao.grande:active{box-shadow:0 2px 0 var(--tinta)}
+
+/* Cabeçalho: só a marca, sem links que tirem a pessoa da enquete */
+.topo{background:var(--tinta);color:var(--branco);padding-top:env(safe-area-inset-top,0px);border-radius:0 0 22px 22px}
+.topo .miolo{display:flex;align-items:center;min-height:72px;max-width:1120px}
+.marca{display:flex;align-items:center;gap:12px}
+.marca svg{width:44px;height:44px}
+.marca-nome{font-family:var(--f-titulo);font-weight:800;font-size:1.625rem;letter-spacing:-.025em;line-height:1}
+.marca-nome span{color:var(--voz)}
+
+.etiqueta{display:inline-flex;align-items:center;gap:10px;background:var(--tinta);color:var(--branco);font-weight:700;font-size:.8125rem;letter-spacing:.08em;padding:8px 16px 8px 12px;border-radius:999px;margin-bottom:22px;text-transform:uppercase}
+.etiqueta::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--voz);box-shadow:0 0 0 3px rgba(214,244,60,.28)}
+
+/* ---------- Abertura ---------- */
+.abertura{padding-block:clamp(40px,8vw,88px) clamp(48px,8vw,96px)}
+.abertura h1{font-size:clamp(2.2rem,6vw,3.6rem);max-width:16ch}
+.abertura .lead{font-size:var(--t-lead);line-height:1.5;color:#2E302A;max-width:38ch;margin-top:20px}
+.abertura .acoes{margin-top:32px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.abertura .nota{font-size:.9375rem;color:var(--cinza)}
+
+/* ---------- Perguntas ---------- */
+.enquete{padding-block:clamp(28px,6vw,64px) clamp(48px,8vw,96px)}
+.progresso{display:flex;align-items:center;gap:14px}
+.voltar{background:none;border:0;padding:0 8px 0 0;min-height:44px;min-width:44px;font:inherit;font-weight:700;font-size:.9375rem;color:var(--cinza);cursor:pointer;display:inline-flex;align-items:center;gap:6px;touch-action:manipulation}
+.voltar svg{width:18px;height:18px}
+.voltar[aria-hidden="true"]{visibility:hidden}
+.barra{flex:1;height:10px;border-radius:99px;background:var(--linha);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--voz);box-shadow:inset 0 0 0 1.5px #727951;border-radius:99px;transition:width .25s var(--ease-out)}
+.contagem{font-weight:700;font-size:.9375rem;color:var(--cinza);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pergunta{margin-top:clamp(28px,5vw,44px)}
+.pergunta h2{font-size:clamp(1.75rem,4.6vw,2.5rem);max-width:20ch}
+.opcoes{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px}
+.opcao{
+  width:100%;text-align:left;display:flex;align-items:center;gap:14px;
+  min-height:64px;padding:14px 18px;border-radius:18px;
+  background:var(--branco);color:var(--tinta);border:2px solid var(--tinta);
+  box-shadow:0 3px 0 var(--tinta);
+  font:inherit;font-weight:700;font-size:1.0625rem;line-height:1.35;cursor:pointer;
+  transition:transform .12s ease,box-shadow .12s ease,background-color .15s ease;touch-action:manipulation;
+}
+.opcao::before{content:"";flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--tinta);background:var(--branco);transition:background-color .15s ease,box-shadow .15s ease}
+@media (hover:hover){.opcao:hover{background:#FAFDEB}}
+.opcao:active{transform:translateY(2px);box-shadow:0 1px 0 var(--tinta)}
+.opcao.escolhida{background:var(--lima)}
+.opcao.escolhida::before{background:var(--tinta);box-shadow:inset 0 0 0 4px var(--lima)}
+/* Troca de pergunta: entra de baixo, rápida (abaixo de 300 ms) */
+.pergunta.entra{animation:entra .22s var(--ease-out)}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- Resultado ---------- */
+.resultado{padding-block:clamp(28px,6vw,64px) 0}
+.resultado .rotulo{font-weight:700;font-size:.9375rem;color:var(--cinza);margin-bottom:12px}
+.resultado .perfil h1{font-size:clamp(2rem,5.4vw,3rem);max-width:18ch}
+.resultado .diag{margin-top:22px;display:grid;gap:14px;font-size:1.125rem;line-height:1.6;color:#2E302A;max-width:58ch}
+.plano-tag{display:inline-block;background:var(--tinta);color:var(--lima);font-weight:700;border-radius:8px;padding:0 .35em}
+.dica{margin-top:32px;background:var(--branco);border:2px solid var(--tinta);border-radius:22px;padding:22px 22px 24px;box-shadow:0 4px 0 var(--tinta)}
+.dica .tit{display:flex;align-items:center;gap:10px;font-weight:800;font-family:var(--f-display);font-size:1.1875rem}
+.dica .tit svg{flex:none;width:26px;height:26px}
+.dica p{margin-top:10px;color:#35372F}
+.resolve{margin-top:clamp(48px,8vw,72px);padding-block:clamp(40px,7vw,64px);border-top:1px solid var(--linha)}
+.resolve h3{font-size:clamp(1.5rem,3.6vw,2rem);max-width:22ch}
+.resolve .txt{margin-top:16px;color:#35372F;max-width:58ch}
+.resolve .fala{margin-top:20px;display:inline-flex;align-items:center;gap:12px;background:var(--tinta);color:var(--branco);border-radius:999px;padding:12px 20px 12px 12px;font-weight:600;max-width:100%}
+.resolve .fala i{flex:none;width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#DDF55A,#C2DC2E);display:flex;align-items:center;justify-content:center}
+.resolve .fala svg{width:18px;height:18px}
+.perfil .resolve{padding-bottom:0}
+.demo-bloco{padding-block:28px clamp(48px,8vw,72px)}
+.celular{margin:0 auto 28px;width:min(62vw,260px)}
+.celular img{width:100%;height:auto;filter:drop-shadow(0 18px 28px rgba(22,22,22,.18))}
+.demo-bloco .acoes{align-items:center;text-align:center}
+.demo-bloco .nota{margin-inline:auto}
+.resolve .acoes,.demo-bloco .acoes{margin-top:28px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.resolve .nota,.demo-bloco .nota{font-size:.9375rem;color:var(--cinza);max-width:52ch}
+
+/* Oferta (igual à da página principal) */
+.oferta{padding-block:clamp(56px,9vw,104px)}
+.oferta h2{font-size:clamp(2rem,4.4vw,3rem)}
+.oferta .texto{color:#D6D6D2;font-size:var(--t-lead);line-height:1.55;margin-top:18px;max-width:44ch}
+.cartao-preco{margin-top:32px;background:var(--lima);color:var(--tinta);border-radius:28px;padding:clamp(24px,4vw,40px);border:2px solid var(--lima)}
+.cartao-preco .rot{font-weight:700}
+.preco{font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,10vw,6.5rem);line-height:1;letter-spacing:-.04em;margin-top:8px;font-variant-numeric:tabular-nums}
+.preco small{font-size:.32em;letter-spacing:0;vertical-align:.95em;margin-right:.12em}
+.cartao-preco .parcela{font-size:1.125rem;line-height:1.35;margin-top:8px}
+.cartao-preco .parcela b{font-weight:800}
+.cartao-preco .forma{font-weight:600;margin-top:12px}
+.cartao-preco .depois{font-size:.9375rem;color:#3A3D2A;margin-top:4px}
+.inclui{list-style:none;padding:0;margin:24px 0;display:grid;gap:10px}
+.inclui li{display:flex;gap:10px;align-items:flex-start}
+.inclui svg{flex:none;width:22px;height:22px;margin-top:2px}
+.cartao-preco .botao{width:100%;background:var(--tinta);color:var(--lima);border-color:var(--tinta);box-shadow:0 4px 0 var(--oliva)}
+.cartao-preco .botao:active{box-shadow:0 1px 0 var(--oliva)}
+@media (hover:hover){.cartao-preco .botao:hover{box-shadow:0 5px 0 var(--oliva)}}
+.cartao-preco .miudo{margin-top:16px;font-size:var(--t-pequeno);color:#2D3017}
+
+/* Dúvidas */
+.duvidas{padding-block:clamp(48px,8vw,88px)}
+.duvidas h2{font-size:clamp(1.75rem,4vw,2.5rem)}
+.duvidas .lista{margin-top:20px}
+details{border-top:1px solid var(--linha)}
+details:last-child{border-bottom:1px solid var(--linha)}
+summary{list-style:none;cursor:pointer;padding:18px 44px 18px 0;position:relative;font-weight:700;font-size:1.0625rem;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:12px;border-right:2.5px solid var(--tinta);border-bottom:2.5px solid var(--tinta);transform:translateY(-70%) rotate(45deg);transition:transform .2s var(--ease-out)}
+details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+details .resp{padding:0 0 20px;color:#35372F;max-width:62ch}
+.duvidas .contato{margin-top:24px;color:#35372F}
+.duvidas .contato a{font-weight:700}
+
+.rodape{background:var(--tinta);color:#A9A9A4;padding-block:32px calc(32px + env(safe-area-inset-bottom,0px));font-size:var(--t-pequeno)}
+.rodape .miolo{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;max-width:1120px}
+.rodape a{color:#E7E7E3;display:inline-block;padding-block:11px;margin-block:-11px}
+
+
+/* ---- Celular: abertura e cada pergunta cabem na tela, sem rolar ---- */
+@media (max-width:600px){
+  .topo .miolo{min-height:60px}
+  .marca svg{width:36px;height:36px}
+  .marca-nome{font-size:1.375rem}
+  .etiqueta{margin-bottom:16px;font-size:.75rem;padding:6px 14px 6px 10px}
+  .abertura{padding-block:28px 32px}
+  .abertura h1{font-size:2.125rem}
+  .abertura .lead{font-size:1.0625rem;margin-top:14px}
+  .abertura .acoes{margin-top:24px}
+  .botao.grande{width:100%}
+  .enquete{padding-block:20px 32px}
+  .pergunta{margin-top:20px}
+  .pergunta h2{font-size:1.625rem}
+  .opcoes{margin-top:20px;gap:10px}
+  .opcao{min-height:56px;padding:12px 16px}
+  .resultado{padding-top:24px}
+}
+/* telas baixas (iPhone SE, navegador dentro de outro app) */
+@media (max-width:600px) and (max-height:720px){
+  .abertura{padding-block:20px 24px}
+  .abertura h1{font-size:1.875rem}
+  .etiqueta{margin-bottom:12px}
+  .pergunta h2{font-size:1.4375rem}
+  .opcoes{gap:8px}
+  .opcao{min-height:50px;padding:10px 14px;font-size:1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="miolo">
+    <span class="marca" aria-label="CentaVoz">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#D4F742" stroke="#D4F742" stroke-width="3"/><rect x="24" y="12" width="16" height="26" rx="8" fill="#161616"/><text x="32" y="30.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="#D4F742">$</text><path d="M18 28v2a14 14 0 0 0 28 0v-2M32 44v7M25 51h14" fill="none" stroke="#161616" stroke-width="3" stroke-linecap="round"/></svg>
+      <span class="marca-nome">Centa<span>Voz</span></span>
+    </span>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ============ 1. ABERTURA ============ -->
+<section class="abertura" id="telaAbertura" aria-labelledby="t-abertura">
+  <div class="miolo">
+    <span class="etiqueta">Teste de 1 minuto</span>
+    <h1 id="t-abertura">Por que o seu dinheiro <em class="it">some</em> antes do fim do mês?</h1>
+    <p class="lead">Responda 4 perguntas e descubra para onde ele está indo, o que isso custa aos seus planos e uma dica de controle de gastos para usar hoje.</p>
+    <div class="acoes">
+      <button class="botao grande" type="button" id="comecar">Começar o teste
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <span class="nota">Sem cadastro e sem e-mail. O resultado aparece na hora.</span>
+    </div>
+    <noscript><p style="margin-top:24px">Para fazer o teste, ative o JavaScript do navegador. Ou conheça o CentaVoz em <a href="https://centavoz.com.br/">centavoz.com.br</a>.</p></noscript>
+  </div>
+</section>
+
+<!-- ============ 2. PERGUNTAS (montadas pelo script) ============ -->
+<section class="enquete" id="telaEnquete" hidden aria-label="Perguntas do teste">
+  <div class="miolo">
+    <div class="progresso">
+      <button class="voltar" type="button" id="voltar"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>Voltar</button>
+      <div class="barra" role="progressbar" aria-label="Progresso do teste" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" id="barra"><i id="barraCheia"></i></div>
+      <span class="contagem" id="contagem">1 de 4</span>
+    </div>
+    <div class="pergunta" id="pergunta">
+      <h2 id="perguntaTitulo" tabindex="-1"></h2>
+      <ul class="opcoes" id="opcoes"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. RESULTADO ============
+     Os quatro diagnósticos ficam escritos aqui no HTML (o Google Ads lê o texto
+     da página para avaliar a experiência). O script mostra só o da pessoa e
+     troca [plano] pelo plano que ela escolheu. -->
+<section class="resultado" id="telaResultado" hidden aria-labelledby="t-resultado">
+  <div class="miolo">
+    <p class="rotulo">O seu resultado</p>
+
+    <div class="perfil" data-perfil="pequenos" hidden>
+      <h1 tabindex="-1">O seu dinheiro escapa pelos <em class="it">gastos pequenos</em>.</h1>
+      <div class="diag">
+        <p data-abre></p>
+        <p>Café, Uber, lanche, uma taxa aqui e outra ali. Sozinho, nenhum desses gastos pesa, e por isso nenhum deles é anotado. Somados no fim do mês, eles pesam, e ajudam a explicar por que <span class="plano-tag" data-plano>o seu plano</span> continua ficando para depois.</p>
+      </div>
+      <div class="dica">
+        <div class="tit"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M14 7.5v8M14 19.5v.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round"/></svg>Uma dica para usar hoje, mesmo sem app</div>
+        <p>Por 7 dias, anote só os gastos abaixo de R$ 30. No fim da semana, some tudo e multiplique por 4. O número costuma surpreender, e mostra quanto do mês sai sem você perceber.</p>
+      </div>
+      <div class="resolve">
+        <h3>Como o CentaVoz resolve isso</h3>
+        <p class="txt">Anotar um gasto pequeno passa a levar uma frase. Como é rápido, nada fica de fora, e o gráfico por categoria mostra quanto esses gastos somaram no mês.</p>
+        <span class="fala"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#161616" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="#161616"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></i>“Café, 8 reais, Pix”</span>
+      </div>
+    </div>
+
+    <div class="perfil" data-perfil="parcelas" hidden>
+      <h1 tabindex="-1">As parcelas estão comendo os seus <em class="it">próximos meses</em>.</h1>
+      <div class="diag">
+        <p data-abre></p>
+        <p>Cada compra parcelada parece pequena na hora. O problema é que elas se acumulam: quando a fatura chega, um pedaço do mês que vem já está comprometido com compras antigas. É dinheiro que já tem dono antes de você receber, e um dos motivos de <span class="plano-tag" data-plano>o seu plano</span> continuar ficando para depois.</p>
+      </div>
+      <div class="dica">
+        <div class="tit"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M14 7.5v8M14 19.5v.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round"/></svg>Uma dica para usar hoje, mesmo sem app</div>
+        <p>Antes da próxima compra parcelada, some todas as parcelas que já estão rodando e veja quanto da próxima fatura já está comprometido. Se esse valor já aperta, a compra nova pode esperar.</p>
+      </div>
+      <div class="resolve">
+        <h3>Como o CentaVoz resolve isso</h3>
+        <p class="txt">Você fala a compra e o parcelamento. Cada parcela entra na fatura certa de cada mês, e a Evolução Mensal mostra quanto os próximos meses já estão comprometidos.</p>
+        <span class="fala"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#161616" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="#161616"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></i>“Geladeira, 2400 reais em 10 vezes, Nubank”</span>
+      </div>
+    </div>
+
+    <div class="perfil" data-perfil="metodo" hidden>
+      <h1 tabindex="-1">O problema não é você. <em class="it">É o método.</em></h1>
+      <div class="diag">
+        <p data-abre></p>
+        <p>Você já tentou controlar <span data-metodo>pela planilha</span> e desistiu. Não foi preguiça: anotar gasto exigia parar o que você estava fazendo, lembrar o valor e digitar linha por linha. Ninguém sustenta isso no meio da correria. Sem anotar, o dinheiro some sem deixar rastro, e <span class="plano-tag" data-plano>o seu plano</span> continua ficando para depois.</p>
+      </div>
+      <div class="dica">
+        <div class="tit"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M14 7.5v8M14 19.5v.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round"/></svg>Uma dica para usar hoje, mesmo sem app</div>
+        <p>Troque o método, não a força de vontade. Escolha um jeito de anotar que leve menos de 10 segundos e faça na hora do gasto. Deixar para anotar à noite é o que faz a gente esquecer.</p>
+      </div>
+      <div class="resolve">
+        <h3>Como o CentaVoz resolve isso</h3>
+        <p class="txt">Você não digita: toca no microfone e fala o gasto. O app separa valor, cartão e parcela, você confere e salva. Leva poucos segundos, na hora do gasto.</p>
+        <span class="fala"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#161616" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="#161616"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></i>“Uber, 23 reais e 50 centavos, Itaú”</span>
+      </div>
+    </div>
+
+    <div class="perfil" data-perfil="habito" hidden>
+      <h1 tabindex="-1">Você já tem controle. Falta ele dar <em class="it">menos trabalho</em>.</h1>
+      <div class="diag">
+        <p data-abre></p>
+        <p>Você anota os gastos e a fatura não te pega de surpresa. Isso já é mais do que a maioria consegue. O custo está no tempo e na disciplina de manter o hábito todo dia. E quando o hábito falha, o que fica para depois é <span class="plano-tag" data-plano>o seu plano</span>.</p>
+      </div>
+      <div class="dica">
+        <div class="tit"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D4F742" stroke="#161616" stroke-width="1.5"/><path d="M14 7.5v8M14 19.5v.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round"/></svg>Uma dica para usar hoje, mesmo sem app</div>
+        <p>Uma vez por mês, olhe só três números: quanto entrou, quanto já está comprometido com parcelas e quanto foi para o seu plano. Se o terceiro ficar em zero por dois meses seguidos, é hora de mudar alguma coisa.</p>
+      </div>
+      <div class="resolve">
+        <h3>Como o CentaVoz ajuda</h3>
+        <p class="txt">Registrar um gasto passa a ser falar uma frase. As faturas por cartão, o gráfico por categoria e as parcelas futuras se montam sozinhos, e o Consultor IA responde perguntas sobre os seus números, em português.</p>
+        <span class="fala"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#161616" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="#161616"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></i>“Mercado, 87 reais e 40 centavos, BTG”</span>
+      </div>
+    </div>
+
+    <!-- Comum a todos os perfis: a demo (o "fale seus gastos" funcionando) -->
+    <div class="demo-bloco">
+      <figure class="celular">
+        <img src="quiz-celular.webp" width="520" height="1059" loading="lazy" decoding="async" alt="Tela do CentaVoz no celular: botão de microfone para falar os gastos, valor da fatura, quanto ainda está disponível para gastar e os gastos por categoria.">
+      </figure>
+      <div class="acoes" style="margin-top:0">
+        <a class="botao" href="https://script.google.com/macros/s/AKfycbxKC4kN1NNAPQumE_wquxghEYWHFkWZ7HX7YPIIIdpnABQCG3GlXyMtWE7FPPxf3az_6g/exec" target="_blank" rel="noopener" data-demo>Experimente falando um gasto
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="nota">Abre uma demonstração com dados fictícios. Toque no microfone verde e fale um gasto. Sem cadastro e sem instalação.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Oferta: mesmos fatos da página principal -->
+  <div class="oferta escuro" id="oferta" aria-labelledby="t-oferta">
+    <div class="miolo">
+      <h2 id="t-oferta">Lote de <em class="it">fundadores</em></h2>
+      <p class="texto">Para as primeiras 50 pessoas. O preço é menor porque, em troca, queremos ouvir como está sendo o seu uso. Quando as vagas acabarem, o preço passa a ser R$ 197.</p>
+      <div class="cartao-preco">
+        <div class="rot">CentaVoz, lote de fundadores</div>
+        <div class="preco"><small>R$</small>97</div>
+        <div class="parcela">à vista no Pix ou no cartão<br>ou <b>12x de R$ 10,03</b> no cartão</div>
+        <div class="forma">Você compra uma vez. Sem mensalidade.</div>
+        <div class="depois">Depois do lote de fundadores: R$ 197.</div>
+        <ul class="inclui">
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>O app CentaVoz instalado na sua conta Google</li>
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Guia de instalação passo a passo, com as telas</li>
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Consultor IA para ler seus gastos</li>
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4.5 11.5l4 4 9-9.5" fill="none" stroke="#161616" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ajuda por e-mail se você travar na instalação</li>
+        </ul>
+        <a class="botao" data-checkout href="https://pay.kiwify.com.br/sShUGPx">Quero o CentaVoz</a>
+        <p class="miudo">O parcelamento tem juros do cartão: 12x de R$ 10,03 somam R$ 120,36. Você tem 7 dias para pedir o reembolso. Pagamento processado pela Kiwify.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dúvidas: as três que mais travam a compra (textos da página principal) -->
+  <div class="duvidas" aria-labelledby="t-duvidas">
+    <div class="miolo">
+      <h2 id="t-duvidas">Antes de comprar</h2>
+      <div class="lista">
+        <details><summary>Como é a instalação?</summary><div class="resp"><p>A instalação é feita pelo computador, uma única vez. Você segue um guia passo a passo, com as telas, e depois usa só no celular. Não precisa saber mexer em planilha nem em programação.</p></div></details>
+        <details><summary>Preciso instalar alguma coisa no celular?</summary><div class="resp"><p>Não precisa baixar nada da loja de apps. O CentaVoz abre pelo navegador, e você salva um atalho na tela inicial para abrir como um app. Funciona no iPhone e no Android.</p></div></details>
+        <details><summary>Onde ficam os meus dados?</summary><div class="resp"><p>Na sua própria conta Google. Os lançamentos ficam numa planilha no seu Drive. O CentaVoz não tem servidor guardando os seus gastos, e nós não vemos o que você lança.</p></div></details>
+        <details><summary>Se eu não gostar, consigo o reembolso?</summary><div class="resp"><p>Sim. Você tem 7 dias a partir da compra para pedir o reembolso pela Kiwify.</p></div></details>
+      </div>
+      <p class="contato">Ficou alguma dúvida? Escreva para <a href="mailto:contato.centavoz@gmail.com">contato.centavoz@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="miolo">
+    <span>CentaVoz</span>
+    <a href="privacidade.html">Política de Privacidade</a>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   ORIGEM DO VISITANTE E LINK DO CHECKOUT
+   Mesmo código da página principal: repassa utm_* e o código de clique do
+   Google Ads (gclid/gbraid/wbraid) para a Kiwify, para a venda ser ligada ao
+   anúncio. A enquete acrescenta src=quiz (se o link não trouxer um src),
+   para dar para separar na Kiwify as vendas que vieram por aqui.
+   ============================================================ */
+var LINK_CHECKOUT = "https://pay.kiwify.com.br/sShUGPx";
+(function(){
+  var PARAMS_CLIQUE_GOOGLE = ["gclid","gbraid","wbraid"];
+  var PARAMS_ORIGEM = ["src","sck","utm_source","utm_medium","utm_campaign","utm_term","utm_content","s1","s2","s3"].concat(PARAMS_CLIQUE_GOOGLE);
+  function origemDoVisitante(){
+    var o = {};
+    try {
+      var q = new URLSearchParams(window.location.search);
+      PARAMS_ORIGEM.forEach(function(k){
+        var v = q.get(k);
+        if (v) o[k] = v.slice(0, PARAMS_CLIQUE_GOOGLE.indexOf(k) !== -1 ? 300 : 100);
+      });
+    } catch (e) {}
+    try {
+      if (Object.keys(o).length) { sessionStorage.setItem("cv_origem", JSON.stringify(o)); }
+      else { var g = sessionStorage.getItem("cv_origem"); if (g) o = JSON.parse(g) || {}; }
+    } catch (e) {}
+    return o;
+  }
+  var ORIGENS_CONTADOR = ["google","instagram","youtube","tiktok","demo"];
+  function origemParaContador(){
+    var o = origemDoVisitante();
+    var fonte = String(o.utm_source || "").toLowerCase();
+    if (ORIGENS_CONTADOR.indexOf(fonte) !== -1) return fonte;
+    if (PARAMS_CLIQUE_GOOGLE.some(function(k){ return !!o[k]; })) return "google";
+    return "";
+  }
+  window.CV_ORIGEM_CONTADOR = origemParaContador();
+
+  function linkComOrigem(){
+    try {
+      var u = new URL(LINK_CHECKOUT), o = origemDoVisitante();
+      if (!o.src) o.src = "quiz";
+      Object.keys(o).forEach(function(k){ u.searchParams.set(k, o[k]); });
+      return u.toString();
+    } catch (e) { return LINK_CHECKOUT; }
+  }
+  var destino = linkComOrigem();
+  document.querySelectorAll("[data-checkout]").forEach(function(a){ a.href = destino; });
+})();
+
+/* ============================================================
+   MEDIÇÃO (contador próprio, sem cookies)
+   DESLIGADA até conferir o Contador.gs: ele precisa aceitar os eventos
+   com prefixo q_ e somá-los separados dos da página principal, para não
+   misturar as duas páginas. Para ligar, cole a URL /exec entre as aspas.
+   Eventos: q_inicio, q_p1 a q_p4 (cada pergunta respondida), q_resultado,
+   q_viu_oferta, q_demo e q_comprar. Cada um conta uma vez por visita.
+   ============================================================ */
+var CV_CONTAR = (function(){
+  var CONTADOR_URL = "";
+  var ORIGEM = window.CV_ORIGEM_CONTADOR || "";
+  var ja = {};
+  return function(evento){
+    if (ja[evento]) return;
+    ja[evento] = true;
+    if (!CONTADOR_URL) return;
+    try { fetch(CONTADOR_URL + "?e=" + evento + (ORIGEM ? "&o=" + ORIGEM : ""), { mode:"no-cors", keepalive:true }); } catch (e) {}
+  };
+})();
+
+/* ============================================================
+   A ENQUETE
+   4 perguntas aprovadas pelo Joaldo em 01/11/2026. A pergunta 2 (o plano)
+   não decide o perfil: ela personaliza o texto de todos os resultados.
+   Perfil:
+     anota hoje + nada surpreende  -> habito
+     parcelas esquecidas           -> parcelas
+     desistiu de planilha ou app   -> metodo
+     qualquer outra combinação     -> pequenos
+   ============================================================ */
+(function(){
+  var PERGUNTAS = [
+    { id:"p1", titulo:"Quando o mês acaba, você sabe dizer para onde foi o dinheiro?",
+      opcoes:[["sei","Sei quase tudo"],["mais_ou_menos","Mais ou menos"],["nao","Não faço ideia"]] },
+    { id:"p2", titulo:"Quando o dinheiro some, o que fica para depois?",
+      opcoes:[["viagem","Uma viagem"],["carro","Trocar de carro"],["reserva","Montar uma reserva"],["dividas","Quitar dívidas"],["outro","Outro plano"]] },
+    { id:"p3", titulo:"Você já tentou anotar os seus gastos?",
+      opcoes:[["planilha","Planilha, e desisti"],["app","App, e desisti"],["nunca","Nunca tentei"],["anoto","Anoto hoje"]] },
+    { id:"p4", titulo:"O que mais pesa quando a fatura ou o extrato chega?",
+      opcoes:[["pequenos","Gastos pequenos que somaram"],["parcelas","Parcelas que eu tinha esquecido"],["total","O total, que nunca bate com o que eu imaginava"],["nada","Nada me surpreende"]] }
+  ];
+  var PLANO = { viagem:"a sua viagem", carro:"a troca do carro", reserva:"a sua reserva", dividas:"o fim das dívidas", outro:"o seu plano" };
+  var METODO = { planilha:"pela planilha", app:"por um app" };
+  var ABRE = {
+    sei:"Você já tem uma boa ideia de para onde o dinheiro vai. O que escapa é o que fica fora da conta.",
+    mais_ou_menos:"Você sabe parte do caminho do dinheiro, mas não todo. E é na parte que falta que ele some.",
+    nao:"Você disse que não sabe para onde o dinheiro vai. Isso é mais comum do que parece, e tem explicação."
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var telas = { abertura:$("telaAbertura"), enquete:$("telaEnquete"), resultado:$("telaResultado") };
+  var respostas = {};
+  var passo = 0;            // 0..3 = pergunta; 4 = resultado
+  var reduzido = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function mostrar(qual){
+    Object.keys(telas).forEach(function(k){ telas[k].hidden = (k !== qual); });
+    window.scrollTo(0, 0);
+  }
+
+  function perfil(){
+    if (respostas.p3 === "anoto" && respostas.p4 === "nada") return "habito";
+    if (respostas.p4 === "parcelas") return "parcelas";
+    if (respostas.p3 === "planilha" || respostas.p3 === "app") return "metodo";
+    return "pequenos";
+  }
+
+  function desenharPergunta(i, animar){
+    var p = PERGUNTAS[i];
+    $("perguntaTitulo").textContent = p.titulo;
+    $("contagem").textContent = (i + 1) + " de " + PERGUNTAS.length;
+    $("barraCheia").style.width = (i / PERGUNTAS.length * 100) + "%";
+    $("barra").setAttribute("aria-valuenow", i);
+    $("voltar").setAttribute("aria-hidden", i === 0 ? "true" : "false");
+    $("voltar").tabIndex = i === 0 ? -1 : 0;
+    var ul = $("opcoes"); ul.innerHTML = "";
+    p.opcoes.forEach(function(o){
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opcao"; b.textContent = o[1];
+      if (respostas[p.id] === o[0]) b.classList.add("escolhida");
+      b.addEventListener("click", function(){ responder(i, o[0], b); });
+      li.appendChild(b); ul.appendChild(li);
+    });
+    var bloco = $("pergunta");
+    if (animar && !reduzido) { bloco.classList.remove("entra"); void bloco.offsetWidth; bloco.classList.add("entra"); }
+    $("perguntaTitulo").focus({ preventScroll:true });
+  }
+
+  var travado = false;
+  function responder(i, valor, botao){
+    if (travado) return;
+    travado = true;
+    respostas[PERGUNTAS[i].id] = valor;
+    CV_CONTAR("q_p" + (i + 1));
+    Array.prototype.forEach.call(document.querySelectorAll(".opcao"), function(x){ x.classList.remove("escolhida"); });
+    botao.classList.add("escolhida");
+    $("barraCheia").style.width = ((i + 1) / PERGUNTAS.length * 100) + "%";
+    // um instante para a pessoa ver a escolha marcada antes de trocar
+    setTimeout(function(){ travado = false; irPara(i + 1, true); }, reduzido ? 60 : 220);
+  }
+
+  function irPara(n, empilhar){
+    passo = n;
+    if (empilhar) { try { history.pushState({ passo:n }, ""); } catch (e) {} }
+    if (n < PERGUNTAS.length) { mostrar("enquete"); desenharPergunta(n, true); }
+    else { mostrarResultado(); }
+  }
+
+  function mostrarResultado(){
+    var chave = perfil();
+    var plano = PLANO[respostas.p2] || PLANO.outro;
+    Array.prototype.forEach.call(document.querySelectorAll(".perfil"), function(el){
+      var este = el.getAttribute("data-perfil") === chave;
+      el.hidden = !este;
+      if (!este) return;
+      Array.prototype.forEach.call(el.querySelectorAll("[data-plano]"), function(s){ s.textContent = plano; });
+      Array.prototype.forEach.call(el.querySelectorAll("[data-metodo]"), function(s){ s.textContent = METODO[respostas.p3] || METODO.planilha; });
+      var abre = el.querySelector("[data-abre]");
+      if (abre) {
+        // no perfil "habito" a pessoa já anota: só a abertura de quem sabe para onde vai o dinheiro combina
+        var txt = (chave === "habito" && respostas.p1 !== "sei") ? "" : (ABRE[respostas.p1] || "");
+        abre.textContent = txt; abre.hidden = !txt;
+      }
+    });
+    mostrar("resultado");
+    CV_CONTAR("q_resultado");
+    var h = document.querySelector('.perfil:not([hidden]) h1');
+    if (h) h.focus({ preventScroll:true });
+  }
+
+  $("comecar").addEventListener("click", function(){ CV_CONTAR("q_inicio"); irPara(0, true); });
+  $("voltar").addEventListener("click", function(){ history.back(); });
+
+  // Botão "voltar" do celular: volta uma pergunta em vez de sair da página
+  try { history.replaceState({ passo:-1 }, ""); } catch (e) {}
+  window.addEventListener("popstate", function(ev){
+    var n = ev.state && typeof ev.state.passo === "number" ? ev.state.passo : -1;
+    if (n < 0) { passo = -1; mostrar("abertura"); return; }
+    passo = n;
+    if (n < PERGUNTAS.length) { mostrar("enquete"); desenharPergunta(n, true); }
+    else { mostrarResultado(); }
+  });
+
+  // Medição do fim do funil
+  document.querySelectorAll("[data-demo]").forEach(function(a){ a.addEventListener("click", function(){ CV_CONTAR("q_demo"); }); });
+  document.querySelectorAll("[data-checkout]").forEach(function(a){ a.addEventListener("click", function(){ CV_CONTAR("q_comprar"); }); });
+  var oferta = $("oferta");
+  if (oferta && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(es){
+      if (es.some(function(x){ return x.isIntersecting && !telas.resultado.hidden; })) { CV_CONTAR("q_viu_oferta"); io.disconnect(); }
+    }, { threshold:0.3 });
+    io.observe(oferta);
+  }
+})();
+</script>
+</body>
+</html>
