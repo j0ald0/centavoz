@@ -492,6 +492,38 @@ body.q-preto{background:var(--tinta)}
   width:min(115vw,820px);aspect-ratio:1;transition:background-color .22s var(--ease-out),transform .45s var(--ease-out)}
 .enquete.tema-lima::before{background:#C6E83A;right:max(-45vw,-330px);bottom:max(-50vw,-360px)}
 .enquete.tema-preto::before{background:#303030;left:max(-45vw,-330px);bottom:max(-50vw,-360px)}
+
+/* ---------- Telas baixas (notebook, zoom do Windows 125 a 150%): tudo cabe sem rolar ---------- */
+@media (min-width:601px) and (max-height:820px){
+  .topo .miolo{min-height:60px}
+  .marca svg{width:38px;height:38px}
+  .marca-nome{font-size:1.4375rem}
+  .enquete{min-height:calc(100svh - 60px);padding-block:20px 24px}
+  .enquete .progresso{margin-bottom:0}
+  .pergunta{margin-top:22px}
+  .pergunta h2{font-size:clamp(1.5rem,3.4vw,2rem)}
+  .opcoes{margin-top:18px;gap:10px}
+  .opcao{min-height:52px;padding:10px 18px;font-size:1rem}
+  .abertura{padding-block:30px 36px}
+  .etiqueta{margin-bottom:14px;font-size:.75rem;padding:6px 14px 6px 10px}
+  .abertura h1{font-size:clamp(2rem,4.4vw,2.9rem)}
+  .abertura .lead{font-size:1.0625rem;margin-top:14px}
+  .abertura .acoes{margin-top:22px}
+  .botao.grande{min-height:56px;font-size:1.0625rem}
+}
+@media (min-width:601px) and (max-height:620px){
+  .topo .miolo{min-height:52px}
+  .marca svg{width:34px;height:34px}
+  .enquete{min-height:calc(100svh - 52px);padding-block:14px 16px}
+  .pergunta{margin-top:14px}
+  .pergunta h2{font-size:1.5rem}
+  .opcoes{margin-top:12px;gap:8px}
+  .opcao{min-height:46px;padding:8px 16px}
+  .abertura{padding-block:22px 24px}
+  .abertura h1{font-size:2.2rem}
+  .abertura .lead{margin-top:10px}
+  .abertura .acoes{margin-top:16px}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -1059,6 +1091,7 @@ CV_CONTAR("q_visita");
       }
     });
     mostrar("resultado");
+    try { window.dispatchEvent(new Event("cv-resultado")); } catch (e) {}
     CV_CONTAR("q_resultado");
     var h = document.querySelector('.perfil:not([hidden]) h1');
     if (h) h.focus({ preventScroll:true });
@@ -1438,6 +1471,24 @@ CV_CONTAR("q_visita");
       if (entradas[0].isIntersecting) { iniciar(); obs.disconnect(); }
     }, { threshold: .3 }).observe(celular);
   } else { iniciar(); }
+})();
+</script>
+<script>
+/* Celular + legenda cabem juntos na tela: em telas baixas o celular encolhe (igual à página principal).
+   Recalcula ao abrir, ao girar o aparelho, ao mudar o zoom e quando o resultado aparece. */
+(function(){
+  try {
+    var palco = document.querySelector(".palco"), leg = document.getElementById("legendaCel");
+    if (!palco || !leg) return;
+    function ajustar(){
+      var livre = window.innerHeight - leg.offsetHeight - 22 - 40;
+      var esc = Math.max(0.6, Math.min(1, livre / 600));
+      palco.style.setProperty("--esc", esc.toFixed(3));
+    }
+    ajustar();
+    window.addEventListener("resize", ajustar);
+    window.addEventListener("cv-resultado", ajustar);
+  } catch (e) {}
 })();
 </script>
 </body>
