@@ -524,6 +524,14 @@ body.q-preto{background:var(--tinta)}
   .abertura .lead{margin-top:10px}
   .abertura .acoes{margin-top:16px}
 }
+
+/* Entrada discreta do resultado: só o que aparece na primeira tela, um bloco depois do outro (menos de meio segundo).
+   O texto continua no HTML; se a animação não rodar, tudo já está visível. */
+@keyframes sobe{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.resultado.anima .rotulo,.resultado.anima .perfil:not([hidden]) h1,.resultado.anima .perfil:not([hidden]) .diag,.resultado.anima .perfil:not([hidden]) .dica{animation:sobe .3s var(--ease-out) backwards}
+.resultado.anima .perfil:not([hidden]) h1{animation-delay:.06s}
+.resultado.anima .perfil:not([hidden]) .diag{animation-delay:.12s}
+.resultado.anima .perfil:not([hidden]) .dica{animation-delay:.18s}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -1091,6 +1099,8 @@ CV_CONTAR("q_visita");
       }
     });
     mostrar("resultado");
+    var blocoRes = $("telaResultado");
+    blocoRes.classList.remove("anima"); void blocoRes.offsetWidth; blocoRes.classList.add("anima");
     try { window.dispatchEvent(new Event("cv-resultado")); } catch (e) {}
     CV_CONTAR("q_resultado");
     var h = document.querySelector('.perfil:not([hidden]) h1');
@@ -1481,8 +1491,8 @@ CV_CONTAR("q_visita");
     var palco = document.querySelector(".palco"), leg = document.getElementById("legendaCel");
     if (!palco || !leg) return;
     function ajustar(){
-      var livre = window.innerHeight - leg.offsetHeight - 22 - 40;
-      var esc = Math.max(0.6, Math.min(1, livre / 600));
+      var livre = window.innerHeight - leg.offsetHeight - 22 - 96; /* 96 = respiro em cima e embaixo, para o celular ficar centralizado na tela */
+      var esc = Math.max(0.52, Math.min(0.92, livre / 600));
       palco.style.setProperty("--esc", esc.toFixed(3));
     }
     ajustar();
