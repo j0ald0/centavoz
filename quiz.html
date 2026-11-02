@@ -453,6 +453,45 @@ details .resp{padding:0 0 20px;color:#35372F;max-width:62ch}
 .so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .demo-bloco{overflow-x:clip}
 .demo-bloco .palco{margin:0 auto 32px}
+
+/* ---------- Perguntas com cores alternadas (02/11/2026) ----------
+   Ímpares (1 e 3): fundo verde-limão, respostas em caixas pretas com letra branca.
+   Pares (2 e 4): fundo preto, respostas em caixas verdes com letra preta. */
+.enquete{min-height:calc(100svh - 72px);transition:background-color .22s var(--ease-out),color .22s var(--ease-out)}
+.enquete.tema-lima{background:var(--lima);color:var(--tinta)}
+.enquete.tema-lima :focus-visible{outline-color:var(--tinta)}
+.enquete.tema-lima .voltar,.enquete.tema-lima .contagem{color:var(--tinta)}
+.enquete.tema-lima .barra{background:rgba(22,22,22,.16)}
+.enquete.tema-lima .barra i{background:var(--tinta);box-shadow:none}
+.enquete.tema-lima .opcao{background:var(--tinta);color:var(--branco);border-color:var(--tinta);box-shadow:0 4px 0 rgba(22,22,22,.35)}
+.enquete.tema-lima .opcao::before{border-color:var(--lima);background:transparent}
+@media (hover:hover){.enquete.tema-lima .opcao:hover{background:#2B2B2B}}
+.enquete.tema-lima .opcao.marcada{background:var(--branco);color:var(--tinta)}
+.enquete.tema-lima .opcao.marcada::before{border-color:var(--tinta);background:var(--tinta);box-shadow:inset 0 0 0 4px var(--branco)}
+
+.enquete.tema-preto{background:var(--tinta);color:var(--branco)}
+.enquete.tema-preto :focus-visible{outline-color:var(--lima)}
+.enquete.tema-preto .voltar,.enquete.tema-preto .contagem{color:#C9CCC0}
+.enquete.tema-preto .barra{background:rgba(255,255,255,.16)}
+.enquete.tema-preto .barra i{background:var(--lima);box-shadow:none}
+.enquete.tema-preto .opcao{background:var(--lima);color:var(--tinta);border-color:var(--lima);box-shadow:0 4px 0 var(--oliva)}
+.enquete.tema-preto .opcao::before{border-color:var(--tinta);background:transparent}
+@media (hover:hover){.enquete.tema-preto .opcao:hover{background:#E2FA6E}}
+.enquete.tema-preto .opcao.marcada{background:var(--branco);border-color:var(--branco);color:var(--tinta)}
+.enquete.tema-preto .opcao.marcada::before{background:var(--tinta);box-shadow:inset 0 0 0 4px var(--branco)}
+.enquete.tema-preto .it{color:var(--lima);background-image:none;padding:0;margin:0}
+/* no preto, o cabeçalho e a pergunta viram um bloco só */
+body.q-preto .topo{border-radius:0}
+body.q-lima{background:var(--lima)}
+body.q-preto{background:var(--tinta)}
+
+/* PRÉVIA: círculo grande atrás do conteúdo (lembra o círculo do logo) */
+.enquete{position:relative;overflow:hidden;isolation:isolate}
+.enquete .miolo{position:relative;z-index:1}
+.enquete::before{content:"";position:absolute;z-index:0;pointer-events:none;border-radius:50%;
+  width:min(115vw,820px);aspect-ratio:1;transition:background-color .22s var(--ease-out),transform .45s var(--ease-out)}
+.enquete.tema-lima::before{background:#C6E83A;right:max(-45vw,-330px);bottom:max(-50vw,-360px)}
+.enquete.tema-preto::before{background:#303030;left:max(-45vw,-330px);bottom:max(-50vw,-360px)}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -897,7 +936,7 @@ var CV_CONTAR = (function(){
     if (ja[evento]) return;
     ja[evento] = true;
     if (!CONTADOR_URL) return;
-    try { fetch(CONTADOR_URL + "?e=" + evento + (ORIGEM ? "&o=" + ORIGEM : ""), { mode:"no-cors", keepalive:true }); } catch (e) {}
+    try { fetch(CONTADOR_URL + "?e=" + evento + (ORIGEM ? "&o=" + ORIGEM : ""), { mode:"no-cors", keepalive:true }).catch(function(){}); } catch (e) {}
   };
 })();
 CV_CONTAR("q_visita");
@@ -939,6 +978,11 @@ CV_CONTAR("q_visita");
 
   function mostrar(qual){
     Object.keys(telas).forEach(function(k){ telas[k].hidden = (k !== qual); });
+    if (qual !== "enquete") {
+      document.body.classList.remove("q-preto", "q-lima");
+      var cor = document.querySelector('meta[name="theme-color"]');
+      if (cor) cor.setAttribute("content", "#161616");
+    }
     window.scrollTo(0, 0);
   }
 
@@ -951,6 +995,13 @@ CV_CONTAR("q_visita");
 
   function desenharPergunta(i, animar){
     var p = PERGUNTAS[i];
+    var preto = (i % 2 === 1);
+    telas.enquete.classList.toggle("tema-preto", preto);
+    telas.enquete.classList.toggle("tema-lima", !preto);
+    document.body.classList.toggle("q-preto", preto);
+    document.body.classList.toggle("q-lima", !preto);
+    var cor = document.querySelector('meta[name="theme-color"]');
+    if (cor) cor.setAttribute("content", preto ? "#161616" : "#D4F742");
     $("perguntaTitulo").textContent = p.titulo;
     $("contagem").textContent = (i + 1) + " de " + PERGUNTAS.length;
     $("barraCheia").style.width = (i / PERGUNTAS.length * 100) + "%";
