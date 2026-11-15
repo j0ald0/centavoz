@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Por que seu dinheiro some no fim do mês? Teste de 1 minuto | CentaVoz, app de controle de gastos</title>
-<meta name="description" content="Responda 4 perguntas, descubra por que o dinheiro some antes do fim do mês e veja como o CentaVoz, app de controle de gastos por voz, resolve isso no celular.">
+<title>Controle seus gastos falando. Sem planilha. | CentaVoz, app de controle de gastos</title>
+<meta name="description" content="CentaVoz, app de controle de gastos por voz: fale o gasto e o app organiza tudo. Faça o teste de 4 perguntas e veja para onde vai seu dinheiro. Sem cadastro.">
 <link rel="canonical" href="https://centavoz.com.br/quiz">
 <!-- Página feita para o anúncio: fora da busca orgânica, para não disputar com a página principal. -->
 <meta name="robots" content="noindex, follow">
@@ -535,6 +535,16 @@ body.q-preto{background:var(--tinta)}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* ---------- Abertura v15/11/2026: app primeiro (B revisada) ---------- */
+.abertura h1{font-size:clamp(1.75rem,6.2vw,3rem)}
+.abre-app{display:flex;gap:14px;align-items:center;margin-top:14px}
+.abre-cel{width:150px;flex:none;-webkit-mask-image:linear-gradient(#000 76%,transparent);mask-image:linear-gradient(#000 76%,transparent)}
+.abre-cel img{width:100%;height:auto;display:block}
+.abre-app .lead{margin:0;font-size:1rem}
+.abertura .acoes{margin-top:16px}
+.abre-demo{display:block;margin-top:6px;font-weight:700;color:inherit;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px;min-height:44px;line-height:44px}
+@media (min-width:700px){.abre-cel{width:200px}.abre-app .lead{font-size:1.125rem}}
 </style>
 </head>
 <body>
@@ -553,14 +563,18 @@ body.q-preto{background:var(--tinta)}
 <!-- ============ 1. ABERTURA ============ -->
 <section class="abertura" id="telaAbertura" aria-labelledby="t-abertura">
   <div class="miolo">
-    <span class="etiqueta">Teste de 1 minuto</span>
-    <h1 id="t-abertura">Por que o seu dinheiro <em class="it">some</em> antes do fim do mês?</h1>
-    <p class="lead">Responda 4 perguntas, descubra para onde o dinheiro está indo e veja como o CentaVoz, app de controle de gastos por voz, resolve isso no celular.</p>
+    <span class="etiqueta">App de controle de gastos</span>
+    <h1 id="t-abertura">Controle seus gastos <em class="it">falando</em>. Sem planilha.</h1>
+    <div class="abre-app">
+      <div class="abre-cel"><img src="quiz-celular-topo.webp" width="450" height="390" alt="Tela do CentaVoz com o botão verde de falar os gastos"></div>
+      <p class="lead">Fale o gasto e o app organiza tudo. Faça o teste e veja para onde vai seu dinheiro.</p>
+    </div>
     <div class="acoes">
-      <button class="botao grande" type="button" id="comecar">Começar o teste
+      <button class="botao grande" type="button" id="comecar">Fazer o teste
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
-      <span class="nota">Sem cadastro e sem e-mail. O resultado aparece na hora.</span>
+      <span class="nota">4 perguntas rápidas. Sem cadastro.</span>
+      <a class="abre-demo" href="https://script.google.com/macros/s/AKfycbxKC4kN1NNAPQumE_wquxghEYWHFkWZ7HX7YPIIIdpnABQCG3GlXyMtWE7FPPxf3az_6g/exec" target="_blank" rel="noopener" data-demo>Ver o app funcionando</a>
     </div>
     <noscript><p style="margin-top:24px">Para fazer o teste, ative o JavaScript do navegador. Ou conheça o CentaVoz em <a href="https://centavoz.com.br/">centavoz.com.br</a>.</p></noscript>
   </div>
